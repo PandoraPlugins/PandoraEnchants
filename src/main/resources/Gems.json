@@ -16,13 +16,13 @@
 
       "HELMET": {
         "enchantments": ["Implants"],
-        "amplifier": 1,
+        "amplifier": 1
       },
       "CHESTPLATE": {
         "enchantments": ["Frozen"],
         "amplifier": -1,
         "maxAmp": 3
-      },
+      }
 
     }
   }

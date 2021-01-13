@@ -27,7 +27,7 @@ public class JsonUtil {
      * @param path the path of the data to get within the file separated with a .
      * @return the data found at the path in the file
      */
-    public static Object getData(String file, String path) {
+    public static <T> T getData(String file, String path) {
 
         final File jsonPath = new File(plugin.getDataFolder(), file);
         if(!jsonPath.exists()){
@@ -40,18 +40,18 @@ public class JsonUtil {
             JSONObject jsonObject = (JSONObject) parsed;
 
             JSONObject currObject = (JSONObject) jsonObject.clone();
-            if(path == null) return currObject;
+            if(path == null) return (T) currObject;
             String[] paths = path.split("\\.");
 
             for (String s : paths) {
 
                 if (currObject.get(s) instanceof JSONObject)
                     currObject = (JSONObject) currObject.get(s);
-                else return currObject.get(s);
+                else return (T) currObject.get(s);
 
             }
 
-            return currObject;
+            return (T) currObject;
         }catch(IOException | ParseException ignored){
             return null;
         }
