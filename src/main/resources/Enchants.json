@@ -1,0 +1,36 @@
+{
+  "_comment": "Keep all config values relating to the enchantment as if it were for an enchantment amplifier of 1",
+  "_comment1": "ampEffect will determine if the amplifier the item has will effect the value.",
+  "_comment2": "chances are between 0-100",
+  "Implants": {
+    "restrictEnchant": ["HELMET"],
+    "healthHeal": {
+      "value": 1,
+      "ampEffect": true
+    },
+    "hungerHeal": {
+      "value": 1,
+      "ampEffect": true
+    },
+    "timeOut": {
+      "value": 2500,
+      "ampEffect": true
+    }
+  },
+  "Frozen": {
+    "restrictEnchant": ["CHESTPLATE"],
+    "slowness": {
+      "value": 1,
+      "ampEffect": true
+    },
+    "duration": {
+      "value": 5000,
+      "ampEffect": true
+    },
+    "chance": {
+      "value": 35.0,
+      "ampEffect": false
+    }
+  }
+
+}

@@ -1,5 +1,29 @@
 {
-  "Commander": {
+  "_comment": "chanceOfDrop from 0-100",
+  "_comment1": "amplifier can be set to a number from 1-whatever. Or -1 for a random value between 1 and 'maxAmp'",
+  "Gem1": {
+    "name": "G-Set 1",
+    "chanceOfDrop": 0.25,
+    "itemMeta": {
+      "material": "STONE",
+      "displayName": "OP G Set",
+      "glow": true,
+      "lore": [
+        "This set will give you:", "Poison Sword", "Frozen Chestplate", "etc..."
+      ]
+    },
+    "enchantmentsGiven":{
 
+      "HELMET": {
+        "enchantments": ["Implants"],
+        "amplifier": 1,
+      },
+      "CHESTPLATE": {
+        "enchantments": ["Frozen"],
+        "amplifier": -1,
+        "maxAmp": 3
+      },
+
+    }
   }
 }
