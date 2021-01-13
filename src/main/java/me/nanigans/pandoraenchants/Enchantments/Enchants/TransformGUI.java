@@ -1,11 +1,16 @@
 package me.nanigans.pandoraenchants.Enchantments.Enchants;
 
+import me.nanigans.pandoraenchants.Enchantments.Gems.Gems;
 import me.nanigans.pandoraenchants.PandoraEnchants;
 import me.nanigans.pandoraenchants.Util.ItemUtil;
+import me.nanigans.pandoraenchants.Util.NBTData;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -22,6 +27,11 @@ public class TransformGUI implements Listener {
         put("blue", ItemUtil.createItem("160/3", ChatColor.BLACK+""));
         put("black", ItemUtil.createItem("160/8", ChatColor.BLACK+""));
     }};
+    private final Map<String, Integer[]> itemPositions = new HashMap<String, Integer[]>(){{
+        put("gem", new Integer[]{10});
+        put("armor", new Integer[]{12, 13, 14, 15});
+        put("output", new Integer[]{37, 39, 41, 43});
+    }};
 
     public TransformGUI(Player player){
         this.player = player;
@@ -30,7 +40,42 @@ public class TransformGUI implements Listener {
     }
 
 
-    public Inventory createInventory(){
+    @EventHandler
+    public void inventoryClick(InventoryClickEvent event){
+
+        if(event.getWhoClicked().getUniqueId().equals(player.getUniqueId())){
+
+            final ItemStack item = event.getCurrentItem();
+            final Inventory clickedInventory = event.getClickedInventory();
+
+            if(clickedInventory != null && item != null){
+                player.playSound(player.getLocation(), Sound.valueOf("CLICK"), 1, 1);
+
+                if(clickedInventory.equals(player.getInventory())){
+                    event.setCancelled(true);
+                    if(NBTData.containsNBT(item, Gems.nbt)){
+                        final ItemStack clone = item.clone();
+                        clone.setAmount(1);
+
+                        if(item.getAmount() == 1){
+                            clickedInventory.removeItem(item);
+                        }else item.setAmount(item.getAmount()-1);
+                        inv.setItem(itemPositions.get("gem")[0], clone);
+                    }
+                }
+
+            }
+
+        }
+
+    }
+
+
+    /**
+     * Creates the default inventory for when a player first opens this inventory
+     * @return a new default inventory
+     */
+    private Inventory createInventory(){
 
         inv = Bukkit.createInventory(player, 54, "Enchantments");
         inv.setItem(10, ItemUtil.renameItem(placeHolders.get("black").clone(), ChatColor.GOLD+"Place Gem Here"));
@@ -43,6 +88,9 @@ public class TransformGUI implements Listener {
         return inv;
     }
 
+    /**
+     * Sets the placeholders for the inventory
+     */
     private void setPlaceHolders(){
 
         placeItem(0, 2, placeHolders.get("lime"), inv);

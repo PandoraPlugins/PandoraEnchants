@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Gems {
-    public static final String nbt = "GEM";
+    public static final String nbt = "EGEM";
 
     public static ItemStack createGem(Map<String, Object> gemData, String name){
 
