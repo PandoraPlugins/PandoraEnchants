@@ -14,7 +14,6 @@ public class AddEnchantment implements CommandExecutor {
 
         if (command.getName().equals("addcustomenchant")) {
 
-
             if (sender.hasPermission("Enchants.OpenGUI")) {
 
                 if (sender instanceof Player) {
@@ -27,13 +26,12 @@ public class AddEnchantment implements CommandExecutor {
                             openGUI(player);
                         }else{
                             sender.sendMessage(ChatColor.RED+"Please specify a valid player");
-                            return true;
                         }
 
                     }else{
                         sender.sendMessage(ChatColor.RED+"Please specify a player");
-                        return true;
                     }
+                    return true;
                 }
 
             } else {
@@ -47,10 +45,7 @@ public class AddEnchantment implements CommandExecutor {
     }
 
     private void openGUI(Player player) {
-
-        final TransformGUI transformGUI = new TransformGUI(player);
-
-
+        new TransformGUI(player);
     }
 
 }

@@ -8,6 +8,13 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class ItemUtil {
 
+    public static ItemStack renameItem(ItemStack item, String name){
+        ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName(name);
+        item.setItemMeta(meta);
+        return item;
+    }
+
     /**
      * Creates a new item from a string material id
      * @param material the material of the item "ID/ID"
