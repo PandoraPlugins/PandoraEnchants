@@ -3,7 +3,7 @@
   "_comment1": "amplifier can be set to a number from 1-whatever. Or -1 for a random value between 1 and 'maxAmp'",
   "Gem1": {
     "name": "G-Set 1",
-    "chanceOfDrop": 0.25,
+    "chanceOfDrop": 5.5,
     "itemMeta": {
       "material": "STONE",
       "displayName": "OP G Set",

@@ -3,3 +3,12 @@ version: ${project.version}
 main: me.nanigans.pandoraenchants.PandoraEnchants
 authors: [ProNanigans]
 description: Custom Minecraft Enchantments for PandoraPVP
+commands:
+  gemenchant:
+    usage: /gemenchant <player> <gem type>
+    description: Gives the player a specific gem
+    aliases: [gemgive, givegem]
+permissions:
+  Enchants.GiveGem:
+    description: Allows a user to give a player a gem
+    default: op
