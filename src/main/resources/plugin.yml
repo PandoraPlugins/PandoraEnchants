@@ -1,0 +1,5 @@
+name: PandoraEnchants
+version: ${project.version}
+main: me.nanigans.pandoraenchants.PandoraEnchants
+authors: [ProNanigans]
+description: Custom Minecraft Enchantments for PandoraPVP
