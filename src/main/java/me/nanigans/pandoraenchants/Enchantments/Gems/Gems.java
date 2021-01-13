@@ -12,7 +12,6 @@ import java.util.Map;
 public class Gems {
     public static final String nbt = "GEM";
 
-
     public static ItemStack createGem(Map<String, Object> gemData, String name){
 
         final Map<String, Object> meta = ((Map<String, Object>) gemData.get("itemMeta"));
@@ -21,12 +20,12 @@ public class Gems {
         if(meta.get("glow").toString().equals("true")){
             final Glow glow = new Glow(71);
             iMeta.addEnchant(glow, 1, true);
-            gem.setItemMeta(iMeta);
         }
         final List<String> lore = JsonUtil.getData("Gems.json", name+".itemMeta.lore");
         if(lore != null && lore.size() > 0){
             iMeta.setLore(lore);
         }
+        gem.setItemMeta(iMeta);
         return gem;
 
     }

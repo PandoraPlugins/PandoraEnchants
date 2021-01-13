@@ -8,7 +8,13 @@ commands:
     usage: /gemenchant <player> <gem type>
     description: Gives the player a specific gem
     aliases: [gemgive, givegem]
+  addcustomenchant:
+    usage: /addcustomenchant
+    description: Opens up the GUI for converting armor and weapons
 permissions:
   Enchants.GiveGem:
     description: Allows a user to give a player a gem
+    default: op
+  Enchants.OpenGUI:
+    description: Allows a user to open the enchant gui
     default: op

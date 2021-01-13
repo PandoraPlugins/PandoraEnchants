@@ -1,10 +1,13 @@
 package me.nanigans.pandoraenchants;
 
+import me.nanigans.pandoraenchants.Commands.AddEnchantment;
 import me.nanigans.pandoraenchants.Commands.GemGive;
 import me.nanigans.pandoraenchants.Util.Glow;
+import me.nanigans.pandoraenchants.Util.JsonUtil;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
 import java.lang.reflect.Field;
 
 public final class PandoraEnchants extends JavaPlugin {
@@ -16,7 +19,10 @@ public final class PandoraEnchants extends JavaPlugin {
 
         registerGlow();
         getCommand("gemenchant").setExecutor(new GemGive());
-
+        getCommand("gemenchant").setTabCompleter(new me.nanigans.pandoraenchants.Commands.Tab.GemGive());
+        getCommand("addcustomenchant").setExecutor(new AddEnchantment());
+        JsonUtil.makeConfigFile(new File(getDataFolder(), "Gems.json"));
+        JsonUtil.makeConfigFile(new File(getDataFolder(), "Enchants.json"));
 
     }
 
