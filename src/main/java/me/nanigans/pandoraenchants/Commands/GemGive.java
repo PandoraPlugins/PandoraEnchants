@@ -30,6 +30,7 @@ public class GemGive implements CommandExecutor {
                             final ItemStack gem1 = Gems.createGem(gem, args[1]);
                             player.getInventory().addItem(gem1);
                             sender.sendMessage(ChatColor.GREEN+"Gem Given!");
+                            return true;
 
                         } else {
                             sender.sendMessage(ChatColor.RED + "Please specify a valid gem");

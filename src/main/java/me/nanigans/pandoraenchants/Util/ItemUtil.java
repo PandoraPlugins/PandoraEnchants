@@ -6,7 +6,19 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 public class ItemUtil {
+
+    public static ItemStack setLore(ItemStack item, String... lore){
+
+        ItemMeta meta = item.getItemMeta();
+        meta.setLore(Arrays.stream(lore).collect(Collectors.toList()));
+        item.setItemMeta(meta);
+        return item;
+
+    }
 
     public static ItemStack renameItem(ItemStack item, String name){
         ItemMeta meta = item.getItemMeta();
