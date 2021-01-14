@@ -156,7 +156,7 @@ public class TransformGUI implements Listener {
 
     }
 
-    private void putBack(ItemStack item, int indx){
+    private void putBack(ItemStack item, int indx){//puts the item in the slot back in their inventory if they try to replace it
         this.armorContent[indx] = item;
         final Integer armor = itemPositions.get("armor")[indx];
         if(inv.getItem(armor) != null && inv.getItem(armor).getType() == Material.STAINED_GLASS_PANE) {
