@@ -12,9 +12,11 @@ import org.bukkit.Sound;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -26,6 +28,7 @@ import java.util.Map;
 public class TransformGUI implements Listener {
     private final Player player;
     private final static PandoraEnchants plugin = PandoraEnchants.getPlugin(PandoraEnchants.class);
+    private final List<Integer> positions = Arrays.asList(10, 13, 14, 15, 16);
     private Inventory inv;
     final private ItemStack[] armorContent = new ItemStack[4];
 
@@ -36,8 +39,8 @@ public class TransformGUI implements Listener {
         put("black", ItemUtil.createItem("160/8", ChatColor.BLACK+""));
     }};
     private final Map<String, Integer[]> itemPositions = new HashMap<String, Integer[]>(){{
-        put("gem", new Integer[]{10});
-        put("armor", new Integer[]{13, 14, 15, 16});
+        put("gem", new Integer[]{positions.get(0)});
+        put("armor", new Integer[]{positions.get(1), positions.get(2), positions.get(3), positions.get(4)});
         put("output", new Integer[]{37, 39, 41, 43});
     }};
 
@@ -48,10 +51,18 @@ public class TransformGUI implements Listener {
     }
 
 
+    /**
+     * Handles inventory clicks
+     * @param event
+     */
     @EventHandler
     public void inventoryClick(InventoryClickEvent event){
 
         if(event.getWhoClicked().getUniqueId().equals(player.getUniqueId())){
+            /*
+            this will set the current inventory's item if it is a gem, it'll set it in the gem slot
+            or the armor slot
+             */
 
             final ItemStack item = event.getCurrentItem();
             final Inventory clickedInventory = event.getClickedInventory();
@@ -66,7 +77,12 @@ public class TransformGUI implements Listener {
                         final ItemStack clone = item.clone();
                         clone.setAmount(1);
                         removeItem(item, clickedInventory);
-                        inv.setItem(itemPositions.get("gem")[0], clone);
+                        final Integer[] gems = itemPositions.get("gem");
+                        if(inv.getItem(gems[0]) != null && inv.getItem(gems[0]).getType() != Material.STAINED_GLASS_PANE){
+                            player.getInventory().addItem(inv.getItem(gems[0]));
+                        }
+                        inv.setItem(gems[0], clone);
+
                     }else if(isArmor(item)){
                         final ItemStack clone = item.clone();
                         clone.setAmount(1);
@@ -77,16 +93,19 @@ public class TransformGUI implements Listener {
 
                 if(clickedInventory.equals(this.inv)){
 
-                    final List<Integer> positions = Arrays.asList(10, 13, 14, 15, 16);
+                    /*
+                    this will put the item in the clicked slot back into the players inventory
+                     */
+                    final List<Integer> positions = this.positions;
                     if(!positions.contains(event.getSlot())){
                         event.setCancelled(true);
                     }
                     if(!event.isCancelled()){
-                        if(item.getType() != Material.STAINED_GLASS) {
-                            event.setCancelled(true);
+                        event.setCancelled(true);
+                        if(item.getType() != Material.STAINED_GLASS_PANE) {
                             inv.removeItem(item);
                             player.getInventory().addItem(item);
-                        }else event.setCancelled(true);
+                        }
                     }
 
                 }
@@ -98,27 +117,52 @@ public class TransformGUI implements Listener {
     }
 
     /**
+     * When we close the inventory, we need to give the players items back and close the event
+     * @param event inv close event
+     */
+    @EventHandler
+    public void closeInv(InventoryCloseEvent event){
+
+        for (Integer position : positions) {
+            if (inv.getItem(position).getType() != Material.STAINED_GLASS_PANE) {
+                player.getInventory().addItem(inv.getItem(position));
+            }
+        }
+        HandlerList.unregisterAll(this);
+
+    }
+
+    /**
      * Checks to see which type of armor it is and maps it into its respective slot
      * @param item the item to check
      */
+
     private void checkArmor(ItemStack item){
 
         switch (item.getType().toString().split("_")[1]) {
             case "HELMET":
-                inv.setItem(itemPositions.get("armor")[0], item);
+                putBack(item, 0);
                 break;
             case "CHESTPLATE":
-                inv.setItem(itemPositions.get("armor")[1], item);
-                break;
+                putBack(item, 1);
+            break;
             case "LEGGINGS":
-                inv.setItem(itemPositions.get("armor")[2], item);
+                putBack(item, 2);
                 break;
             case "BOOTS":
-                inv.setItem(itemPositions.get("armor")[3], item);
+                putBack(item, 3);
                 break;
-
         }
 
+    }
+
+    private void putBack(ItemStack item, int indx){
+        this.armorContent[indx] = item;
+        final Integer armor = itemPositions.get("armor")[indx];
+        if(inv.getItem(armor) != null && inv.getItem(armor).getType() == Material.STAINED_GLASS_PANE) {
+            player.getInventory().addItem(inv.getItem(armor));
+        }
+        inv.setItem(armor, item);
     }
 
     private void removeItem(ItemStack item, Inventory inv){
