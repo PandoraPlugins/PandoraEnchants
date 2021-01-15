@@ -14,9 +14,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.player.PlayerPickupArrowEvent;
+import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -31,6 +34,7 @@ public class TransformGUI implements Listener {
     private final List<Integer> positions = Arrays.asList(10, 13, 14, 15, 16);
     private Inventory inv;
     final private ItemStack[] armorContent = new ItemStack[4];
+    private ItemStack gem;
 
     private final Map<String, ItemStack> placeHolders = new HashMap<String, ItemStack>(){{
         put("lime", ItemUtil.createItem("160/5", ChatColor.BLACK+""));
@@ -53,7 +57,7 @@ public class TransformGUI implements Listener {
 
     /**
      * Handles inventory clicks
-     * @param event
+     * @param event inv click event
      */
     @EventHandler
     public void inventoryClick(InventoryClickEvent event){
@@ -74,14 +78,8 @@ public class TransformGUI implements Listener {
                     if(event.getAction() != InventoryAction.PLACE_ALL)
                     event.setCancelled(true);
                     if(NBTData.containsNBT(item, Gems.nbt)){
-                        final ItemStack clone = item.clone();
-                        clone.setAmount(1);
-                        removeItem(item, clickedInventory);
-                        final Integer[] gems = itemPositions.get("gem");
-                        if(inv.getItem(gems[0]) != null && inv.getItem(gems[0]).getType() != Material.STAINED_GLASS_PANE){
-                            player.getInventory().addItem(inv.getItem(gems[0]));
-                        }
-                        inv.setItem(gems[0], clone);
+
+                        setGem(item, clickedInventory);
 
                     }else if(isArmor(item)){
                         final ItemStack clone = item.clone();
@@ -92,7 +90,6 @@ public class TransformGUI implements Listener {
                 }
 
                 if(clickedInventory.equals(this.inv)){
-
                     /*
                     this will put the item in the clicked slot back into the players inventory
                      */
@@ -124,11 +121,41 @@ public class TransformGUI implements Listener {
     public void closeInv(InventoryCloseEvent event){
 
         for (Integer position : positions) {
-            if (inv.getItem(position).getType() != Material.STAINED_GLASS_PANE) {
+            if (inv.getItem(position) != null && inv.getItem(position).getType() != Material.STAINED_GLASS_PANE) {
                 player.getInventory().addItem(inv.getItem(position));
             }
         }
         HandlerList.unregisterAll(this);
+
+    }
+
+    /**
+     * Prevents the player from picking up items while in the inventory
+     * @param event entity pickup item event
+     */
+    @EventHandler
+    public void pickUpItem(PlayerPickupItemEvent event){
+        if(event.getPlayer().getUniqueId().equals(player.getUniqueId())){
+            event.setCancelled(true);
+        }
+    }
+
+    /**
+     * Handles gem placement. Will replace whatever is in the inventory with a new gem and give the old gem back to the player
+     * @param item the gem item
+     * @param inventoryClicked the inventory that was clicked
+     */
+    private void setGem(ItemStack item, Inventory inventoryClicked){
+
+        final ItemStack clone = item.clone();
+        clone.setAmount(1);
+        removeItem(item, inventoryClicked);
+        final Integer[] gems = itemPositions.get("gem");
+        if(inv.getItem(gems[0]) != null && inv.getItem(gems[0]).getType() != Material.STAINED_GLASS_PANE){
+            player.getInventory().addItem(inv.getItem(gems[0]));
+        }
+        inv.setItem(gems[0], clone);
+        gem = item;
 
     }
 
@@ -142,15 +169,19 @@ public class TransformGUI implements Listener {
         switch (item.getType().toString().split("_")[1]) {
             case "HELMET":
                 putBack(item, 0);
+                armorContent[0] = item;
                 break;
             case "CHESTPLATE":
                 putBack(item, 1);
+                armorContent[1] = item;
             break;
             case "LEGGINGS":
                 putBack(item, 2);
+                armorContent[2] = item;
                 break;
             case "BOOTS":
                 putBack(item, 3);
+                armorContent[3] = item;
                 break;
         }
 
@@ -159,14 +190,14 @@ public class TransformGUI implements Listener {
     private void putBack(ItemStack item, int indx){//puts the item in the slot back in their inventory if they try to replace it
         this.armorContent[indx] = item;
         final Integer armor = itemPositions.get("armor")[indx];
-        if(inv.getItem(armor) != null && inv.getItem(armor).getType() == Material.STAINED_GLASS_PANE) {
+        if(inv.getItem(armor) != null && inv.getItem(armor).getType() != Material.STAINED_GLASS_PANE) {
             player.getInventory().addItem(inv.getItem(armor));
         }
         inv.setItem(armor, item);
     }
 
     private void removeItem(ItemStack item, Inventory inv){
-        if(item.getAmount() == 1)
+        if(item.getAmount() == 1)//removes one item from an itemstack or removes it from the inventory
             inv.removeItem(item);
         else item.setAmount(item.getAmount()-1);
 
