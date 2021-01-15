@@ -57,6 +57,28 @@ public class JsonUtil {
         }
     }
 
+    /**
+     * Gets data within the specified map
+     * @param map the map to get data from
+     * @param path the path of the data separated by '.'
+     * @param <T> the type of data
+     * @return information found at path
+     */
+    public static <T> T getFromMap(Map<String, Object> map, String path){
+
+        final String[] split = path.split("\\.");
+
+        Map<String, Object> curObject = map;
+
+        for(String s : split){
+            if(curObject.get(s) instanceof Map)
+                curObject = ((Map<String, Object>) curObject.get(s));
+            else return (T) curObject.get(s);
+        }
+
+        return (T) curObject;
+
+    }
 
     public static void makeConfigFile(File file){
 

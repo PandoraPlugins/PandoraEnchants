@@ -14,11 +14,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
-import org.bukkit.event.player.PlayerPickupArrowEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -28,13 +26,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@FunctionalInterface
+interface Methods{
+    void execute();
+}
+
 public class TransformGUI implements Listener {
     private final Player player;
     private final static PandoraEnchants plugin = PandoraEnchants.getPlugin(PandoraEnchants.class);
-    private final List<Integer> positions = Arrays.asList(10, 13, 14, 15, 16);
+    private static final List<Integer> positions = Arrays.asList(10, 13, 14, 15, 16);
     private Inventory inv;
     final private ItemStack[] armorContent = new ItemStack[4];
     private ItemStack gem;
+    private final ItemStack confirmButton = ItemUtil.setLore(ItemUtil.createItem(Material.PAPER, ChatColor.GREEN+"Confirm?", "METHOD~confirmEnchant"),
+            ChatColor.BLUE+"Status: "+ChatColor.RED+"Invalid");
 
     private final Map<String, ItemStack> placeHolders = new HashMap<String, ItemStack>(){{
         put("lime", ItemUtil.createItem("160/5", ChatColor.BLACK+""));
@@ -48,12 +53,35 @@ public class TransformGUI implements Listener {
         put("output", new Integer[]{37, 39, 41, 43});
     }};
 
+    private final Map<String, Methods> methods = new HashMap<String, Methods>(){{
+        put("confirmEnchant", TransformGUI.this::confirmEnchant);
+    }};
+
+    private boolean status = false;
+
     public TransformGUI(Player player){
         this.player = player;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
         player.openInventory(createInventory());
     }
 
+
+    private void confirmEnchant(){
+
+        if(status){
+
+
+
+        }
+
+    }
+
+    private void executeMethod(String name){
+
+        if(methods.containsKey(name))
+            methods.get(name).execute();
+
+    }
 
     /**
      * Handles inventory clicks
@@ -105,6 +133,9 @@ public class TransformGUI implements Listener {
                         }
                     }
 
+                }
+                if(NBTData.containsNBT(item, "METHOD")){
+                    this.executeMethod(NBTData.getNBT(item, "METHOD"));
                 }
 
             }
@@ -221,9 +252,9 @@ public class TransformGUI implements Listener {
         inv.setItem(39, ItemUtil.renameItem(placeHolders.get("black"), "Output Chestplate"));
         inv.setItem(41, ItemUtil.renameItem(placeHolders.get("black"), "Output Leggings"));
         inv.setItem(43, ItemUtil.renameItem(placeHolders.get("black"), "Output Boots"));
-        inv.setItem(49,
-                ItemUtil.setLore(ItemUtil.createItem(Material.NETHER_STAR, ChatColor.GREEN+"Confirm", "METHOD~confirm"), "Not Available"));
         setPlaceHolders();
+        inv.setItem(49, confirmButton);
+
         return inv;
     }
 

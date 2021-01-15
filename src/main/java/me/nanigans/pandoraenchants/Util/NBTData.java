@@ -1,6 +1,8 @@
 package me.nanigans.pandoraenchants.Util;
 
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
+import net.minecraft.server.v1_8_R3.NBTTagInt;
+import net.minecraft.server.v1_8_R3.NBTTagList;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
 
@@ -9,6 +11,23 @@ import java.util.Map;
 import java.util.Set;
 
 public class NBTData {
+
+    public static ItemStack addEnchantLore(ItemStack item, int enchID, int level){
+
+        final net.minecraft.server.v1_8_R3.ItemStack itemStack = CraftItemStack.asNMSCopy(item);
+        NBTTagCompound compound = (itemStack.hasTag() ? itemStack.getTag() : new NBTTagCompound());
+
+        NBTTagList ench = new NBTTagList();
+        NBTTagCompound enchant = new NBTTagCompound();
+        enchant.set("id", new NBTTagInt(enchID));
+        enchant.set("lvl", new NBTTagInt(level));
+        ench.add(enchant);
+        compound.set("ench", ench);
+        itemStack.setTag(compound);
+        return CraftItemStack.asBukkitCopy(itemStack);
+
+    }
+
 
     public static boolean containsNBT(ItemStack item, String key){
 

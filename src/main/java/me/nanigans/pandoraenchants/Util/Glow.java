@@ -37,7 +37,7 @@ public class Glow extends Enchantment {
 
     @Override
     public int getMaxLevel() {
-        return 0;
+        return 3;
     }
 
     @Override
