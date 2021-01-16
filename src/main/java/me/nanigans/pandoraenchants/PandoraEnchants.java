@@ -2,32 +2,35 @@ package me.nanigans.pandoraenchants;
 
 import me.nanigans.pandoraenchants.Commands.AddEnchantment;
 import me.nanigans.pandoraenchants.Commands.GemGive;
-import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchant;
-import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments.Implants;
+import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments.Enchantments;
+import me.nanigans.pandoraenchants.Events.EventAnalyser;
+import me.nanigans.pandoraenchants.Events.PlayerEvents;
 import me.nanigans.pandoraenchants.Util.Glow;
 import me.nanigans.pandoraenchants.Util.JsonUtil;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public final class PandoraEnchants extends JavaPlugin {
-
-    private final List<CustomEnchant> enchantments = new ArrayList<>();
 
     @Override
     public void onEnable() {
         // Plugin startup logic
 
-        enchantments.add(new Implants(75));
+        Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD+"REGISTERING ENCHANTMENTS");
         registerEnchantment(new Glow(72));
-        for (CustomEnchant enchantment : enchantments) {
-            registerEnchantment(enchantment);
+        for (Enchantments enchantment : Enchantments.values()) {
+            registerEnchantment(enchantment.getEnchant());
         }
+        Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD+"ENCHANTMENTS REGISTERED");
+
+        getServer().getPluginManager().registerEvents(new EventAnalyser(), this);
+        getServer().getPluginManager().registerEvents(new PlayerEvents(), this);
         getCommand("gemenchant").setExecutor(new GemGive());
         getCommand("gemenchant").setTabCompleter(new me.nanigans.pandoraenchants.Commands.Tab.GemGive());
         getCommand("addcustomenchant").setExecutor(new AddEnchantment());
@@ -40,8 +43,8 @@ public final class PandoraEnchants extends JavaPlugin {
     public void onDisable() {
         // Plugin shutdown logic
         deregisterEnchantment(new Glow(72));
-        for (CustomEnchant enchantment : enchantments) {
-            deregisterEnchantment(enchantment);
+        for (Enchantments enchantment : Enchantments.values()) {
+            deregisterEnchantment(enchantment.getEnchant());
         }
 
     }

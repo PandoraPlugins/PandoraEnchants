@@ -20,6 +20,7 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.*;
 
@@ -44,11 +45,11 @@ public class TransformGUI implements Listener {
         put("SPADE", 2);
         put("HOE", 3);
     }};
+    private boolean returnAllItems = true;
     private Inventory inv;
     final private ItemStack[] enchantContents = new ItemStack[4];
     private ItemStack gem;
-    private final ItemStack confirmButton = ItemUtil.setLore(ItemUtil.createItem(Material.PAPER, ChatColor.GREEN+"Confirm?", "METHOD~confirmEnchant"),
-            ChatColor.BLUE+"Status: "+ChatColor.RED+"Invalid");
+    private final ItemStack confirmButton = ItemUtil.createItem(Material.PAPER, ChatColor.GREEN+"Confirm?", "METHOD~confirmEnchant");
 
     private final Map<String, ItemStack> placeHolders = new HashMap<String, ItemStack>(){{
         put("lime", ItemUtil.createItem("160/5", ChatColor.BLACK+""));
@@ -66,8 +67,6 @@ public class TransformGUI implements Listener {
         put("confirmEnchant", TransformGUI.this::confirmEnchant);
     }};
 
-    private boolean status = false;
-
     public TransformGUI(Player player){
         this.player = player;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
@@ -75,12 +74,36 @@ public class TransformGUI implements Listener {
     }
 
 
+    /**
+     * Enchants the armor in the <var>enchantedContents</var> to the enchantments that the gem contains
+     * Will remove magic color to any enchants that are random
+     */
     private void confirmEnchant(){
 
-        if(status){
-
-
-
+        if(gem != null) {
+            for (Integer output : itemPositions.get("output")) {
+                ItemStack enchantedItem = inv.getItem(output);
+                if(enchantedItem != null && enchantedItem.getType() != Material.AIR) {
+                    if (enchantedItem.getType() == Material.STAINED_GLASS_PANE) continue;
+                    enchantedItem = NBTData.setNBT(enchantedItem, CustomEnchant.nbtEnchanted + "~" + Gems.getName(gem));
+                    final ItemMeta meta = enchantedItem.getItemMeta();
+                    final List<String> lore = meta.getLore();
+                    if (lore != null && lore.stream().anyMatch(i -> i.contains(ChatColor.MAGIC.toString()))) {
+                        for (int i = 0; i < lore.size(); i++) {
+                            if (lore.get(i).contains(ChatColor.MAGIC.toString()))
+                                lore.set(i, ChatColor.GRAY + ChatColor.stripColor(lore.get(i)));
+                        }
+                        meta.setLore(lore);
+                        enchantedItem.setItemMeta(meta);
+                    }
+                    player.getInventory().addItem(enchantedItem);
+                    returnAllItems = false;
+                    player.closeInventory();
+                }
+            }
+        }else{
+            player.closeInventory();
+            player.sendMessage(ChatColor.RED+"Please input a gem");
         }
 
     }
@@ -173,14 +196,18 @@ public class TransformGUI implements Listener {
      */
     @EventHandler
     public void closeInv(InventoryCloseEvent event){
+        returnAllItems(this.returnAllItems);
+        HandlerList.unregisterAll(this);
+    }
 
-        for (Integer position : positions) {
-            if (inv.getItem(position) != null && inv.getItem(position).getType() != Material.STAINED_GLASS_PANE) {
-                player.getInventory().addItem(inv.getItem(position));
+    private void returnAllItems(boolean force){
+        if(force) {
+            for (Integer position : positions) {
+                if (inv.getItem(position) != null && inv.getItem(position).getType() != Material.STAINED_GLASS_PANE) {
+                    player.getInventory().addItem(inv.getItem(position));
+                }
             }
         }
-        HandlerList.unregisterAll(this);
-
     }
 
     /**

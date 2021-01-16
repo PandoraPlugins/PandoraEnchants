@@ -5,8 +5,6 @@
   "Implants": {
     "enchantData": {
       "name": "Implants",
-      "maxLevel": 3,
-      "startLevel": 0
     },
     "restrictEnchant": ["HELMET"],
     "healthHeal": {

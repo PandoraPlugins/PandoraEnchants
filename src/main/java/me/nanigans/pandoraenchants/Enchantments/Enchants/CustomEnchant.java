@@ -12,6 +12,8 @@ import java.util.List;
 
 public abstract class CustomEnchant extends Enchantment{
     protected PandoraEnchants plugin;
+    public static final String nbtEnchanted = "ENCHANTED";
+
     public CustomEnchant(int id) {
         super(id);
         plugin = PandoraEnchants.getPlugin(PandoraEnchants.class);

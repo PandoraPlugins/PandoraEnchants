@@ -6,6 +6,7 @@ import me.nanigans.pandoraenchants.Util.Glow;
 import me.nanigans.pandoraenchants.Util.ItemUtil;
 import me.nanigans.pandoraenchants.Util.JsonUtil;
 import me.nanigans.pandoraenchants.Util.NBTData;
+import net.minecraft.server.v1_8_R3.Enchantment;
 import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -19,6 +20,14 @@ public class Gems {
     public static final String nbt = "EGEM";
 
 
+    public static String getName(ItemStack gem){
+
+        if(NBTData.containsNBT(gem, nbt)){
+            return NBTData.getNBT(gem, Gems.nbt);
+        }
+        return null;
+    }
+
     public static ItemStack createGem(Map<String, Object> gemData, String name){
 
         final Map<String, Object> meta = getFromMap(gemData, "itemMeta");
@@ -29,7 +38,7 @@ public class Gems {
             iMeta.addEnchant(glow, 1, true);
         }
         final List<String> lore = getFromMap(meta, "lore");
-        if(lore != null && lore.size() > 0){
+        if(lore != null && lore.size() > 0) {
             iMeta.setLore(lore);
         }
 
@@ -64,6 +73,13 @@ public class Gems {
 
     }
 
+    /**
+     * Gets all the enchantments for a gem in a map like:
+     * HELMET:[enchantments],
+     * CHESTPLATE:[enchantments]
+     * @param gem the gem to the enchantments from
+     * @return map of all the enchantments for the gem
+     */
     public static Map<String, List<CustomEnchant>> getEnchantments(ItemStack gem){
 
         if(NBTData.containsNBT(gem, nbt)){
