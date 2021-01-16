@@ -69,10 +69,13 @@ public class Gems {
         if(NBTData.containsNBT(gem, nbt)){
 
             final String nbt = NBTData.getNBT(gem, Gems.nbt);
-            Map<String, Object> data = JsonUtil.getData("Gems.json", nbt + ".enchantmentsGiven");
-            Map<String, List<CustomEnchant>> enchantList = new HashMap<String, List<CustomEnchant>>(){{put("HELMET",
-                    Collections.EMPTY_LIST); put("CHESTPLATE", Collections.EMPTY_LIST); put("LEGGINGS", Collections.EMPTY_LIST);
-                    put("BOOTS", Collections.EMPTY_LIST);}};
+            final Map<String, Object> data = JsonUtil.getData("Gems.json", nbt + ".enchantmentsGiven");
+            final Map<String, List<CustomEnchant>> enchantList = new HashMap<String, List<CustomEnchant>>(){{
+                final List emptyList = Collections.EMPTY_LIST;
+                put("HELMET",
+                        emptyList); put("CHESTPLATE", emptyList); put("LEGGINGS", emptyList);
+                    put("BOOTS", emptyList);put("SWORD", emptyList);put("BOW", emptyList);put("AXE", emptyList);put("PICKAXE",emptyList);
+            put("SPADE",emptyList);}};
 
             if(data != null && data.size() > 0)
             for (String s : data.keySet()) {

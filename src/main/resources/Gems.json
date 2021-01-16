@@ -19,16 +19,20 @@
           "name": "Implants",
           "level": -1,
           "maxLevel": 3
-        }],
-        "level": 1
+        }]
       },
       "CHESTPLATE": {
         "enchantments": [{
           "name": "Implants",
           "level": 2
-        }],
-        "level": -1,
-        "maxLevel": 3
+        }]
+      },
+      "SWORD": {
+        "enchantments": [{
+          "name": "Implants",
+          "level": -1,
+          "maxLevel": 5
+        }]
       }
 
     }

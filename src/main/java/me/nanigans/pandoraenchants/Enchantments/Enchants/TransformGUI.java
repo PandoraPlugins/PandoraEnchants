@@ -4,7 +4,7 @@ import me.nanigans.pandoraenchants.Enchantments.Gems.Gems;
 import me.nanigans.pandoraenchants.PandoraEnchants;
 import me.nanigans.pandoraenchants.Util.ItemUtil;
 import me.nanigans.pandoraenchants.Util.NBTData;
-import net.minecraft.server.v1_8_R3.ItemArmor;
+import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -21,10 +21,7 @@ import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @FunctionalInterface
 interface Methods{
@@ -35,8 +32,20 @@ public class TransformGUI implements Listener {
     private final Player player;
     private final static PandoraEnchants plugin = PandoraEnchants.getPlugin(PandoraEnchants.class);
     private static final List<Integer> positions = Arrays.asList(10, 13, 14, 15, 16);
+    private final HashMap<String, Integer> toolIndexes = new HashMap<String, Integer>() {{
+        put("HELMET", 0);
+        put("CHESTPLATE", 1);
+        put("LEGGINGS", 2);
+        put("BOOTS", 3);
+        put("SWORD", 0);
+        put("BOW", 1);
+        put("AXE", 2);
+        put("PICKAXE", 3);
+        put("SPADE", 2);
+        put("HOE", 3);
+    }};
     private Inventory inv;
-    final private ItemStack[] armorContent = new ItemStack[4];
+    final private ItemStack[] enchantContents = new ItemStack[4];
     private ItemStack gem;
     private final ItemStack confirmButton = ItemUtil.setLore(ItemUtil.createItem(Material.PAPER, ChatColor.GREEN+"Confirm?", "METHOD~confirmEnchant"),
             ChatColor.BLUE+"Status: "+ChatColor.RED+"Invalid");
@@ -109,7 +118,7 @@ public class TransformGUI implements Listener {
 
                         setGem(item, clickedInventory);
 
-                    }else if(isArmor(item)){
+                    }else if(isArmor(item) || isTool(item)){
                         final ItemStack clone = item.clone();
                         clone.setAmount(1);
                         removeItem(item, clickedInventory);
@@ -137,10 +146,10 @@ public class TransformGUI implements Listener {
                                 }
                                 gem = null;
                             }else {//check if armor is removed then we remove it from the output if it exists
-                                final List<ItemStack> itemStacks = Arrays.asList(armorContent);
+                                final List<ItemStack> itemStacks = Arrays.asList(enchantContents);
                                 if(itemStacks.contains(item)){
                                     final int index = itemStacks.indexOf(item);
-                                    armorContent[index] = null;
+                                    enchantContents[index] = null;
                                     inv.setItem(itemPositions.get("output")[index], null);
                                 }
                             }
@@ -201,13 +210,19 @@ public class TransformGUI implements Listener {
         }
         inv.setItem(gems[0], clone);
         gem = item;
-        for (ItemStack itemStack : armorContent) {
+        for (ItemStack itemStack : enchantContents) {
             if(itemStack != null)
             checkArmor(itemStack, false);
         }
 
     }
 
+    /**
+     * Sets the enchantment to the item and displays it in the output slots
+     * @param item the item to add the enchantment to
+     * @param itemType the type of item i.e HELMET
+     * @param index the index in which to add to enchantContent
+     */
     private void setEnchantments(ItemStack item, String itemType, int index){
         final ItemStack clone = item.clone();
         CustomEnchant.addEnchantLore(clone, Gems.getEnchantments(gem).get(itemType), itemType, gem);
@@ -217,50 +232,31 @@ public class TransformGUI implements Listener {
     /**
      * Checks to see which type of armor it is and maps it into its respective slot
      * @param item the item to check
-     * @param putBack
+     * @param putBack wether or not to put the itemstack back into the players inventory if replaced
      */
 
     private void checkArmor(ItemStack item, boolean putBack){
 
-        switch (item.getType().toString().split("_")[1]) {
-            case "HELMET":
-                if(putBack)
-                putBack(item, 0);
-                armorContent[0] = item;
-                if(gem != null){
-                    setEnchantments(item, "HELMET", 0);
-                }
-                break;
-            case "CHESTPLATE":
-                if(putBack)
-                    putBack(item, 1);
-                armorContent[1] = item;
-                if(gem != null){
-                    setEnchantments(item, "CHESTPLATE", 1);
-                }
-            break;
-            case "LEGGINGS":
-                if(putBack)
-                    putBack(item, 2);
-                armorContent[2] = item;
-                if(gem != null){
-                    setEnchantments(item, "LEGGINGS", 2);
-                }
-                break;
-            case "BOOTS":
-                if(putBack)
-                    putBack(item, 3);
-                armorContent[3] = item;
-                if(gem != null){
-                    setEnchantments(item, "BOOTS", 3);
-                }
-                break;
+        Map<String, Integer> toolIndexes = this.toolIndexes;
+        final String itemName = item.getType().toString().split("_")[1];
+
+        final Integer index = toolIndexes.get(itemName);
+        if(putBack)
+            putBack(item, index);
+        enchantContents[index] = item;
+        if(gem != null){
+            setEnchantments(item, itemName, index);
         }
 
     }
 
-    private void putBack(ItemStack item, int indx){//puts the item in the slot back in their inventory if they try to replace it
-        this.armorContent[indx] = item;
+    /**
+     * Puts the item in the slot (indx) back in their inventory if they are trying to replace it
+     * @param item the item to replace
+     * @param indx the index mapped to enchantContent
+     */
+    private void putBack(ItemStack item, int indx){
+        this.enchantContents[indx] = item;
         final Integer armor = itemPositions.get("armor")[indx];
         if(inv.getItem(armor) != null && inv.getItem(armor).getType() != Material.STAINED_GLASS_PANE) {
             player.getInventory().addItem(inv.getItem(armor));
@@ -268,13 +264,34 @@ public class TransformGUI implements Listener {
         inv.setItem(armor, item);
     }
 
+    /**
+     * removes one item from an itemstack or removes it from the inventory if it has an amount of 1
+     * @param item the item to remove
+     * @param inv the inventory to possible remove from
+     */
     private void removeItem(ItemStack item, Inventory inv){
-        if(item.getAmount() == 1)//removes one item from an itemstack or removes it from the inventory
+        if(item.getAmount() == 1)
             inv.removeItem(item);
         else item.setAmount(item.getAmount()-1);
 
     }
 
+    /**
+     * checks to see if an itemstack is a tool
+     * @param item the item to check
+     * @return if it is a tool or not
+     */
+    private static boolean isTool(ItemStack item){
+        if(item.getType() == Material.AIR) return false;
+        final Item item1 = CraftItemStack.asNMSCopy(item).getItem();
+        return item1 instanceof ItemSword || item1 instanceof ItemAxe || item1 instanceof ItemSpade || item1 instanceof ItemBow || item1 instanceof ItemPickaxe;
+    }
+
+    /**
+     * checks if an itemstack is armor
+     * @param item the item stack to check
+     * @return if it is armor or not
+     */
     private static boolean isArmor(ItemStack item) {
         if(item.getType() == Material.AIR) return false;//check if item is armor
         return (CraftItemStack.asNMSCopy(item).getItem() instanceof ItemArmor);
