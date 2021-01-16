@@ -6,6 +6,7 @@ import me.nanigans.pandoraenchants.Util.Glow;
 import me.nanigans.pandoraenchants.Util.ItemUtil;
 import me.nanigans.pandoraenchants.Util.JsonUtil;
 import me.nanigans.pandoraenchants.Util.NBTData;
+import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -37,13 +38,29 @@ public class Gems {
 
     }
 
-    public static String getEnchantLevel(ItemStack gem){
+    /**
+     * Gets all the enchantment levels of a gem for a armor piece
+     * @param gem the gem to apply enchantments
+     * @param itemType the item type of the object i.e: HELMET
+     * @return a stringed map of the enchantment name, level
+     */
+    public static String getEnchantLevel(ItemStack gem, String itemType, String enchantName){
 
         if(NBTData.containsNBT(gem, nbt)){
 
             final String nbt = NBTData.getNBT(gem, Gems.nbt);
-
+            final List<Map<String, Object>> data = JsonUtil.getData("Gems.json", nbt + ".enchantmentsGiven."+itemType+".enchantments");
+            for (Map<String, Object> datum : data) {
+                if(datum.get("name").equals(enchantName)) {
+                    String level = datum.get("level").toString();
+                    if (level.equals("-1")) {
+                        level = ChatColor.MAGIC + "" + (int)(Math.random() * Integer.parseInt(datum.get("maxLevel").toString()) + 1);
+                    }
+                    return level;
+                }
+            }
         }
+        return null;
 
     }
 
@@ -59,7 +76,7 @@ public class Gems {
 
             if(data != null && data.size() > 0)
             for (String s : data.keySet()) {
-                enchantList.put(s, ((List<String>) getFromMap(data, s + ".enchantments")).stream().map(i -> Enchantments.valueOf(i).getEnchant()).collect(Collectors.toList()));
+                enchantList.put(s, ((List<Map<String, Object>>) getFromMap(data, s + ".enchantments")).stream().map(i -> Enchantments.valueOf(i.get("name").toString()).getEnchant()).collect(Collectors.toList()));
             }
             return enchantList;
         }

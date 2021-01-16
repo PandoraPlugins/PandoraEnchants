@@ -23,7 +23,10 @@
         "level": 1
       },
       "CHESTPLATE": {
-        "enchantments": ["Frozen"],
+        "enchantments": [{
+          "name": "Implants",
+          "level": 2
+        }],
         "level": -1,
         "maxLevel": 3
       }

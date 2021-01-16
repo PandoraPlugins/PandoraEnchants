@@ -130,6 +130,20 @@ public class TransformGUI implements Listener {
                         if(item.getType() != Material.STAINED_GLASS_PANE) {
                             inv.removeItem(item);
                             player.getInventory().addItem(item);
+
+                            if(item.equals(this.gem)){//here we check if the gem is removed and it if is, we remove everything from the outputs
+                                for (Integer output : itemPositions.get("output")) {
+                                    inv.setItem(output, null);
+                                }
+                                gem = null;
+                            }else {//check if armor is removed then we remove it from the output if it exists
+                                final List<ItemStack> itemStacks = Arrays.asList(armorContent);
+                                if(itemStacks.contains(item)){
+                                    final int index = itemStacks.indexOf(item);
+                                    armorContent[index] = null;
+                                    inv.setItem(itemPositions.get("output")[index], null);
+                                }
+                            }
                         }
                     }
 
@@ -196,7 +210,7 @@ public class TransformGUI implements Listener {
 
     private void setEnchantments(ItemStack item, String itemType, int index){
         final ItemStack clone = item.clone();
-        CustomEnchant.addEnchantLore(clone, Gems.getEnchantments(gem).get(itemType), "1");
+        CustomEnchant.addEnchantLore(clone, Gems.getEnchantments(gem).get(itemType), itemType, gem);
         inv.setItem(itemPositions.get("output")[index], clone);
     }
 
