@@ -1,6 +1,6 @@
 {
   "_comment": "chanceOfDrop from 0-100",
-  "_comment1": "amplifier can be set to a number from 1-whatever. Or -1 for a random value between 1 and 'maxAmp'",
+  "_comment1": "level can be set to a number from 1-whatever. Or -1 for a random value between 1 and 'maxAmp'",
   "Gem1": {
     "name": "G-Set 1",
     "chanceOfDrop": 5.5,
@@ -15,13 +15,17 @@
     "enchantmentsGiven":{
 
       "HELMET": {
-        "enchantments": ["Implants"],
-        "amplifier": 1
+        "enchantments": [{
+          "name": "Implants",
+          "level": -1,
+          "maxLevel": 3
+        }],
+        "level": 1
       },
       "CHESTPLATE": {
         "enchantments": ["Frozen"],
-        "amplifier": -1,
-        "maxAmp": 3
+        "level": -1,
+        "maxLevel": 3
       }
 
     }

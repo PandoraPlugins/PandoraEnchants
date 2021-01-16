@@ -33,7 +33,6 @@ public final class PandoraEnchants extends JavaPlugin {
         getCommand("addcustomenchant").setExecutor(new AddEnchantment());
         JsonUtil.makeConfigFile(new File(getDataFolder(), "Gems.json"));
         JsonUtil.makeConfigFile(new File(getDataFolder(), "Enchants.json"));
-        System.out.println(Enchantment.getById(72));
 
     }
 

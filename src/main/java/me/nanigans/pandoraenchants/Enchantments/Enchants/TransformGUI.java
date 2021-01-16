@@ -113,7 +113,7 @@ public class TransformGUI implements Listener {
                         final ItemStack clone = item.clone();
                         clone.setAmount(1);
                         removeItem(item, clickedInventory);
-                        checkArmor(clone);
+                        checkArmor(clone, true);
                     }
                 }
 
@@ -121,7 +121,7 @@ public class TransformGUI implements Listener {
                     /*
                     this will put the item in the clicked slot back into the players inventory
                      */
-                    final List<Integer> positions = this.positions;
+                    final List<Integer> positions = TransformGUI.positions;
                     if(!positions.contains(event.getSlot())){
                         event.setCancelled(true);
                     }
@@ -187,32 +187,59 @@ public class TransformGUI implements Listener {
         }
         inv.setItem(gems[0], clone);
         gem = item;
+        for (ItemStack itemStack : armorContent) {
+            if(itemStack != null)
+            checkArmor(itemStack, false);
+        }
 
+    }
+
+    private void setEnchantments(ItemStack item, String itemType, int index){
+        final ItemStack clone = item.clone();
+        CustomEnchant.addEnchantLore(clone, Gems.getEnchantments(gem).get(itemType), "1");
+        inv.setItem(itemPositions.get("output")[index], clone);
     }
 
     /**
      * Checks to see which type of armor it is and maps it into its respective slot
      * @param item the item to check
+     * @param putBack
      */
 
-    private void checkArmor(ItemStack item){
+    private void checkArmor(ItemStack item, boolean putBack){
 
         switch (item.getType().toString().split("_")[1]) {
             case "HELMET":
+                if(putBack)
                 putBack(item, 0);
                 armorContent[0] = item;
+                if(gem != null){
+                    setEnchantments(item, "HELMET", 0);
+                }
                 break;
             case "CHESTPLATE":
-                putBack(item, 1);
+                if(putBack)
+                    putBack(item, 1);
                 armorContent[1] = item;
+                if(gem != null){
+                    setEnchantments(item, "CHESTPLATE", 1);
+                }
             break;
             case "LEGGINGS":
-                putBack(item, 2);
+                if(putBack)
+                    putBack(item, 2);
                 armorContent[2] = item;
+                if(gem != null){
+                    setEnchantments(item, "LEGGINGS", 2);
+                }
                 break;
             case "BOOTS":
-                putBack(item, 3);
+                if(putBack)
+                    putBack(item, 3);
                 armorContent[3] = item;
+                if(gem != null){
+                    setEnchantments(item, "BOOTS", 3);
+                }
                 break;
         }
 

@@ -16,6 +16,7 @@ public class Implants extends CustomEnchant implements Listener {
 
     @EventHandler
     public void onHit(EntityDamageByEntityEvent event){
+        //((Player) event.getDamager()).getInventory().getItemInMainHand().getEn
     }
 
     @Override
