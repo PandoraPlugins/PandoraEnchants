@@ -1,6 +1,8 @@
-package me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments;
+package me.nanigans.pandoraenchants.Enchantments.Enchants;
 
-import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchant;
+import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments.Blind;
+import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments.Frozen;
+import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments.Implants;
 
 public enum Enchantments {
 

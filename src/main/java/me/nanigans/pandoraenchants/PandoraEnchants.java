@@ -2,9 +2,7 @@ package me.nanigans.pandoraenchants;
 
 import me.nanigans.pandoraenchants.Commands.AddEnchantment;
 import me.nanigans.pandoraenchants.Commands.GemGive;
-import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments.Enchantments;
-import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments.Frozen;
-import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments.Implants;
+import me.nanigans.pandoraenchants.Enchantments.Enchants.Enchantments;
 import me.nanigans.pandoraenchants.Events.EventAnalyser;
 import me.nanigans.pandoraenchants.Events.PlayerEvents;
 import me.nanigans.pandoraenchants.Util.Glow;
@@ -24,6 +22,8 @@ public final class PandoraEnchants extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
+        JsonUtil.makeConfigFile(new File(getDataFolder(), "Gems.json"));
+        JsonUtil.makeConfigFile(new File(getDataFolder(), "Enchants.json"));
 
         Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD+"REGISTERING ENCHANTMENTS");
         registerEnchantment(new Glow(72));
@@ -39,9 +39,6 @@ public final class PandoraEnchants extends JavaPlugin {
         getCommand("gemenchant").setExecutor(new GemGive());
         getCommand("gemenchant").setTabCompleter(new me.nanigans.pandoraenchants.Commands.Tab.GemGive());
         getCommand("addcustomenchant").setExecutor(new AddEnchantment());
-        JsonUtil.makeConfigFile(new File(getDataFolder(), "Gems.json"));
-        JsonUtil.makeConfigFile(new File(getDataFolder(), "Enchants.json"));
-
     }
 
     @Override

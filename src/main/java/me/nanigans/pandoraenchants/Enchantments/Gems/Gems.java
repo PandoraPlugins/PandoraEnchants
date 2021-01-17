@@ -1,7 +1,7 @@
 package me.nanigans.pandoraenchants.Enchantments.Gems;
 
 import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchant;
-import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments.Enchantments;
+import me.nanigans.pandoraenchants.Enchantments.Enchants.Enchantments;
 import me.nanigans.pandoraenchants.Util.Glow;
 import me.nanigans.pandoraenchants.Util.ItemUtil;
 import me.nanigans.pandoraenchants.Util.JsonUtil;

@@ -45,6 +45,9 @@
     }
   },
   "Blind": {
+    "enchantData": {
+      "name": "Blind"
+    },
     "restrictEnchant": [
       "SWORD"
     ],

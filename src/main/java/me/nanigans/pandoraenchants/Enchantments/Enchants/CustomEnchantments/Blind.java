@@ -4,6 +4,7 @@ import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchant;
 import me.nanigans.pandoraenchants.Enchantments.Enchants.EffectObject;
 import me.nanigans.pandoraenchants.Util.JsonUtil;
 import me.nanigans.pandoraenchants.Util.NBTData;
+import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentTarget;
 import org.bukkit.entity.LivingEntity;
@@ -18,10 +19,12 @@ import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Blind extends CustomEnchant implements Listener {
-    Map<String, EffectObject> effectData;
+    private final Map<String, EffectObject> effectData;
+    private static String name;
     public Blind(int id) {
         super(id);
-        effectData = convertMapToEffects(convertEffectsToMap(JsonUtil.getData("Effects.json", "Blind.effects")));
+        name = JsonUtil.getData("Enchants.json", "Blind.enchantData.name");
+        effectData = convertMapToEffects(convertEffectsToMap(JsonUtil.getData("Enchants.json", "Blind.effects")));
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -34,7 +37,7 @@ public class Blind extends CustomEnchant implements Listener {
             final LivingEntity damager = ((LivingEntity) event.getDamager());
 
             final ItemStack itemInHand = damager.getEquipment().getItemInHand();
-            if(itemInHand != null){
+            if(itemInHand != null && itemInHand.getType() != Material.AIR){
 
                 final Map<Enchantment, Integer> enchantments = itemInHand.getEnchantments();
                 if(enchantments.containsKey(this)){
@@ -61,7 +64,7 @@ public class Blind extends CustomEnchant implements Listener {
 
     @Override
     public String getName() {
-        return null;
+        return name;
     }
 
     @Override

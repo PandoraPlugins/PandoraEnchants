@@ -1,6 +1,6 @@
 package me.nanigans.pandoraenchants.Util;
 
-import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments.Enchantments;
+import me.nanigans.pandoraenchants.Enchantments.Enchants.Enchantments;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import net.minecraft.server.v1_8_R3.NBTTagInt;
 import net.minecraft.server.v1_8_R3.NBTTagList;
