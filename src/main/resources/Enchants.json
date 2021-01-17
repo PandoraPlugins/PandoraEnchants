@@ -4,20 +4,22 @@
   "_comment2": "chances are between 0-100",
   "Implants": {
     "enchantData": {
-      "name": "Implants",
+      "name": "Implants"
     },
     "restrictEnchant": ["HELMET"],
-    "healthHeal": {
-      "value": 1,
-      "ampEffect": true
-    },
-    "hungerHeal": {
-      "value": 1,
-      "ampEffect": true
-    },
-    "timeOut": {
-      "value": 2500,
-      "ampEffect": true
+    "effects": {
+      "healthHeal": {
+        "value": 1.0,
+        "ampEffect": true
+      },
+      "hungerHeal": {
+        "value": 1,
+        "ampEffect": true
+      },
+      "timeOut": {
+        "value": 2500,
+        "ampEffect": true
+      }
     }
   },
   "Frozen": {

@@ -274,7 +274,8 @@ public class TransformGUI implements Listener {
         }
         meta.setLore(lore);
         clone.setItemMeta(meta);
-        clone = CustomEnchant.addEnchantLore(clone, Gems.getEnchantments(gem).get(itemType), itemType, gem);
+        final List<CustomEnchant> enchants = Gems.getEnchantments(gem).get(itemType);
+        clone = CustomEnchant.addEnchantLore(clone, enchants, itemType, gem);
         inv.setItem(itemPositions.get("output")[index], clone);
     }
 

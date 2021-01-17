@@ -3,6 +3,8 @@ package me.nanigans.pandoraenchants;
 import me.nanigans.pandoraenchants.Commands.AddEnchantment;
 import me.nanigans.pandoraenchants.Commands.GemGive;
 import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments.Enchantments;
+import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments.Frozen;
+import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments.Implants;
 import me.nanigans.pandoraenchants.Events.EventAnalyser;
 import me.nanigans.pandoraenchants.Events.PlayerEvents;
 import me.nanigans.pandoraenchants.Util.Glow;
@@ -10,6 +12,7 @@ import me.nanigans.pandoraenchants.Util.JsonUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -26,11 +29,13 @@ public final class PandoraEnchants extends JavaPlugin {
         registerEnchantment(new Glow(72));
         for (Enchantments enchantment : Enchantments.values()) {
             registerEnchantment(enchantment.getEnchant());
+            getServer().getPluginManager().registerEvents(((Listener) enchantment.getEnchant()), this);
         }
         Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD+"ENCHANTMENTS REGISTERED");
 
         getServer().getPluginManager().registerEvents(new EventAnalyser(), this);
         getServer().getPluginManager().registerEvents(new PlayerEvents(), this);
+
         getCommand("gemenchant").setExecutor(new GemGive());
         getCommand("gemenchant").setTabCompleter(new me.nanigans.pandoraenchants.Commands.Tab.GemGive());
         getCommand("addcustomenchant").setExecutor(new AddEnchantment());

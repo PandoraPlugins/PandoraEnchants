@@ -9,32 +9,30 @@
       "displayName": "OP G Set",
       "glow": true,
       "lore": [
-        "This set will give you:", "Poison Sword", "Frozen Chestplate", "etc..."
+        "This set will give you:",
+        "Poison Sword",
+        "Frozen Chestplate",
+        "etc..."
       ]
     },
-    "enchantmentsGiven":{
-
+    "enchantmentsGiven": {
       "HELMET": {
-        "enchantments": [{
-          "name": "Implants",
-          "level": -1,
-          "maxLevel": 3
-        }]
+        "enchantments": [
+          {
+            "name": "Implants",
+            "level": -1,
+            "maxLevel": 3
+          }
+        ]
       },
       "CHESTPLATE": {
-        "enchantments": [{
-          "name": "Implants",
-          "level": 2
-        }]
-      },
-      "SWORD": {
-        "enchantments": [{
-          "name": "Implants",
-          "level": -1,
-          "maxLevel": 5
-        }]
+        "enchantments": [
+          {
+            "name": "Frozen",
+            "level": 2
+          }
+        ]
       }
-
     }
   }
 }
