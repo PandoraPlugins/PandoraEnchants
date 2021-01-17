@@ -47,7 +47,6 @@ public class Implants extends CustomEnchant implements Listener {
             if(!usersToCheck.contains(player.getUniqueId())){
 
                 final ItemStack[] armorContents = player.getInventory().getArmorContents();
-                System.out.println("armorContents = " + Arrays.toString(armorContents));
                 for (ItemStack armorContent : armorContents) {
                     if (armorContent != null &&armorContent.getType() != Material.AIR) {
                         final Map<Enchantment, Integer> enchantments = NBTData.getEnchantments(armorContent);
