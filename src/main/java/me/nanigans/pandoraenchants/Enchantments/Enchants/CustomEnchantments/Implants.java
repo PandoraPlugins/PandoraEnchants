@@ -14,6 +14,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.*;
 
+
 public class Implants extends CustomEnchant implements Listener {
     private final static List<UUID> usersToCheck = new ArrayList<>();
     private static int foodHeal;
@@ -22,6 +23,7 @@ public class Implants extends CustomEnchant implements Listener {
     private static boolean ampHeal;
     private static boolean ampFood;
     private static boolean ampTimeOut;
+    private static String name;
 
 
     public Implants(int id) {
@@ -33,6 +35,7 @@ public class Implants extends CustomEnchant implements Listener {
         ampHeal = JsonUtil.getData("Enchants.json", "Implants.effects.healthHeal.ampEffect");
         ampFood = JsonUtil.getData("Enchants.json", "Implants.effects.hungerHeal.ampEffect");
         ampTimeOut = JsonUtil.getData("Enchants.json", "Implants.effects.timeOut.ampEffect");
+        name = JsonUtil.getData("Enchants.json", "Implants.enchantData.name");
     }
 
     @EventHandler
@@ -44,6 +47,7 @@ public class Implants extends CustomEnchant implements Listener {
             if(!usersToCheck.contains(player.getUniqueId())){
 
                 final ItemStack[] armorContents = player.getInventory().getArmorContents();
+                System.out.println("armorContents = " + Arrays.toString(armorContents));
                 for (ItemStack armorContent : armorContents) {
                     if (armorContent != null &&armorContent.getType() != Material.AIR) {
                         final Map<Enchantment, Integer> enchantments = NBTData.getEnchantments(armorContent);
@@ -66,7 +70,7 @@ public class Implants extends CustomEnchant implements Listener {
 
     }
 
-    private static final class Timer extends TimerTask{
+    private static final class Timer extends TimerTask {
 
         private final Player player;
         private final int level;
@@ -88,7 +92,7 @@ public class Implants extends CustomEnchant implements Listener {
 
     @Override
     public String getName() {
-        return "Implants";
+        return name;
     }
 
     @Override

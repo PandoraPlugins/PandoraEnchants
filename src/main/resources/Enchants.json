@@ -23,18 +23,22 @@
     }
   },
   "Frozen": {
-    "restrictEnchant": ["CHESTPLATE"],
-    "slowness": {
-      "value": 1,
-      "ampEffect": true
-    },
-    "duration": {
-      "value": 5000,
-      "ampEffect": true
-    },
-    "chance": {
-      "value": 35.0,
-      "ampEffect": false
+    "restrictEnchant": [
+      "CHESTPLATE"
+    ],
+    "effects": {
+      "slowness": {
+        "value": 1,
+        "ampEffect": true
+      },
+      "duration": {
+        "value": 5000,
+        "ampEffect": true
+      },
+      "chance": {
+        "value": 35.0,
+        "ampEffect": false
+      }
     }
   }
 
