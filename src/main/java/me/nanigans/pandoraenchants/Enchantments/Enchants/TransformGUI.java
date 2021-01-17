@@ -1,6 +1,5 @@
 package me.nanigans.pandoraenchants.Enchantments.Enchants;
 
-import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments.Enchantments;
 import me.nanigans.pandoraenchants.Enchantments.Gems.Gems;
 import me.nanigans.pandoraenchants.PandoraEnchants;
 import me.nanigans.pandoraenchants.Util.ItemUtil;
@@ -24,7 +23,10 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @FunctionalInterface
 interface Methods{

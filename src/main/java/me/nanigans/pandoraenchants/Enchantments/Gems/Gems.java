@@ -6,12 +6,14 @@ import me.nanigans.pandoraenchants.Util.Glow;
 import me.nanigans.pandoraenchants.Util.ItemUtil;
 import me.nanigans.pandoraenchants.Util.JsonUtil;
 import me.nanigans.pandoraenchants.Util.NBTData;
-import net.minecraft.server.v1_8_R3.Enchantment;
 import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static me.nanigans.pandoraenchants.Util.JsonUtil.getFromMap;
