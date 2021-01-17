@@ -66,6 +66,32 @@
       }
 
     }
+  },
+  "Insomnia": {
+    "enchantData": {
+      "name": "Insomnia"
+    },
+    "restrictEnchant": ["SWORD"],
+    "effects": {
+      "chance": {
+        "value": 25.0,
+        "ampEffect": true
+      },
+      "duration": {
+        "value": 3000,
+        "ampEffect": true
+      },
+      "potionEffect": {
+        "value": 1,
+        "ampEffect": true
+      }
+
+    }
   }
 
 }
+
+
+
+
+

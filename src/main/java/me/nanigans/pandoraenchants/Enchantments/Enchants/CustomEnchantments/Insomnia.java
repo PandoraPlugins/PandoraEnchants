@@ -3,7 +3,6 @@ package me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments;
 import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchant;
 import me.nanigans.pandoraenchants.Enchantments.Enchants.EffectObject;
 import me.nanigans.pandoraenchants.Util.JsonUtil;
-import me.nanigans.pandoraenchants.Util.NBTData;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentTarget;
@@ -18,14 +17,15 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Blind extends CustomEnchant implements Listener {
+public class Insomnia extends CustomEnchant implements Listener {
+
     private final Map<String, EffectObject> effectData;
-    private static String name;
-    public Blind(int id) {
+    private final String name;
+
+    public Insomnia(int id) {
         super(id);
-        name = JsonUtil.getData("Enchants.json", "Blind.enchantData.name");
-        effectData = convertMapToEffects(convertEffectsToMap(JsonUtil.getData("Enchants.json", "Blind.effects")));
-        plugin.getServer().getPluginManager().registerEvents(this, plugin);
+        effectData = convertMapToEffects(convertEffectsToMap(JsonUtil.getData("Enchants.json", "Insomnia.effects")));
+        name = JsonUtil.getData("Enchants.json", "Insomnia.enchantData.name");
     }
 
     @EventHandler
@@ -48,10 +48,19 @@ public class Blind extends CustomEnchant implements Listener {
 
                         final EffectObject duration = effectData.get("duration");
                         final long length = duration.getValue().longValue() / 1000 * 20;
-                        final EffectObject blindness = effectData.get("blindness");
-                        final PotionEffect effect = new PotionEffect(PotionEffectType.BLINDNESS, (int) (length + (duration.isAmpEffect() ? length*(level/10) : 0)),
-                                blindness.getValue().intValue() * (blindness.isAmpEffect() ? level : 1));
-                        entity.addPotionEffect(effect);
+                        final EffectObject blindness = effectData.get("potionEffect");
+                        final int duration1 = (int) (length + (duration.isAmpEffect() ? length * (level / 10) : 0));
+                        final int amplifier = blindness.getValue().intValue() * (blindness.isAmpEffect() ? level : 1);
+                        final PotionEffect slow = new PotionEffect(PotionEffectType.SLOW, duration1,
+                                amplifier);
+                        final PotionEffect slowDig = new PotionEffect(PotionEffectType.SLOW_DIGGING, duration1,
+                                amplifier);
+                        final PotionEffect confusion = new PotionEffect(PotionEffectType.CONFUSION, duration1,
+                                amplifier);
+                        entity.addPotionEffect(slow);
+                        entity.addPotionEffect(slowDig);
+                        entity.addPotionEffect(confusion);
+
 
                     }
 
