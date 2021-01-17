@@ -5,6 +5,7 @@ import org.bukkit.enchantments.EnchantmentTarget;
 import org.bukkit.inventory.ItemStack;
 
 public class Glow extends Enchantment {
+    public static final Glow glow = new Glow(71);
 
     public Glow(int id) {
         super(id);
@@ -42,7 +43,7 @@ public class Glow extends Enchantment {
 
     @Override
     public String getName() {
-        return null;
+        return "Glowing";
     }
 
     @Override

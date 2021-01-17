@@ -1,5 +1,6 @@
 package me.nanigans.pandoraenchants.Enchantments.Enchants;
 
+import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments.Enchantments;
 import me.nanigans.pandoraenchants.Enchantments.Gems.Gems;
 import me.nanigans.pandoraenchants.PandoraEnchants;
 import me.nanigans.pandoraenchants.Util.ItemUtil;
@@ -10,6 +11,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
@@ -246,13 +248,31 @@ public class TransformGUI implements Listener {
 
     /**
      * Sets the enchantment to the item and displays it in the output slots
+     * Needs to remove the old enchant lore and update it to the new one
+     * Needs to remove old enchantments and update it to the new ones
      * @param item the item to add the enchantment to
      * @param itemType the type of item i.e HELMET
      * @param index the index in which to add to enchantContent
      */
     private void setEnchantments(ItemStack item, String itemType, int index){
-        final ItemStack clone = item.clone();
-        CustomEnchant.addEnchantLore(clone, Gems.getEnchantments(gem).get(itemType), itemType, gem);
+        ItemStack clone = item.clone();
+        final ItemMeta meta = clone.getItemMeta();
+        final Map<Enchantment, Integer> enchantments = NBTData.getEnchantments(clone);
+        final List<String> lore = meta.getLore();
+        if(enchantments != null) {
+            final ItemStack[] finalClone = {clone};
+            enchantments.forEach((i, j) -> {
+                if (i instanceof CustomEnchant) {
+                    finalClone[0].removeEnchantment(i);
+                    finalClone[0] = NBTData.removeEnchant(finalClone[0], i.getId());
+                    final String name = i.getName();
+                    lore.remove(ChatColor.GRAY + name + " " + j);
+                }
+            });
+        }
+        meta.setLore(lore);
+        clone.setItemMeta(meta);
+        clone = CustomEnchant.addEnchantLore(clone, Gems.getEnchantments(gem).get(itemType), itemType, gem);
         inv.setItem(itemPositions.get("output")[index], clone);
     }
 

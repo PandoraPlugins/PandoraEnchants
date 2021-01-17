@@ -1,9 +1,12 @@
 package me.nanigans.pandoraenchants.Util;
 
+import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments.Enchantments;
+import net.minecraft.server.v1_8_R3.NBTBase;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import net.minecraft.server.v1_8_R3.NBTTagInt;
 import net.minecraft.server.v1_8_R3.NBTTagList;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
@@ -22,12 +25,49 @@ public class NBTData {
         enchant.set("id", new NBTTagInt(enchID));
         enchant.set("lvl", new NBTTagInt(level));
         ench.add(enchant);
-        compound.set("ench", ench);
+        compound.set("enchants", ench);
         itemStack.setTag(compound);
         return CraftItemStack.asBukkitCopy(itemStack);
 
     }
 
+    public static ItemStack removeEnchant(ItemStack item, int id) {
+
+        final net.minecraft.server.v1_8_R3.ItemStack itemStack = CraftItemStack.asNMSCopy(item);
+        NBTTagCompound compound = (itemStack.hasTag() ? itemStack.getTag() : new NBTTagCompound());
+
+        final NBTTagList ench = (NBTTagList) compound.get("enchants");
+        if(ench != null){
+
+            for (int i = 0; i < ench.size(); i++) {
+                if(ench.get(i).getInt("id") == id){
+                    ench.a(i);
+                    i--;
+                }
+            }
+            return CraftItemStack.asBukkitCopy(itemStack);
+        }
+        return null;
+    }
+
+    public static Map<Enchantment, Integer> getEnchantments(ItemStack item){
+
+        final net.minecraft.server.v1_8_R3.ItemStack itemStack = CraftItemStack.asNMSCopy(item);
+        NBTTagCompound compound = (itemStack.hasTag() ? itemStack.getTag() : new NBTTagCompound());
+
+        final NBTTagList ench = (NBTTagList) compound.get("enchants");
+        if(ench != null) {
+            final Map<Enchantment, Integer> enchants = new HashMap<>();
+            for (int i = 0; i < ench.size(); i++) {
+                final Enchantment enchant = Enchantments.getById(ench.get(i).getInt("id"));
+                final int lvl = ench.get(i).getInt("lvl");
+                enchants.put(enchant, lvl);
+            }
+
+            return enchants;
+        }
+        return null;
+    }
 
     public static boolean containsNBT(ItemStack item, String key){
 
@@ -127,4 +167,5 @@ public class NBTData {
         return null;
 
     }
+
 }

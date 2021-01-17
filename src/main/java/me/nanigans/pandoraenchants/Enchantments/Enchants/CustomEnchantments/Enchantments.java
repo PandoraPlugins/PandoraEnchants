@@ -13,6 +13,14 @@ public enum Enchantments {
         this.enchant = implants;
     }
 
+    public static CustomEnchant getById(int id){
+        for (Enchantments value : Enchantments.values()) {
+            if(value.getEnchant().getId() == id)
+                return value.getEnchant();
+        }
+        return null;
+    }
+
     public CustomEnchant getEnchant() {
         return enchant;
     }

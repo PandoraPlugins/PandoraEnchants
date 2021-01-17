@@ -26,7 +26,7 @@ public class Implants extends CustomEnchant implements Listener {
 
     @Override
     public int getMaxLevel() {
-        return 0;
+        return 5;
     }
 
     @Override
@@ -36,7 +36,7 @@ public class Implants extends CustomEnchant implements Listener {
 
     @Override
     public EnchantmentTarget getItemTarget() {
-        return null;
+        return EnchantmentTarget.ALL;
     }
 
     @Override
