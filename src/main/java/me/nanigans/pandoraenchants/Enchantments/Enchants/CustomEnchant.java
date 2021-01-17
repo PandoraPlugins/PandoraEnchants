@@ -48,6 +48,15 @@ public abstract class CustomEnchant extends Enchantment{
 
     }
 
+    protected Map<String, EffectObject> convertMapToEffects(Map<String, Map<String, Object>> effectInfo){
+
+        final Map<String, EffectObject> effectData = new HashMap<>();
+        for (Map.Entry<String, Map<String, Object>> stringMapEntry : effectInfo.entrySet()) {
+            effectData.put(stringMapEntry.getKey(), new EffectObject(stringMapEntry.getValue()));
+        }
+        return effectData;
+    }
+
     protected boolean containsEnchant(ItemStack[] armorContents, CustomEnchant enchant){
 
         for (ItemStack armorContent : armorContents) {

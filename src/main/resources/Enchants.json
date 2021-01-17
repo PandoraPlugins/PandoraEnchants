@@ -23,6 +23,9 @@
     }
   },
   "Frozen": {
+    "enchantData": {
+      "name": "Frozen"
+    },
     "restrictEnchant": [
       "CHESTPLATE"
     ],
@@ -39,6 +42,26 @@
         "value": 35.0,
         "ampEffect": false
       }
+    }
+  },
+  "Blind": {
+    "restrictEnchant": [
+      "SWORD"
+    ],
+    "effects": {
+      "chance": {
+        "value": 25.0,
+        "ampEffect": true
+      },
+      "blindness": {
+        "value": 1,
+        "ampEffect": true
+      },
+      "duration": {
+        "value": 3000,
+        "ampEffect": true
+      }
+
     }
   }
 

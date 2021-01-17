@@ -4,6 +4,7 @@ import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchant;
 
 public enum Enchantments {
 
+    Blind(new Blind(77)),
     Frozen(new Frozen(76)),
     Implants(new Implants(75));
 
