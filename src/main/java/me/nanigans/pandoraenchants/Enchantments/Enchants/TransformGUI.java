@@ -319,7 +319,7 @@ public class TransformGUI implements Listener {
      * @param item the item to remove
      * @param inv the inventory to possible remove from
      */
-    private void removeItem(ItemStack item, Inventory inv){
+    public static void removeItem(ItemStack item, Inventory inv){
         if(item.getAmount() == 1)
             inv.removeItem(item);
         else item.setAmount(item.getAmount()-1);

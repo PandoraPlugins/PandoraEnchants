@@ -62,7 +62,8 @@ public abstract class CustomEnchant extends Enchantment{
         for (ItemStack armorContent : armorContents) {
             if(armorContent != null && armorContent.getType() != Material.AIR) {
                 final Map<Enchantment, Integer> enchantments = armorContent.getEnchantments();
-                return enchantments != null && enchantments.containsKey(enchant);
+                if(enchantments != null && enchantments.containsKey(enchant))
+                    return true;
             }
         }
         return false;
@@ -72,7 +73,8 @@ public abstract class CustomEnchant extends Enchantment{
         for (ItemStack armorContent : armorContents) {
             if(armorContent != null && armorContent.getType() != Material.AIR) {
                 final Map<Enchantment, Integer> enchantments = armorContent.getEnchantments();//NBTData.getEnchantments(armorContent);
-                return enchantments == null ? 1 : enchantments.get(enchant);
+                if(enchantments != null && enchantments.containsKey(enchant))
+                return enchantments.get(enchant);
             }
         }
         return 1;

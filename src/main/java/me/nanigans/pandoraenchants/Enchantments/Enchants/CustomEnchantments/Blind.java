@@ -3,7 +3,6 @@ package me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments;
 import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchant;
 import me.nanigans.pandoraenchants.Enchantments.Enchants.EffectObject;
 import me.nanigans.pandoraenchants.Util.JsonUtil;
-import me.nanigans.pandoraenchants.Util.NBTData;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentTarget;

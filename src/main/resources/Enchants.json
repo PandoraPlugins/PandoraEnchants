@@ -130,7 +130,7 @@
     "enchantData": {
       "name": "Ice Aspect"
     },
-    "restrictEnchant": ["Axe"],
+    "restrictEnchant": ["AXE"],
     "effects": {
       "chance": {
         "value": 25.0,
@@ -142,6 +142,22 @@
       },
       "duration": {
         "value": 2500,
+        "ampEffect": true
+      }
+    }
+  },
+  "Pig": {
+    "enchantData": {
+      "name": "Pig"
+    },
+    "restrictEnchant": ["HELMET"],
+    "effects": {
+      "chance": {
+        "value": 25.0,
+        "ampEffect": true
+      },
+      "cooldown": {
+        "value": 5000,
         "ampEffect": true
       }
     }
