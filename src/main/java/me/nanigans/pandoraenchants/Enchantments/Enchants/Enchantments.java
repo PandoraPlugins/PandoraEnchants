@@ -1,12 +1,10 @@
 package me.nanigans.pandoraenchants.Enchantments.Enchants;
 
-import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments.Blind;
-import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments.Frozen;
-import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments.Implants;
-import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments.Insomnia;
+import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments.*;
 
 public enum Enchantments {
 
+    Slum(new Slum(79)),
     Insomnia(new Insomnia(78)),
     Blind(new Blind(77)),
     Frozen(new Frozen(76)),

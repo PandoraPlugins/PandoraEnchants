@@ -90,7 +90,17 @@
   },
   "Slum": {
     "enchantData": {
-
+      "name": "Slum"
+    },
+    "restrictEnchant": ["SWORD", "AXE"],
+    "effects": {
+      "chance": {
+        "value": 35.0,
+        "ampEffect": true
+      },
+      "clearEffects": {
+        "value": ["SLOW_DIGGING", "CONFUSION", "BLINDNESS", "HUNGER"]
+      }
     }
   }
 
