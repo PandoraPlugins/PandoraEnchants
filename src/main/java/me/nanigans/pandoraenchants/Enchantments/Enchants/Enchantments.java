@@ -4,6 +4,7 @@ import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments.*;
 
 public enum Enchantments {
 
+    Clarity(new Clarity(83)),
     Pig(new Pig(82)),
     Ice_Aspect(new Ice_Aspect(81)),
     Reaper(new Reaper(80)),

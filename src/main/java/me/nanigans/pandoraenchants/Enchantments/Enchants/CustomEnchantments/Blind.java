@@ -22,7 +22,7 @@ public class Blind extends CustomEnchant implements Listener {
     private static String name;
     public Blind(int id) {
         super(id);
-        name = JsonUtil.getData("Enchants.json", "Blind.enchantData.name");
+        name = JsonUtil.getData(file, "Blind.enchantData.name");
         effectData = convertMapToEffects(convertEffectsToMap(JsonUtil.getData(file, "Blind.effects")));
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }

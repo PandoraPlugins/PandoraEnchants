@@ -25,7 +25,7 @@ public class Insomnia extends CustomEnchant implements Listener {
     public Insomnia(int id) {
         super(id);
         effectData = convertMapToEffects(convertEffectsToMap(JsonUtil.getData(file, "Insomnia.effects")));
-        name = JsonUtil.getData("Enchants.json", "Insomnia.enchantData.name");
+        name = JsonUtil.getData(file, "Insomnia.enchantData.name");
     }
 
     @EventHandler

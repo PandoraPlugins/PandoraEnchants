@@ -23,7 +23,7 @@ public class Ice_Aspect extends CustomEnchant implements Listener {
     public Ice_Aspect(int id) {
         super(id);
         effectData = convertMapToEffects(convertEffectsToMap(JsonUtil.getData(file, "Ice_Aspect.effects")));
-        name = JsonUtil.getData("Enchants.json", "Ice_Aspect.enchantData.name");
+        name = JsonUtil.getData(file, "Ice_Aspect.enchantData.name");
     }
 
     @EventHandler

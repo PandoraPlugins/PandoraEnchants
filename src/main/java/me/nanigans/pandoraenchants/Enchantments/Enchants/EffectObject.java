@@ -25,7 +25,12 @@ public final class EffectObject {
         return value;
     }
 
+    /**
+     * Gets the object that is in the 'value' section of the map. Use this if it is not a number
+     * @return the object found in 'value'
+     */
     public Object getOther() {
         return other;
     }
+
 }

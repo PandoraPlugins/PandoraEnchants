@@ -27,7 +27,7 @@ public class Frozen extends CustomEnchant implements Listener {
 
         final Map<String, Map<String, Object>> effects = convertEffectsToMap(JsonUtil.getData(file, "Frozen.effects"));
         effectData = convertMapToEffects(effects);
-        name = JsonUtil.getData("Enchants.json", "Frozen.enchantData.name");
+        name = JsonUtil.getData(file, "Frozen.enchantData.name");
     }
 
     @EventHandler

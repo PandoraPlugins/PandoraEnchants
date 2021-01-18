@@ -42,9 +42,6 @@ public class CustomizedObjectTypeAdapter implements JsonDeserializer<Map<String,
             }else if(prim.isNumber()){
 
                 Number num = prim.getAsNumber();
-                // here you can handle double int/long values
-                // and return any type you want
-                // this solution will transform 3.0 float to long values
                 if(Math.ceil(num.doubleValue())  == num.longValue())
                     return num.longValue();
                 else{
