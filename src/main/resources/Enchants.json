@@ -102,6 +102,29 @@
         "value": ["SLOW_DIGGING", "CONFUSION", "BLINDNESS", "HUNGER"]
       }
     }
+  },
+  "Reaper": {
+    "enchantData": {
+      "name": "Blind"
+    },
+    "restrictEnchant": [
+      "SWORD"
+    ],
+    "effects": {
+      "chance": {
+        "value": 25.0,
+        "ampEffect": true
+      },
+      "blindness": {
+        "value": 1,
+        "ampEffect": true
+      },
+      "duration": {
+        "value": 3000,
+        "ampEffect": true
+      }
+
+    }
   }
 
 }
