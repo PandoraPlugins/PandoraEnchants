@@ -55,13 +55,13 @@ public class TransformGUI implements Listener {
     private ItemStack gem;
     private final ItemStack confirmButton = ItemUtil.createItem(Material.PAPER, ChatColor.GREEN+"Confirm?", "METHOD~confirmEnchant");
 
-    private final Map<String, ItemStack> placeHolders = new HashMap<String, ItemStack>(){{
+    private static final Map<String, ItemStack> placeHolders = new HashMap<String, ItemStack>(){{
         put("lime", ItemUtil.createItem("160/5", ChatColor.BLACK+""));
         put("red", ItemUtil.createItem("160/14", ChatColor.BLACK+""));
         put("blue", ItemUtil.createItem("160/3", ChatColor.BLACK+""));
         put("black", ItemUtil.createItem("160/8", ChatColor.BLACK+""));
     }};
-    private final Map<String, Integer[]> itemPositions = new HashMap<String, Integer[]>(){{
+    private static final Map<String, Integer[]> itemPositions = new HashMap<String, Integer[]>(){{
         put("gem", new Integer[]{positions.get(0)});
         put("armor", new Integer[]{positions.get(1), positions.get(2), positions.get(3), positions.get(4)});
         put("output", new Integer[]{37, 39, 41, 43});
@@ -107,7 +107,7 @@ public class TransformGUI implements Listener {
             }
         }else{
             player.closeInventory();
-            player.sendMessage(ChatColor.RED+"Please input a gem");
+            player.sendMessage(ChatColor.RED+"Please input a gem");//TODO: Add config for all messages and placeholder item names
         }
 
     }
