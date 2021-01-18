@@ -105,7 +105,7 @@
   },
   "Reaper": {
     "enchantData": {
-      "name": "Blind"
+      "name": "Reaper"
     },
     "restrictEnchant": [
       "SWORD"
@@ -124,6 +124,26 @@
         "ampEffect": true
       }
 
+    }
+  },
+  "Ice_Aspect": {
+    "enchantData": {
+      "name": "Ice Aspect"
+    },
+    "restrictEnchant": ["Axe"],
+    "effects": {
+      "chance": {
+        "value": 25.0,
+        "ampEffect": true
+      },
+      "slowness": {
+        "value": 1,
+        "ampEffect": true
+      },
+      "duration": {
+        "value": 2500,
+        "ampEffect": true
+      }
     }
   }
 

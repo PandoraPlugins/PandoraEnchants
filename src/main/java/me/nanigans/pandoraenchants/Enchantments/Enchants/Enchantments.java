@@ -4,6 +4,8 @@ import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments.*;
 
 public enum Enchantments {
 
+    Ice_Aspect(new Ice_Aspect(81)),
+    Reaper(new Reaper(80)),
     Slum(new Slum(79)),
     Insomnia(new Insomnia(78)),
     Blind(new Blind(77)),

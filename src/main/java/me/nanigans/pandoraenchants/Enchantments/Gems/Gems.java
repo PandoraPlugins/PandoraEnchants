@@ -62,7 +62,7 @@ public class Gems {
             final String nbt = NBTData.getNBT(gem, Gems.nbt);
             final List<Map<String, Object>> data = JsonUtil.getData("Gems.json", nbt + ".enchantmentsGiven."+itemType+".enchantments");
             for (Map<String, Object> datum : data) {
-                if(datum.get("name").equals(enchantName)) {
+                if(datum.get("name").equals(enchantName.replaceAll(" ", "_"))) {
                     String level = datum.get("level").toString();
                     if (level.equals("-1")) {
                         level = ChatColor.MAGIC + "" + (int)(Math.random() * Integer.parseInt(datum.get("maxLevel").toString()) + 1);
