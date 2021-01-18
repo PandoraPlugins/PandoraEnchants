@@ -27,7 +27,7 @@ public class Pig extends CustomEnchant implements Listener {
 
     public Pig(int id) {
         super(id);
-        effectData = convertMapToEffects(convertEffectsToMap(JsonUtil.getData("Enchants.json", "Pig.effects")));
+        effectData = convertMapToEffects(convertEffectsToMap(JsonUtil.getData(file, "Pig.effects")));
         name = JsonUtil.getData("Enchants.json", "Pig.enchantData.name");
     }
 

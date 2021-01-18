@@ -161,6 +161,18 @@
         "ampEffect": true
       }
     }
+  },
+  "Clarity": {
+    "enchantData": {
+      "name": "Clarity"
+    },
+    "restrictEnchant": ["HELMET"],
+    "effects": {
+      "chance": {
+        "value": 25.0,
+        "ampEffect": true
+      }
+    }
   }
 
 }

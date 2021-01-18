@@ -24,7 +24,7 @@ public class Reaper extends CustomEnchant implements Listener {
     public Reaper(int id) {
         super(id);
         name = JsonUtil.getData("Enchants.json", "Reaper.enchantData.name");
-        effectData = convertMapToEffects(convertEffectsToMap(JsonUtil.getData("Enchants.json", "Reaper.effects")));
+        effectData = convertMapToEffects(convertEffectsToMap(JsonUtil.getData(file, "Reaper.effects")));
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 

@@ -22,7 +22,7 @@ public class Slum extends CustomEnchant implements Listener {
     public Slum(int id) {
         super(id);
         name = JsonUtil.getData("Enchants.json", "Slum.enchantData.name");
-        effectData = convertMapToEffects(convertEffectsToMap(JsonUtil.getData("Enchants.json", "Slum.effects")));
+        effectData = convertMapToEffects(convertEffectsToMap(JsonUtil.getData(file, "Slum.effects")));
     }
 
     @EventHandler

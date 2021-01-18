@@ -24,7 +24,7 @@ public class Implants extends CustomEnchant implements Listener {
 
     public Implants(int id) {
         super(id);
-        effectData = convertMapToEffects(convertEffectsToMap(JsonUtil.getData("Enchants.json", "Implants.effects")));
+        effectData = convertMapToEffects(convertEffectsToMap(JsonUtil.getData(file, "Implants.effects")));
         name = JsonUtil.getData("Enchants.json", "Implants.enchantData.name");
     }
 
