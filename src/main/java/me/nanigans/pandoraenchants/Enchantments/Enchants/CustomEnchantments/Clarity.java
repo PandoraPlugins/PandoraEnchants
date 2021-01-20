@@ -63,16 +63,6 @@ public class Clarity extends CustomEnchant implements Listener {
     }
 
     @Override
-    public boolean isTreasure() {
-        return false;
-    }
-
-    @Override
-    public boolean isCursed() {
-        return false;
-    }
-
-    @Override
     public boolean conflictsWith(Enchantment other) {
         return false;
     }

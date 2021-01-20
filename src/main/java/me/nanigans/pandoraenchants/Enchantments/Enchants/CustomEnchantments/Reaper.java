@@ -83,15 +83,7 @@ public class Reaper extends CustomEnchant implements Listener {
         return null;
     }
 
-    @Override
-    public boolean isTreasure() {
-        return false;
-    }
 
-    @Override
-    public boolean isCursed() {
-        return false;
-    }
 
     @Override
     public boolean conflictsWith(Enchantment other) {

@@ -173,6 +173,28 @@
         "ampEffect": true
       }
     }
+  },
+  "Purity": {
+    "enchantData": {
+      "name": "Purity"
+    },
+    "restrictEnchant": ["CHESTPLATE"],
+    "effects": {
+      "chance": {
+        "value": 20.0,
+        "ampEffect": true
+      },
+      "radius": {
+        "value": 2.5,
+        "ampEffect": true
+      },
+      "clearEffects":{
+        "value": ["SLOWNESS", "POISON"]
+      },
+      "includePlayer": {
+        "value": true
+      }
+    }
   }
 
 }

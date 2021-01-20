@@ -10,6 +10,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class CustomEnchant extends Enchantment{
     protected PandoraEnchants plugin;
@@ -21,6 +22,16 @@ public abstract class CustomEnchant extends Enchantment{
         plugin = PandoraEnchants.getPlugin(PandoraEnchants.class);
     }
 
+    /**
+     * calculate default chance for an enchantment to happen
+     * @param level the level of the enchantment
+     * @param value the value to compare to
+     * @param isAmp if the chance is to be amplified
+     * @return if the enchantment should execute or not
+     */
+    protected boolean calcChance(int level, double value, boolean isAmp){
+        return ThreadLocalRandom.current().nextDouble(100D) - (isAmp ? 10D * level : 0) < value;
+    }
 
     /**
      * Converts effect data into a map, map, string object

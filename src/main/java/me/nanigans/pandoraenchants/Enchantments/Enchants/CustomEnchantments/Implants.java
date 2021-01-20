@@ -106,15 +106,7 @@ public class Implants extends CustomEnchant implements Listener {
         return EnchantmentTarget.ALL;
     }
 
-    @Override
-    public boolean isTreasure() {
-        return false;
-    }
 
-    @Override
-    public boolean isCursed() {
-        return false;
-    }
 
     @Override
     public boolean conflictsWith(Enchantment other) {
