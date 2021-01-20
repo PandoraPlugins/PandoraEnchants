@@ -109,6 +109,7 @@ public final class EventAnalyser implements Listener
                             }
                         }
                         else if (saved != null && now[i] != null && saved[i] != null && !now[i].toString().equalsIgnoreCase(saved[i].toString())) {
+                            Bukkit.getPluginManager().callEvent(new PlayerArmorUnequipEvent(player, saved[i]));
                             Bukkit.getPluginManager().callEvent(eventEquip);
                             if(eventEquip.isCancelled() && event instanceof Cancellable) {
                                 ((Cancellable) event).setCancelled(((Cancellable) event).isCancelled());

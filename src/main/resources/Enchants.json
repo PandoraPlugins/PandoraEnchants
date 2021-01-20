@@ -207,6 +207,29 @@
         "toPlayerOnly": true
       }
     }
+  },
+  "Chubby": {
+    "enchantData": {
+      "name": "Chubby"
+    },
+    "restrictEnchant": ["CHESTPLATE"],
+    "effects": {
+      "chance": {
+        "value": 25.0,
+        "ampEffect": true
+      },
+      "healthAmt": {
+        "value": 2,
+        "ampEffect": true
+      },
+      "decayRate": {
+        "value": 1000,
+        "ampEffect": true
+      },
+      "decayAmt": {
+        "value": 1
+      }
+    }
   }
 
 }

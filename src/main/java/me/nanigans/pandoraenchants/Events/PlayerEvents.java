@@ -17,6 +17,7 @@ public class PlayerEvents implements Listener {
         final ItemStack[] armorContents = player.getInventory().getArmorContents();
         final ItemStack item = event.getItemStack();
 
+        System.out.println(12);
         final boolean containNBT = NBTData.containsNBT(item, CustomEnchant.nbtEnchanted);
         boolean canEquip = true;
         if (containNBT) {
