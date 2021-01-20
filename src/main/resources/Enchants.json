@@ -194,6 +194,18 @@
       "includePlayer": {
         "value": true
       }
+    },
+    "messages": {
+      "toPlayersEffected": "You were effected with Purity by {player}",
+      "toPlayerGiver": "You successfully gave the Purity enchantment to your allies"
+    },
+    "sounds": {
+      "soundGive": {
+        "soundName": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "toPlayerOnly": true
+      }
     }
   }
 

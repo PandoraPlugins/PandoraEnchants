@@ -1,4 +1,4 @@
-package me.nanigans.pandoraenchants.Enchantments.Enchants;
+package me.nanigans.pandoraenchants.Enchantments;
 
 import java.util.Map;
 
@@ -7,6 +7,7 @@ public final class EffectObject {
     private final Boolean ampEffect;
     private Number value;
     private Object other;
+    private SoundObject sound;
 
     public EffectObject(Map<String, Object> effect){
 

@@ -1,5 +1,6 @@
 package me.nanigans.pandoraenchants.Enchantments.Enchants;
 
+import me.nanigans.pandoraenchants.Enchantments.EffectObject;
 import me.nanigans.pandoraenchants.Enchantments.Gems.Gems;
 import me.nanigans.pandoraenchants.PandoraEnchants;
 import me.nanigans.pandoraenchants.Util.NBTData;
@@ -38,7 +39,7 @@ public abstract class CustomEnchant extends Enchantment{
      * @param data the data for effects
      * @return a map of the effects
      */
-    protected Map<String, Map<String, Object>> convertEffectsToMap(Map<String, Object> data){
+    protected static Map<String, Map<String, Object>> convertEffectsToMap(Map<String, Object> data){
 
         final Map<String, Map<String, Object>> effects = new HashMap<>();
 
@@ -56,7 +57,7 @@ public abstract class CustomEnchant extends Enchantment{
 
     }
 
-    protected Map<String, EffectObject> convertMapToEffects(Map<String, Map<String, Object>> effectInfo){
+    public static Map<String, EffectObject> convertMapToEffects(Map<String, Map<String, Object>> effectInfo){
 
         final Map<String, EffectObject> effectData = new HashMap<>();
         for (Map.Entry<String, Map<String, Object>> stringMapEntry : effectInfo.entrySet()) {

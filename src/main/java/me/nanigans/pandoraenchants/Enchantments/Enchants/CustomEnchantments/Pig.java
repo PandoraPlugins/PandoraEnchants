@@ -1,7 +1,7 @@
 package me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments;
 
 import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchant;
-import me.nanigans.pandoraenchants.Enchantments.Enchants.EffectObject;
+import me.nanigans.pandoraenchants.Enchantments.EffectObject;
 import me.nanigans.pandoraenchants.Enchantments.Enchants.TransformGUI;
 import me.nanigans.pandoraenchants.Util.JsonUtil;
 import net.minecraft.server.v1_8_R3.ItemFood;

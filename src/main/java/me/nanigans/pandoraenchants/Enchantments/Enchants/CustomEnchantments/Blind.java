@@ -1,7 +1,7 @@
 package me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments;
 
 import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchant;
-import me.nanigans.pandoraenchants.Enchantments.Enchants.EffectObject;
+import me.nanigans.pandoraenchants.Enchantments.EffectObject;
 import me.nanigans.pandoraenchants.Util.JsonUtil;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
