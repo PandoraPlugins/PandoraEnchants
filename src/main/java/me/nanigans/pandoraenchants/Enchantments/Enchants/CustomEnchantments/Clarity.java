@@ -31,9 +31,9 @@ public class Clarity extends CustomEnchant implements Listener {
 
             final LivingEntity entity = (LivingEntity) event.getEntity();
             final ItemStack[] armorContents = entity.getEquipment().getArmorContents();
-            if (containsEnchant(armorContents, this)) {
+            final int level = containsEnchant(armorContents, this);
+            if(level != -1){
                 final EffectObject chance = effectData.get("chance");
-                final int level = getLevelOfEnchant(armorContents, this);
                 if (ThreadLocalRandom.current().nextDouble(100D) - (chance.isAmpEffect() ? 10D * level : 0) < chance.getValue().doubleValue()) {
                     entity.removePotionEffect(PotionEffectType.BLINDNESS);
                 }

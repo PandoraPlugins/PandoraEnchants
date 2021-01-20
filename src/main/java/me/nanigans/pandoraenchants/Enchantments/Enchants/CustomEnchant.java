@@ -66,16 +66,16 @@ public abstract class CustomEnchant extends Enchantment{
         return effectData;
     }
 
-    protected boolean containsEnchant(ItemStack[] armorContents, CustomEnchant enchant){
+    protected int containsEnchant(ItemStack[] armorContents, CustomEnchant enchant){
 
         for (ItemStack armorContent : armorContents) {
             if(armorContent != null && armorContent.getType() != Material.AIR) {
                 final Map<Enchantment, Integer> enchantments = armorContent.getEnchantments();
                 if(enchantments != null && enchantments.containsKey(enchant))
-                    return true;
+                    return enchantments.get(enchant);
             }
         }
-        return false;
+        return -1;
     }
 
     protected int getLevelOfEnchant(ItemStack[] armorContents, CustomEnchant enchant){

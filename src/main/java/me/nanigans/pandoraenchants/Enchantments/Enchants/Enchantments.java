@@ -4,6 +4,8 @@ import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments.*;
 
 public enum Enchantments {
 
+    Chubby(new Chubby(85)),
+    Purity(new Purity(84)),
     Clarity(new Clarity(83)),
     Pig(new Pig(82)),
     Ice_Aspect(new Ice_Aspect(81)),

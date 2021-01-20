@@ -18,7 +18,7 @@ public class MessageObject {
      */
     public void sendMessage(Player player){
         if(message != null){
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', message.replaceAll("\\{player}", player.getName())));
         }
     }
 

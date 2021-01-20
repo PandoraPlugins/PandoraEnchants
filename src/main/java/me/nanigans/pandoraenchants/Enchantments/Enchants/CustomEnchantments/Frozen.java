@@ -41,19 +41,19 @@ public class Frozen extends CustomEnchant implements Listener {
 
                 final ItemStack[] armorContents = entity.getEquipment().getArmorContents();
 
-                if (armorContents != null && containsEnchant(armorContents, this)) {
-                    final int levelOfEnchant = getLevelOfEnchant(armorContents, this);
+                final int level = containsEnchant(armorContents, this);
+                if(level != -1){
                     final EffectObject chance = effectData.get("chance");
 
-                    if(ThreadLocalRandom.current().nextDouble(100) - (chance.isAmpEffect() ? levelOfEnchant*10 : 0)
+                    if(ThreadLocalRandom.current().nextDouble(100) - (chance.isAmpEffect() ? level*10 : 0)
                             <= chance.getValue().doubleValue()){
                         final EffectObject duration = effectData.get("duration");
                         final long value = duration.getValue().longValue()/1000*20;
                         final EffectObject slowness = effectData.get("slowness");
 
                         final PotionEffect effect = new PotionEffect(PotionEffectType.SLOW, (int) ((int) value +
-                                (duration.isAmpEffect() ? value * (levelOfEnchant / 10D) : 0)),
-                                (slowness.getValue().intValue() * (slowness.isAmpEffect() ? levelOfEnchant : 1)));
+                                (duration.isAmpEffect() ? value * (level / 10D) : 0)),
+                                (slowness.getValue().intValue() * (slowness.isAmpEffect() ? level : 1)));
                         livingEntity.addPotionEffect(effect);
                     }
 

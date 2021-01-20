@@ -42,8 +42,8 @@ public class Pig extends CustomEnchant implements Listener {
                 if(CraftItemStack.asNMSCopy(item).getItem() instanceof ItemFood){
                     final Player player = event.getPlayer();
 
-                    if (player.getFoodLevel() < 20 && containsEnchant(player.getInventory().getArmorContents(), this)) {
-                        final int level = getLevelOfEnchant(player.getInventory().getArmorContents(), this);
+                    final int level = containsEnchant(player.getInventory().getArmorContents(), this);
+                    if(level != -1){
                         final EffectObject chance = effectData.get("chance");
                         if (ThreadLocalRandom.current().nextDouble(100D) - (chance.isAmpEffect() ? 10D * level : 0) < chance.getValue().doubleValue()) {
 

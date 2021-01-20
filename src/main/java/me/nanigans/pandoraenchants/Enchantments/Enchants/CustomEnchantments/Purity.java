@@ -45,8 +45,8 @@ public class Purity extends CustomEnchant implements Listener {
 
             final Player player = (Player) event.getEntity();
 
-            if (containsEnchant(player.getEquipment().getArmorContents(), this)) {
-                final int level = getLevelOfEnchant(player.getEquipment().getArmorContents(), this);
+            final int level = containsEnchant(player.getInventory().getArmorContents(), this);
+            if(level != -1){
 
                 final EffectObject chance = effectData.get("chance");
                 if(calcChance(level, chance.getValue().doubleValue(), chance.isAmpEffect())){
@@ -62,10 +62,9 @@ public class Purity extends CustomEnchant implements Listener {
                             final Player p = (Player) nearbyEntity;
                             final FPlayer fPlayer = FPlayers.getInstance().getByPlayer(p);
                             if(fPlayer.getRelationTo(player1).isAlly()){
-
                                 for (String effect : effects) {
                                     final PotionEffectType byName = PotionEffectType.getByName(effect);
-                                    if(byName != null){
+                                    if(byName != null && p.hasPotionEffect(byName)){
                                         p.removePotionEffect(byName);
                                     }
                                 }
@@ -82,6 +81,7 @@ public class Purity extends CustomEnchant implements Listener {
                     if(((Boolean) effectData.get("includePlayer").getOther())){
                         for(String effect : effects){
                             final PotionEffectType byName = PotionEffectType.getByName(effect);
+                            if(byName != null && player.hasPotionEffect(byName))
                             player.removePotionEffect(byName);
                         }
                     }
