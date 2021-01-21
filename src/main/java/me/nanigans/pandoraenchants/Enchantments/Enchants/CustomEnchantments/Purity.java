@@ -2,6 +2,7 @@ package me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments;
 
 import com.massivecraft.factions.FPlayer;
 import com.massivecraft.factions.FPlayers;
+import com.massivecraft.factions.struct.Relation;
 import me.nanigans.pandoraenchants.Enchantments.EffectObject;
 import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchant;
 import me.nanigans.pandoraenchants.Util.JsonUtil;
@@ -48,7 +49,7 @@ public class Purity extends CustomEnchant implements Listener {
 
                             final Player p = (Player) nearbyEntity;
                             final FPlayer fPlayer = FPlayers.getInstance().getByPlayer(p);
-                            if(fPlayer.getRelationTo(player1).isAlly()){
+                            if(fPlayer.getRelationTo(player1).isAtLeast(Relation.ALLY)){
                                 for (String effect : effects) {
                                     final PotionEffectType byName = PotionEffectType.getByName(effect);
                                     if(byName != null && p.hasPotionEffect(byName)){

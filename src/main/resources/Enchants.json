@@ -21,7 +21,7 @@
         "value": 2500,
         "ampEffect": true
       }
-    },
+    }
   },
   "Frozen": {
     "enchantData": {
@@ -345,8 +345,40 @@
     "messages": {
       "onStart": "You've been diagnosed with Chubby"
     }
+  },
+  "Lifebloom": {
+    "enchantData": {
+      "name": "Lifebloom",
+      "maxLevel": 5
+    },
+    "allowEnchanted": ["LEGGINGS"],
+    "effects": {
+      "chance": {
+        "value": 50.0,
+        "ampEffect": true
+      },
+      "radius": {
+        "value": 3,
+        "ampEffect": true
+      },
+      "healAmt": {
+        "value": 4.0,
+        "ampEffect": true
+      }
+    },
+    "sounds": {
+      "onReceive": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "toPlayerOnly": true
+      }
+    },
+    "messages": {
+      "toReceiver": "{player} has given you lifebloom",
+      "toGiver": "You've given lifebloom to {playerAmt}"
+    }
   }
-
 }
 
 
