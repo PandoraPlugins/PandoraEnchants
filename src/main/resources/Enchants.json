@@ -4,9 +4,10 @@
   "_comment2": "chances are between 0-100",
   "Implants": {
     "enchantData": {
-      "name": "Implants"
+      "name": "Implants",
+      "maxLevel": 3
     },
-    "restrictEnchant": ["HELMET"],
+    "allowEnchanted": ["HELMET"],
     "effects": {
       "healthHeal": {
         "value": 1.0,
@@ -24,9 +25,10 @@
   },
   "Frozen": {
     "enchantData": {
-      "name": "Frozen"
+      "name": "Frozen",
+      "maxLevel": 3
     },
-    "restrictEnchant": [
+    "allowEnchanted": [
       "CHESTPLATE"
     ],
     "effects": {
@@ -46,9 +48,10 @@
   },
   "Blind": {
     "enchantData": {
-      "name": "Blind"
+      "name": "Blind",
+      "maxLevel": 3
     },
-    "restrictEnchant": [
+    "allowEnchanted": [
       "SWORD"
     ],
     "effects": {
@@ -65,13 +68,33 @@
         "ampEffect": true
       }
 
+    },
+    "sounds": {
+      "onBlindReceive": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "toPlayerOnly": true
+      },
+      "onBlindGive": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 10.0,
+        "toPlayerOnly": true
+      }
+    },
+    "messages": {
+      "onBlindReceive": "You've been effected with blindness from {player}",
+      "onBlindGiveTo": "You've effected {player} with blindness"
     }
   },
   "Insomnia": {
     "enchantData": {
-      "name": "Insomnia"
+      "name": "Insomnia",
+      "maxLevel": 7
+
     },
-    "restrictEnchant": ["SWORD"],
+    "allowEnchanted": ["SWORD"],
     "effects": {
       "chance": {
         "value": 25.0,
@@ -90,9 +113,10 @@
   },
   "Slum": {
     "enchantData": {
-      "name": "Slum"
+      "name": "Slum",
+      "maxLevel": 5
     },
-    "restrictEnchant": ["SWORD", "AXE"],
+    "allowEnchanted": ["SWORD", "AXE"],
     "effects": {
       "chance": {
         "value": 35.0,
@@ -105,9 +129,10 @@
   },
   "Reaper": {
     "enchantData": {
-      "name": "Reaper"
+      "name": "Reaper",
+      "maxLevel": 3
     },
-    "restrictEnchant": [
+    "allowEnchanted": [
       "SWORD"
     ],
     "effects": {
@@ -128,9 +153,10 @@
   },
   "Ice_Aspect": {
     "enchantData": {
-      "name": "Ice Aspect"
+      "name": "Ice Aspect",
+      "maxLevel": 3
     },
-    "restrictEnchant": ["AXE"],
+    "allowEnchanted": ["AXE"],
     "effects": {
       "chance": {
         "value": 25.0,
@@ -148,9 +174,10 @@
   },
   "Pig": {
     "enchantData": {
-      "name": "Pig"
+      "name": "Pig",
+      "maxLevel": 3
     },
-    "restrictEnchant": ["HELMET"],
+    "allowEnchanted": ["HELMET"],
     "effects": {
       "chance": {
         "value": 25.0,
@@ -164,9 +191,10 @@
   },
   "Clarity": {
     "enchantData": {
-      "name": "Clarity"
+      "name": "Clarity",
+      "maxLevel": 3
     },
-    "restrictEnchant": ["HELMET"],
+    "allowEnchanted": ["HELMET"],
     "effects": {
       "chance": {
         "value": 25.0,
@@ -176,9 +204,10 @@
   },
   "Purity": {
     "enchantData": {
-      "name": "Purity"
+      "name": "Purity",
+      "maxLevel": 4
     },
-    "restrictEnchant": ["CHESTPLATE"],
+    "allowEnchanted": ["CHESTPLATE"],
     "effects": {
       "chance": {
         "value": 20.0,
@@ -210,9 +239,10 @@
   },
   "Chubby": {
     "enchantData": {
-      "name": "Chubby"
+      "name": "Chubby",
+      "maxLevel": 3
     },
-    "restrictEnchant": ["CHESTPLATE"],
+    "allowEnchanted": ["CHESTPLATE"],
     "effects": {
       "chance": {
         "value": 25.0,

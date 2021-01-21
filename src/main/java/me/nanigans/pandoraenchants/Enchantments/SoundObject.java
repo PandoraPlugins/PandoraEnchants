@@ -1,6 +1,7 @@
 package me.nanigans.pandoraenchants.Enchantments;
 
 import org.bukkit.Sound;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 import java.util.Map;
@@ -33,6 +34,20 @@ public class SoundObject {
      */
     public void playSound(Player player){
         if(sound != null){
+            if(toPlayerOnly)
+                player.playSound(player.getLocation(), sound, volume, pitch);
+            else player.getWorld().playSound(player.getLocation(), sound, volume, pitch);
+        }
+    }
+    /**
+     * Convenience method for living entities. Casts it to player
+     * Plays a sound if it is not null.
+     * @param entity the player to play the sound for
+     */
+    public void playSound(LivingEntity entity){
+        if(sound != null && entity instanceof Player){
+            Player player = ((Player) entity);
+
             if(toPlayerOnly)
                 player.playSound(player.getLocation(), sound, volume, pitch);
             else player.getWorld().playSound(player.getLocation(), sound, volume, pitch);

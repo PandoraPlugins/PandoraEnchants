@@ -70,7 +70,7 @@ public class Reaper extends CustomEnchant implements Listener {
 
     @Override
     public int getMaxLevel() {
-        return 0;
+        return enchantData.getMaxLevel();
     }
 
     @Override

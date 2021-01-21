@@ -102,7 +102,7 @@ public class Purity extends CustomEnchant implements Listener {
 
     @Override
     public int getMaxLevel() {
-        return 0;
+        return enchantData.getMaxLevel();
     }
 
     @Override
