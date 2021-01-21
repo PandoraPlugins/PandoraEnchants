@@ -410,7 +410,40 @@
     "messages": {
       "onReceive": "You've been effected with Judgement"
     }
+  },
+  "Vampire": {
+    "enchantData": {
+      "name": "Vampire",
+      "maxLevel": 3
+    },
+    "allowEnchanted": ["SWORD"],
+    "effects": {
+      "chance": {
+        "value": 25.0,
+        "ampEffect": true
+      },
+      "healthAmt": {
+        "value": 1,
+        "ampEffect": true
+      },
+      "timeOut": {
+        "value": 1000,
+        "ampEffect": true
+      }
+    },
+    "sounds": {
+      "onReceive": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "toPlayerOnly": true
+      }
+    },
+    "messages": {
+      "toReceiver": "You've been given Vampire"
+    }
   }
+
 }
 
 

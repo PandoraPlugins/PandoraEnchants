@@ -4,6 +4,7 @@ import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments.*;
 
 public enum Enchantments {
 
+    Vampire(new Vampire(88)),
     Judgement(new Judgement(87)),
     Lifebloom(new Lifebloom(86)),
     Chubby(new Chubby(85)),
