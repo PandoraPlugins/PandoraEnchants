@@ -1,8 +1,12 @@
 package me.nanigans.pandoraenchants.Enchantments.Enchants;
 
 import me.nanigans.pandoraenchants.Enchantments.EffectObject;
+import me.nanigans.pandoraenchants.Enchantments.EnchantmentObject;
 import me.nanigans.pandoraenchants.Enchantments.Gems.Gems;
+import me.nanigans.pandoraenchants.Enchantments.MessageObject;
+import me.nanigans.pandoraenchants.Enchantments.SoundObject;
 import me.nanigans.pandoraenchants.PandoraEnchants;
+import me.nanigans.pandoraenchants.Util.JsonUtil;
 import me.nanigans.pandoraenchants.Util.NBTData;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -16,11 +20,24 @@ import java.util.concurrent.ThreadLocalRandom;
 public abstract class CustomEnchant extends Enchantment{
     protected PandoraEnchants plugin;
     public static final String nbtEnchanted = "ENCHANTED";
-    protected String file = "Enchants.json";
+    protected static final String file = "Enchants.json";
+    protected final EnchantmentObject enchantData;
+    protected final Map<String, EffectObject> effectData;
+    protected final Map<String, SoundObject> soundData;
+    protected final Map<String, MessageObject> msgData;
+    protected final String name;
+    protected final int maxLevel;
 
-    public CustomEnchant(int id) {
+    public CustomEnchant(int id, Map<String, Object> data) {
         super(id);
         plugin = PandoraEnchants.getPlugin(PandoraEnchants.class);
+        enchantData = new EnchantmentObject(data);
+        effectData = enchantData.getEffects();
+        soundData = enchantData.getSounds();
+        msgData = enchantData.getMessages();
+        name = JsonUtil.getFromMap(data, "enchantData.name");
+        maxLevel = JsonUtil.getFromMap(data, "enchantData.maxLevel");
+
     }
 
     /**

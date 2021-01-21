@@ -21,7 +21,7 @@
         "value": 2500,
         "ampEffect": true
       }
-    }
+    },
   },
   "Frozen": {
     "enchantData": {
@@ -44,6 +44,18 @@
         "value": 35.0,
         "ampEffect": false
       }
+    },
+    "sounds": {
+      "onFrozenReceive": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "toPlayerOnly": true
+      }
+    },
+    "messages": {
+      "toFrozenReceiver": "You've been hit by BAM BAM BAM You've been struck by BAM BAM BAM a frozen {player}",
+      "toFrozenGiver": "You've given frozen to {player}"
     }
   },
   "Blind": {
@@ -74,13 +86,7 @@
         "sound": "LEVEL_UP",
         "volume": 1.0,
         "pitch": 1.0,
-        "toPlayerOnly": true
-      },
-      "onBlindGive": {
-        "sound": "LEVEL_UP",
-        "volume": 1.0,
-        "pitch": 10.0,
-        "toPlayerOnly": true
+        "toPlayerOnly": false
       }
     },
     "messages": {
@@ -109,6 +115,18 @@
         "ampEffect": true
       }
 
+    },
+    "sounds": {
+      "onInsomniaReceive": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "toPlayerOnly": false
+      }
+    },
+    "messages": {
+      "toReceiver": "You've been given insomnia from {player}",
+      "toGiver": "You've given insomnia to {player}"
     }
   },
   "Slum": {
@@ -125,6 +143,18 @@
       "clearEffects": {
         "value": ["SLOW_DIGGING", "CONFUSION", "BLINDNESS", "HUNGER"]
       }
+    },
+    "sounds": {
+      "onReceive": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "toPlayerOnly": false
+      }
+    },
+    "messages": {
+      "toReceiver": "You've been given slum from {player}",
+      "toGiver": "You've given slum to {player}"
     }
   },
   "Reaper": {
@@ -149,6 +179,18 @@
         "ampEffect": true
       }
 
+    },
+    "sounds": {
+      "onReceive": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "toPlayerOnly": false
+      }
+    },
+    "messages": {
+      "toReceiver": "You've been given reaper by {player}",
+      "toGiver": "You've given reaper to {player}"
     }
   },
   "Ice_Aspect": {
@@ -170,6 +212,18 @@
         "value": 2500,
         "ampEffect": true
       }
+    },
+    "sounds": {
+      "onReceive": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "toPlayerOnly": false
+      }
+    },
+    "messages": {
+      "toReceiver": "You've been given reaper by {player}",
+      "toGiver": "You've given reaper to {player}"
     }
   },
   "Pig": {
@@ -187,6 +241,17 @@
         "value": 5000,
         "ampEffect": true
       }
+    },
+    "sounds": {
+      "onActivate": {
+        "sound": "BURP",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "toPlayerOnly": true
+      }
+    },
+    "messages": {
+      "toReceiver": "You've been diagnosed as a pig"
     }
   },
   "Clarity": {
@@ -200,6 +265,16 @@
         "value": 25.0,
         "ampEffect": true
       }
+    },
+    "sounds": {
+      "onReceive": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0
+      }
+    },
+    "messages": {
+      "toReceiver": "You've been given clarity"
     }
   },
   "Purity": {
@@ -259,6 +334,16 @@
       "decayAmt": {
         "value": 1
       }
+    },
+    "sounds": {
+      "onStart": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0
+      }
+    },
+    "messages": {
+      "onStart": "You've been diagnosed with Chubby"
     }
   }
 

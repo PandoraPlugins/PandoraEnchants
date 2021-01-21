@@ -19,13 +19,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Reaper extends CustomEnchant implements Listener {
 
-    private final Map<String, EffectObject> effectData;
-    private static String name;
     public Reaper(int id) {
-        super(id);
-        name = JsonUtil.getData(file, "Reaper.enchantData.name");
-        effectData = convertMapToEffects(convertEffectsToMap(JsonUtil.getData(file, "Reaper.effects")));
-        plugin.getServer().getPluginManager().registerEvents(this, plugin);
+        super(id, JsonUtil.getData(file, "Reaper"));
     }
 
     @EventHandler
@@ -52,6 +47,12 @@ public class Reaper extends CustomEnchant implements Listener {
                         final PotionEffect effect = new PotionEffect(PotionEffectType.BLINDNESS, (int) (length + (duration.isAmpEffect() ? length*(level/10) : 0)),
                                 blindness.getValue().intValue() * (blindness.isAmpEffect() ? level : 1));
                         entity.addPotionEffect(effect);
+
+                        soundData.get("onReceive").playSound(entity);
+                        msgData.get("toReceiver").sendMessage(entity, "player~"+damager.getName());
+                        msgData.get("toGiver").sendMessage(entity, "player~"+damager.getName());
+
+
 
                     }
 

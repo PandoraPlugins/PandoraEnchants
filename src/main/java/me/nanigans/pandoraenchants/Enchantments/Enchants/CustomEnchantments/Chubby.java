@@ -17,12 +17,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Chubby extends CustomEnchant implements Listener {
-    private final EnchantmentObject enchantData;
-    private final String name;
     public Chubby(int id) {
-        super(id);
-        enchantData = new EnchantmentObject(JsonUtil.getData(file, "Chubby"));
-        name = enchantData.getName();
+        super(id, JsonUtil.getData(file, "Chubby"));
     }
 
     @EventHandler
@@ -46,6 +42,8 @@ public class Chubby extends CustomEnchant implements Listener {
                 if(player.getHealth() == 20.0)
                     player.setHealth(player.getMaxHealth());
                 final Decay decay = new Decay(decayVal, player);
+                msgData.get("onStart").sendMessage(player);
+                soundData.get("onStart").playSound(player);
                 new Timer().schedule(decay, decayRate, decayRate);
 
 

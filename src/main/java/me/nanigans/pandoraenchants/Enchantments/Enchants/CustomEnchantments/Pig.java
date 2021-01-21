@@ -15,20 +15,17 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Pig extends CustomEnchant implements Listener {
-    private final Map<String, EffectObject> effectData;
-    private final String name;
-    private final static Map<UUID, Long> consumedTime = new HashMap<>();
+    private static final Map<UUID, Long> consumedTime = new HashMap<>();
 
     public Pig(int id) {
-        super(id);
-        effectData = convertMapToEffects(convertEffectsToMap(JsonUtil.getData(file, "Pig.effects")));
-        name = JsonUtil.getData(file, "Pig.enchantData.name");
+        super(id, JsonUtil.getData(file, "Pig"));
     }
 
     @EventHandler
@@ -60,6 +57,9 @@ public class Pig extends CustomEnchant implements Listener {
                                 consumedTime.put(player.getUniqueId(), System.currentTimeMillis() + cooldown);
                                 feedPlayer(player, item);
                             }
+
+                            soundData.get("onActivate").playSound(player);
+                            msgData.get("toReceiver").sendMessage(player);
 
                         }
                     }

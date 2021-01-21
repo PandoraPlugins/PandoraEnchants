@@ -1,7 +1,7 @@
 package me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments;
 
-import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchant;
 import me.nanigans.pandoraenchants.Enchantments.EffectObject;
+import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchant;
 import me.nanigans.pandoraenchants.Util.JsonUtil;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentTarget;
@@ -14,20 +14,12 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Frozen extends CustomEnchant implements Listener {
-    final Map<String, EffectObject> effectData;
-
-    private final String name;
 
     public Frozen(int id) {
-        super(id);
-
-        final Map<String, Map<String, Object>> effects = convertEffectsToMap(JsonUtil.getData(file, "Frozen.effects"));
-        effectData = convertMapToEffects(effects);
-        name = JsonUtil.getData(file, "Frozen.enchantData.name");
+        super(id, JsonUtil.getData(file, "Frozen"));
     }
 
     @EventHandler
@@ -55,6 +47,9 @@ public class Frozen extends CustomEnchant implements Listener {
                                 (duration.isAmpEffect() ? value * (level / 10D) : 0)),
                                 (slowness.getValue().intValue() * (slowness.isAmpEffect() ? level : 1)));
                         livingEntity.addPotionEffect(effect);
+                        soundData.get("onFrozenReceive").playSound(entity);
+                        msgData.get("toFrozenReceiver").sendMessage(entity, "player~"+damager.getName());
+                        msgData.get("toFrozenGiver").sendMessage(livingEntity, "player~"+entity.getName());
                     }
 
                 }

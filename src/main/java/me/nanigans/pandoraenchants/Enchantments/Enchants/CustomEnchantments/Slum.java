@@ -17,12 +17,8 @@ import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Slum extends CustomEnchant implements Listener {
-    private final Map<String, EffectObject> effectData;
-    private final String name;
     public Slum(int id) {
-        super(id);
-        name = JsonUtil.getData(file, "Slum.enchantData.name");
-        effectData = convertMapToEffects(convertEffectsToMap(JsonUtil.getData(file, "Slum.effects")));
+        super(id, JsonUtil.getData(file, "Slum"));
     }
 
     @EventHandler
@@ -48,6 +44,10 @@ public class Slum extends CustomEnchant implements Listener {
                             if(byName != null)
                             entity.removePotionEffect(byName);
                         }
+
+                        soundData.get("onReceive").playSound(entity);
+                        msgData.get("toReceiver").sendMessage(entity, "player~"+damager.getName());
+                        msgData.get("toGiver").sendMessage(entity, "player~"+damager.getName());
 
                     }
 

@@ -2,11 +2,8 @@ package me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments;
 
 import com.massivecraft.factions.FPlayer;
 import com.massivecraft.factions.FPlayers;
-import me.nanigans.pandoraenchants.Enchantments.EnchantmentObject;
-import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchant;
 import me.nanigans.pandoraenchants.Enchantments.EffectObject;
-import me.nanigans.pandoraenchants.Enchantments.MessageObject;
-import me.nanigans.pandoraenchants.Enchantments.SoundObject;
+import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchant;
 import me.nanigans.pandoraenchants.Util.JsonUtil;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentTarget;
@@ -20,22 +17,12 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.List;
-import java.util.Map;
 
 public class Purity extends CustomEnchant implements Listener {
-    private final Map<String, EffectObject> effectData;
-    private final Map<String, SoundObject> soundData;
-    private final Map<String, MessageObject> messageData;
-    private final String name;
 
     public Purity(int id) {
-        super(id);
-        EnchantmentObject enchantData = new EnchantmentObject(JsonUtil.getData(file, "Purity"));
+        super(id, JsonUtil.getData(file, "Purity"));
 
-        name = JsonUtil.getData(file, "Purity.enchantData.name");
-        effectData = enchantData.getEffects();
-        soundData = enchantData.getSounds();
-        messageData = enchantData.getMessages();
     }
 
     @EventHandler
@@ -69,14 +56,14 @@ public class Purity extends CustomEnchant implements Listener {
                                     }
                                 }
                                 soundData.get("soundGive").playSound(p);
-                                messageData.get("toPlayersEffected").sendMessage(p);
+                                msgData.get("toPlayersEffected").sendMessage(p);
                             }
 
                         }
                     }
 
                     soundData.get("soundGive").playSound(player);
-                    messageData.get("toPlayerGiver").sendMessage(player);
+                    msgData.get("toPlayerGiver").sendMessage(player);
 
                     if(((Boolean) effectData.get("includePlayer").getOther())){
                         for(String effect : effects){

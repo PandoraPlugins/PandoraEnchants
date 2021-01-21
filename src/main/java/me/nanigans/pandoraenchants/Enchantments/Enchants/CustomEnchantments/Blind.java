@@ -1,10 +1,7 @@
 package me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments;
 
-import me.nanigans.pandoraenchants.Enchantments.EnchantmentObject;
-import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchant;
 import me.nanigans.pandoraenchants.Enchantments.EffectObject;
-import me.nanigans.pandoraenchants.Enchantments.MessageObject;
-import me.nanigans.pandoraenchants.Enchantments.SoundObject;
+import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchant;
 import me.nanigans.pandoraenchants.Util.JsonUtil;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -21,18 +18,9 @@ import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Blind extends CustomEnchant implements Listener {
-    private final EnchantmentObject enchantData;
-    private final String name;
-    private final Map<String, EffectObject> effectData;
-    private final Map<String, SoundObject> soundData;
-    private final Map<String, MessageObject> msgData;
+
     public Blind(int id) {
-        super(id);
-        enchantData = new EnchantmentObject(JsonUtil.getData(file, "Blind"));
-        name = enchantData.getName();
-        effectData = enchantData.getEffects();
-        soundData = enchantData.getSounds();
-        msgData = enchantData.getMessages();
+        super(id, JsonUtil.getData("Enchant.json", "Blind"));
     }
 
     @EventHandler
@@ -61,7 +49,6 @@ public class Blind extends CustomEnchant implements Listener {
                         entity.addPotionEffect(effect);
 
                         soundData.get("onBlindReceive").playSound(entity);
-                        soundData.get("onBlindGive").playSound(damager);
                         msgData.get("onBlindReceive").sendMessage(entity, "player~"+damager.getName());
                         msgData.get("onBlindGiveTo").sendMessage(damager, "player~"+entity.getName());
 

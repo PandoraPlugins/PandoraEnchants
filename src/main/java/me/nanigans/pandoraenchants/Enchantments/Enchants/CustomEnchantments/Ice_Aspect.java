@@ -17,13 +17,10 @@ import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Ice_Aspect extends CustomEnchant implements Listener {
-    private final Map<String, EffectObject> effectData;
-    private final String name;
+
 
     public Ice_Aspect(int id) {
-        super(id);
-        effectData = convertMapToEffects(convertEffectsToMap(JsonUtil.getData(file, "Ice_Aspect.effects")));
-        name = JsonUtil.getData(file, "Ice_Aspect.enchantData.name");
+        super(id, JsonUtil.getData(file, "Ice_Aspect"));
     }
 
     @EventHandler
@@ -47,6 +44,9 @@ public class Ice_Aspect extends CustomEnchant implements Listener {
                     PotionEffect effect = new PotionEffect(PotionEffectType.SLOW, (value + (duration.isAmpEffect() ? level*10 : 0)),
                             slowness.getValue().intValue() * (slowness.isAmpEffect() ? level : 1));
                     entity.addPotionEffect(effect);
+                    soundData.get("onReceive").playSound(entity);
+                    msgData.get("toReceiver").sendMessage(entity, "player~"+damager.getName());
+                    msgData.get("toGiver").sendMessage(damager, "player~"+entity.getName());
 
                 }
 

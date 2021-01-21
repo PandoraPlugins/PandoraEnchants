@@ -12,16 +12,13 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Clarity extends CustomEnchant implements Listener {
-    private final Map<String, EffectObject> effectData;
-    private final String name;
+
     public Clarity(int id) {
-        super(id);
-        effectData = convertMapToEffects(convertEffectsToMap(JsonUtil.getData(file, "Clarity.effects")));
-        name = JsonUtil.getData(file, "Clarity.enchantData.name");
+        super(id, JsonUtil.getData(file, "Clarity"));
+
     }
 
     @EventHandler
@@ -36,6 +33,8 @@ public class Clarity extends CustomEnchant implements Listener {
                 final EffectObject chance = effectData.get("chance");
                 if (ThreadLocalRandom.current().nextDouble(100D) - (chance.isAmpEffect() ? 10D * level : 0) < chance.getValue().doubleValue()) {
                     entity.removePotionEffect(PotionEffectType.BLINDNESS);
+                    soundData.get("onReceive").playSound(entity);
+                    msgData.get("toReceiver").sendMessage(entity);
                 }
 
             }

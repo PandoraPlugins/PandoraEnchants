@@ -18,14 +18,9 @@ import java.util.*;
 
 public class Implants extends CustomEnchant implements Listener {
     private final static List<UUID> usersToCheck = new ArrayList<>();
-    final Map<String, EffectObject> effectData;
-    private static String name;
-
 
     public Implants(int id) {
-        super(id);
-        effectData = convertMapToEffects(convertEffectsToMap(JsonUtil.getData(file, "Implants.effects")));
-        name = JsonUtil.getData(file, "Implants.enchantData.name");
+        super(id, JsonUtil.getData(file, "Implants"));
     }
 
     @EventHandler
@@ -38,7 +33,7 @@ public class Implants extends CustomEnchant implements Listener {
 
                 final ItemStack[] armorContents = player.getInventory().getArmorContents();
                 for (ItemStack armorContent : armorContents) {
-                    if (armorContent != null &&armorContent.getType() != Material.AIR) {
+                    if (armorContent != null && armorContent.getType() != Material.AIR) {
                         final Map<Enchantment, Integer> enchantments = NBTData.getEnchantments(armorContent);
                         if (enchantments != null) {
                             if (enchantments.containsKey(this)) {

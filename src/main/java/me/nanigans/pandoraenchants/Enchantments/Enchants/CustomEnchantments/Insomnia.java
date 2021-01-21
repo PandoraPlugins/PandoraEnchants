@@ -19,13 +19,9 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Insomnia extends CustomEnchant implements Listener {
 
-    private final Map<String, EffectObject> effectData;
-    private final String name;
 
     public Insomnia(int id) {
-        super(id);
-        effectData = convertMapToEffects(convertEffectsToMap(JsonUtil.getData(file, "Insomnia.effects")));
-        name = JsonUtil.getData(file, "Insomnia.enchantData.name");
+        super(id, JsonUtil.getData(file, "Insomnia"));
     }
 
     @EventHandler
@@ -60,6 +56,9 @@ public class Insomnia extends CustomEnchant implements Listener {
                         entity.addPotionEffect(slow);
                         entity.addPotionEffect(slowDig);
                         entity.addPotionEffect(confusion);
+                        soundData.get("onInsomniaReceive").playSound(entity);
+                        msgData.get("toReceiver").sendMessage(entity, "player~"+damager.getName());
+                        msgData.get("toGiver").sendMessage(damager, "player~"+entity.getName());
 
 
                     }
