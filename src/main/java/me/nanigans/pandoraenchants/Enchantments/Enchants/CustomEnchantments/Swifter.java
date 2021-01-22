@@ -13,8 +13,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.Map;
-
 public class Swifter extends CustomEnchant implements Listener {
     public Swifter(int id) {
         super(id, JsonUtil.getData(file, "Swifter"));
