@@ -1,5 +1,6 @@
 package me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments;
 
+import me.nanigans.pandoracombattag.Events.CombatTagEvent;
 import me.nanigans.pandoraenchants.Enchantments.EffectObject;
 import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchant;
 import me.nanigans.pandoraenchants.Util.JsonUtil;
@@ -20,7 +21,7 @@ public class Ravenous extends CustomEnchant implements Listener {
         super(id, JsonUtil.getData(file, "Ravenous"));
     }
 
-    @EventHandler
+    @EventHandler//TODO: replace this with combat tag event
     public void onHit(EntityDamageByEntityEvent event){
 
         if(event.getEntity() instanceof LivingEntity && event.getDamager() instanceof Player){
