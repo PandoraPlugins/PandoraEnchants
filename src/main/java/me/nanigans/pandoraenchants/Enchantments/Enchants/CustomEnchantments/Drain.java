@@ -7,7 +7,6 @@ import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentTarget;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -15,41 +14,50 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Map;
 
-public class Ravenous extends CustomEnchant implements Listener {
-    public Ravenous(int id) {
-        super(id, JsonUtil.getData(file, "Ravenous"));
+public class Drain extends CustomEnchant implements Listener {
+    public Drain(int id) {
+        super(id, JsonUtil.getData(file, "Drain"));
     }
 
     @EventHandler
-    public void onHit(EntityDamageByEntityEvent event){
+    public void onDamage(EntityDamageByEntityEvent event){
 
-        if(event.getEntity() instanceof LivingEntity && event.getDamager() instanceof Player){
+        if(event.getDamager() instanceof LivingEntity && event.getEntity() instanceof LivingEntity){
 
-            final Player damager = (Player) event.getDamager();
+            final LivingEntity damager = (LivingEntity) event.getDamager();
 
             final ItemStack itemInHand = damager.getEquipment().getItemInHand();
             if(itemInHand != null && itemInHand.getType() != Material.AIR){
+
                 final Map<Enchantment, Integer> enchantments = itemInHand.getEnchantments();
-                if(enchantments.containsKey(this)){
+                if (enchantments.containsKey(this)) {
+
                     final Integer level = enchantments.get(this);
-
                     final EffectObject chance = effectData.get("chance");
-                    if(calcChance(level, chance.getValue().doubleValue(), chance.isAmpEffect())){
+                    if (calcChance(level, chance.getValue().doubleValue(), chance.isAmpEffect())) {
 
-                        final EffectObject hungerHeal = effectData.get("hungerHeal");
-                        final int hunger = hungerHeal.getValue().intValue() + (hungerHeal.isAmpEffect() ? level : 0);
-                        damager.setFoodLevel(damager.getFoodLevel()+hunger);
-                        msgData.get("toReceiver").sendMessage(damager);
-                        soundData.get("onReceive").playSound(damager);
+                        final double damage = event.getDamage();
+                        final EffectObject drainAmt = effectData.get("drainAmt");
+                        damager.setHealth(Math.min(damager.getMaxHealth(),
+                                damager.getHealth()+(damage+(drainAmt.isAmpEffect() ? level : 0))));
+
+                        final String name = event.getEntity().getName();
+                        final LivingEntity entity = (LivingEntity) event.getEntity();
+
+                        soundData.get("onDrain").playSound(damager);
+                        soundData.get("onReceive").playSound(entity);
+                        msgData.get("toReceiver").sendMessage(entity, "player~"+ damager.getName());
+                        msgData.get("toDrainer").sendMessage(damager, "player~"+name);
+
                     }
 
                 }
+
             }
 
         }
 
     }
-
 
     @Override
     public String getName() {

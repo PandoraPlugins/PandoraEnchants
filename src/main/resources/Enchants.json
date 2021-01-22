@@ -497,6 +497,40 @@
     "messages": {
       "toReceiver": "You've been given a ravenous enchantment"
     }
+  },
+  "Drain": {
+    "enchantData": {
+      "name": "Drain",
+      "maxLevel": 3
+    },
+    "allowEnchanted": ["AXE"],
+    "effects": {
+      "chance": {
+        "value": 25.0,
+        "ampEffect": true
+      },
+      "drainAmt": {
+        "ampEffect": true
+      }
+    },
+    "sounds": {
+      "onDrain": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "toPlayerOnly": true
+      },
+      "onReceive": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "toPlayerOnly": true
+      }
+    },
+    "messages": {
+      "toDrainer": "You've drain health from {player}",
+      "toReceiver": "Your health was drained from {player}"
+    }
   }
 
 }
