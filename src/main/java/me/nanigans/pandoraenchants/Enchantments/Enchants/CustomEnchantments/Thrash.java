@@ -54,12 +54,14 @@ public class Thrash extends CustomEnchant implements Listener {
                                 final Relation relationTo = p.getRelationTo(fPlayer);
                                 if(relationTo == Relation.ENEMY || relationTo == Relation.NEUTRAL){
                                     player.damage(event.getDamage());
+                                    msgData.get("toPlayersHit").sendMessage(player, "player~"+damager.getName());
                                 }
-
                             }else ent.damage(event.getDamage());
 
                         }
                     }
+                    soundData.get("onHit").playSound(damager);
+                    msgData.get("toHitter").sendMessage(damager, "numHit~"+nearbyEntities.size());
 
                 }
 
