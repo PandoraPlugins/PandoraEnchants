@@ -21,7 +21,7 @@ public class Ravenous extends CustomEnchant implements Listener {
         super(id, JsonUtil.getData(file, "Ravenous"));
     }
 
-    @EventHandler//TODO: replace this with combat tag event
+    @EventHandler//TODO: replace this with combat tag event and only when holding axe
     public void onHit(EntityDamageByEntityEvent event){
 
         if(event.getEntity() instanceof LivingEntity && event.getDamager() instanceof Player){

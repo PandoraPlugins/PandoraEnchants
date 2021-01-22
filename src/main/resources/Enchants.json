@@ -531,6 +531,37 @@
       "toDrainer": "You've drain health from {player}",
       "toReceiver": "Your health was drained from {player}"
     }
+  },
+  "Shuffle": {
+    "enchantData": {
+      "name": "Shuffle",
+      "maxLevel": 3
+    },
+    "allowEnchanted": ["CHESTPLATE"],
+    "effects": {
+      "chance": {
+        "value": 25.0,
+        "ampEffect": true
+      }
+    },
+    "sounds": {
+      "onReceive": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "toPlayerOnly": true
+      },
+      "onGive": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "toPlayerOnly": true
+      }
+    },
+    "messages": {
+      "toGiver": "You've shuffled {player}'s hotbar",
+      "toReceiver": "You're hotbar was shuffled by {player}"
+    }
   }
 
 }
