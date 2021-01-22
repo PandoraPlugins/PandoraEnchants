@@ -657,6 +657,39 @@
         "ampEffect": true
       }
     }
+  },
+  "Famine": {
+    "enchantData": {
+      "name": "Famine",
+      "maxLevel": 4
+    },
+    "allowEnchanted": ["SWORD"],
+    "effects": {
+      "chance": {
+        "value": 25.0,
+        "ampEffect": true
+      },
+      "amplifier": {
+        "value": 1,
+        "ampEffect": true
+      },
+      "duration": {
+        "value": 5000,
+        "ampEffect": true
+      }
+    },
+    "sounds": {
+      "onReceive": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "toPlayerOnly": false
+      }
+    },
+    "messages": {
+      "toReceiver": "You've been given hunger by {player}",
+      "toGiver": "You've given hunger to {player}"
+    }
   }
 
 }

@@ -4,6 +4,7 @@ import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments.*;
 
 public enum Enchantments {
 
+    Famine(new Famine(96)),
     Enrage(new Enrage(95)),
     Anemi(new Anemi(94)),
     Swifter(new Swifter(93)),
