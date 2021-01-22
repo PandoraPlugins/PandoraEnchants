@@ -623,6 +623,19 @@
     "messages": {
       "toReceiver": "You've been enchanted by swifter"
     }
+  },
+  "Anemi": {
+    "enchantData": {
+      "name": "Anemi",
+      "maxLevel": 1
+    },
+    "allowEnchanted": ["BOOTS"],
+    "effects": {
+      "chance": {
+        "value": 50.0,
+        "ampEffect": true
+      }
+    }
   }
 
 }
