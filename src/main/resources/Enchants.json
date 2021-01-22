@@ -636,6 +636,27 @@
         "ampEffect": true
       }
     }
+  },
+  "Enrage": {
+    "enchantData": {
+      "name": "Enrage",
+      "maxLevel": 3
+    },
+    "allowEnchanted": ["SWORD"],
+    "effects": {
+      "chance": {
+        "value": 75.0,
+        "ampEffect": true
+      },
+      "considerLowHP": {
+        "value": 5.0,
+        "ampEffect": true
+      },
+      "damageAmp": {
+        "value": 2,
+        "ampEffect": true
+      }
+    }
   }
 
 }
