@@ -38,16 +38,7 @@ public class Drain extends CustomEnchant implements Listener {
 
                         final double damage = event.getDamage();
                         final EffectObject drainAmt = effectData.get("drainAmt");
-                        damager.setHealth(Math.min(damager.getMaxHealth(),
-                                damager.getHealth()+(damage+(drainAmt.isAmpEffect() ? level : 0))));
-
-                        final String name = event.getEntity().getName();
-                        final LivingEntity entity = (LivingEntity) event.getEntity();
-
-                        soundData.get("onDrain").playSound(damager);
-                        soundData.get("onReceive").playSound(entity);
-                        msgData.get("toReceiver").sendMessage(entity, "player~"+ damager.getName());
-                        msgData.get("toDrainer").sendMessage(damager, "player~"+name);
+                        Life_Steal.stealHealth(event, damager, level, drainAmt, damage, soundData.get("onDrain"), soundData.get("onReceive"), msgData.get("toReceiver"), msgData.get("toDrainer"));
 
                     }
 

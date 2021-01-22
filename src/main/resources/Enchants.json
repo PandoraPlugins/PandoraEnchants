@@ -746,6 +746,41 @@
       "toHitter": "You thrashed around violently hitting {numHit} entities",
       "toPlayersHit": "You were hit by {player}'s thrash"
     }
+  },
+  "Life Steal": {
+    "enchantData": {
+      "name": "Life Steal",
+      "maxLevel": 3
+    },
+    "allowEnchanted": ["SWORD"],
+    "effects": {
+      "chance": {
+        "value": 25.0,
+        "ampEffect": true
+      },
+      "takeAmt": {
+        "value": 1.0,
+        "ampEffect": true
+      }
+    },
+    "sounds": {
+      "onDrain": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "toPlayerOnly": true
+      },
+      "onReceive": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "toPlayerOnly": true
+      }
+    },
+    "messages": {
+      "toDrainer": "You've stolen health from {player}",
+      "toReceiver": "Your health was stolen from {player}"
+    }
   }
 
 }
