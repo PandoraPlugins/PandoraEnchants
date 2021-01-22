@@ -442,6 +442,32 @@
     "messages": {
       "toReceiver": "You've been given Vampire"
     }
+  },
+  "Blessed": {
+    "enchantData": {
+      "name": "Blessed",
+      "maxLevel": 4
+    },
+    "allowEnchanted": ["AXE"],
+    "effects": {
+      "chance": {
+        "value": 25.0,
+        "ampEffect": true
+      },
+      "removeDebuffs": {
+        "value": ["SLOWNESS"]
+      }
+    },
+    "sounds": {
+      "onReceive": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0
+      }
+    },
+    "messages": {
+      "toReceiver": "You've been blessed with a blessing"
+    }
   }
 
 }

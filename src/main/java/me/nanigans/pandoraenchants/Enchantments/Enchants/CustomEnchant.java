@@ -95,17 +95,6 @@ public abstract class CustomEnchant extends Enchantment{
         return -1;
     }
 
-    protected int getLevelOfEnchant(ItemStack[] armorContents, CustomEnchant enchant){
-        for (ItemStack armorContent : armorContents) {
-            if(armorContent != null && armorContent.getType() != Material.AIR) {
-                final Map<Enchantment, Integer> enchantments = armorContent.getEnchantments();//NBTData.getEnchantments(armorContent);
-                if(enchantments != null && enchantments.containsKey(enchant))
-                return enchantments.get(enchant);
-            }
-        }
-        return 1;
-    }
-
     /**
      * Enchants the item and returns it
      *
