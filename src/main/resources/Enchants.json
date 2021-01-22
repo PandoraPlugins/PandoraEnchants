@@ -562,6 +562,35 @@
       "toGiver": "You've shuffled {player}'s hotbar",
       "toReceiver": "You're hotbar was shuffled by {player}"
     }
+  },
+  "Disarmour": {
+    "enchantData": {
+      "name": "Disarmour",
+      "maxLevel": 5
+    },
+    "allowEnchanted": ["LEGGINGS"],
+    "effects": {
+      "chance": {
+        "value": 25.0,
+        "ampEffect": true
+      },
+      "numberRemoved": {
+        "value": 1,
+        "ampEffect": true
+      }
+    },
+    "sounds": {
+      "onRemove": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "toPlayerOnly": false
+      }
+    },
+    "messages": {
+      "toRemover": "You've removed {amount} pieces from {player}",
+      "toRemoved": "{amount} pieces of armor was removed from you by {player}"
+    }
   }
 
 }

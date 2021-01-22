@@ -4,6 +4,8 @@ import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments.*;
 
 public enum Enchantments {
 
+    Disarmour(new Disarmour(92)),
+    Shuffle(new Shuffle(91)),
     Drain(new Drain(90)),
     Blessed(new Blessed(89)),
     Vampire(new Vampire(88)),
