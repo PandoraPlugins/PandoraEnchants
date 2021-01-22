@@ -690,6 +690,33 @@
       "toReceiver": "You've been given hunger by {player}",
       "toGiver": "You've given hunger to {player}"
     }
+  },
+  "Streak": {
+    "enchantData": {
+      "name": "Streak",
+      "maxLevel": 3
+    },
+    "allowEnchanted": ["SWORD"],
+    "effects": {
+      "chance": {
+        "value": 100.0,
+        "ampEffect": false
+      },
+      "comboHitNum": {
+        "value": 2
+      },
+      "comboDuration": {
+        "value": 500,
+        "ampEffect": true
+      },
+      "damageInc": {
+        "value": 2,
+        "ampEffect": true
+      }
+    },
+    "messages": {
+      "comboStreak": "You're on a hit streak of {hitNum}"
+    }
   }
 
 }
