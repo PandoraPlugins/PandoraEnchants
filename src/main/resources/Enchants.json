@@ -717,6 +717,23 @@
     "messages": {
       "comboStreak": "You're on a hit streak of {hitNum}"
     }
+  },
+  "Thrash": {
+    "enchantData": {
+      "name": "Thrash",
+      "maxLevel": 4
+    },
+    "allowEnchanted": ["SWORD"],
+    "effects": {
+      "chance": {
+        "value": 35.0,
+        "ampEffect": true
+      },
+      "radius": {
+        "value": 0.5,
+        "ampEffect": true
+      }
+    }
   }
 
 }
