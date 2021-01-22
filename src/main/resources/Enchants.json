@@ -591,6 +591,38 @@
       "toRemover": "You've removed {amount} pieces from {player}",
       "toRemoved": "{amount} pieces of armor was removed from you by {player}"
     }
+  },
+  "Swifter": {
+    "enchantData": {
+      "name": "Swifter",
+      "maxLevel": 1
+    },
+    "allowEnchanted": ["BOOTS"],
+    "effects": {
+      "chance":{
+        "value": 100.0,
+        "ampEffect": false
+      },
+      "duration": {
+        "value": 5000,
+        "ampEffect": true
+      },
+      "amplifier": {
+        "value": 3,
+        "ampEffect": false
+      }
+    },
+    "sounds": {
+      "onReceive": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "toPlayerOnly": true
+      }
+    },
+    "messages": {
+      "toReceiver": "You've been enchanted by swifter"
+    }
   }
 
 }
