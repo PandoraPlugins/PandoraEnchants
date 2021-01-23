@@ -21,10 +21,21 @@ public class SoundObject {
             toPlayerOnly = false;
             return;
         }
-        sound = Sound.valueOf(soundData.get("soundName").toString());
-        volume = Float.parseFloat(soundData.get("volume").toString());
-        pitch = Float.parseFloat(soundData.get("pitch").toString());
-        toPlayerOnly = Boolean.parseBoolean(soundData.get("toPlayerOnly").toString());
+        final Object sound = soundData.get("sound");
+        if(sound != null) {
+            this.sound = Sound.valueOf(sound.toString());
+            volume = Float.parseFloat(soundData.get("volume").toString());
+            pitch = Float.parseFloat(soundData.get("pitch").toString());
+            final Object toPlayerOnly = soundData.get("toPlayerOnly");
+            if(toPlayerOnly != null)
+            this.toPlayerOnly = Boolean.parseBoolean(toPlayerOnly.toString());
+            else this.toPlayerOnly = false;
+        }else{
+            this.sound = null;
+            this.volume = 1.0F;
+            this.pitch = 1.0F;
+            this.toPlayerOnly = false;
+        }
 
     }
 

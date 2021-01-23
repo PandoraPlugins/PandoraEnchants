@@ -20,7 +20,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Blind extends CustomEnchant implements Listener {
 
     public Blind(int id) {
-        super(id, JsonUtil.getData("Enchant.json", "Blind"));
+        super(id, JsonUtil.getData(file, "Blind"));
     }
 
     @EventHandler
@@ -41,12 +41,7 @@ public class Blind extends CustomEnchant implements Listener {
                     final EffectObject chance = effectData.get("chance");
                     if(ThreadLocalRandom.current().nextDouble(100D) - (chance.isAmpEffect() ? level*10D : 0) < chance.getValue().doubleValue()){
 
-                        final EffectObject duration = effectData.get("duration");
-                        final long length = duration.getValue().longValue() / 1000 * 20;
-                        final EffectObject blindness = effectData.get("blindness");
-                        final PotionEffect effect = new PotionEffect(PotionEffectType.BLINDNESS, (int) (length + (duration.isAmpEffect() ? length*(level/10) : 0)),
-                                blindness.getValue().intValue() * (blindness.isAmpEffect() ? level : 1));
-                        entity.addPotionEffect(effect);
+                        getDuration(entity, level, effectData.get("duration"), effectData.get("blindness"));
 
                         soundData.get("onBlindReceive").playSound(entity);
                         msgData.get("onBlindReceive").sendMessage(entity, "player~"+damager.getName());
@@ -61,6 +56,13 @@ public class Blind extends CustomEnchant implements Listener {
 
         }
 
+    }
+
+    static void getDuration(LivingEntity entity, Integer level, EffectObject duration2, EffectObject blindness2) {
+        final long length = duration2.getValue().longValue() / 1000 * 20;
+        final PotionEffect effect = new PotionEffect(PotionEffectType.BLINDNESS, (int) (length + (duration2.isAmpEffect() ? length*(level/10) : 0)),
+                blindness2.getValue().intValue() * (blindness2.isAmpEffect() ? level : 1));
+        entity.addPotionEffect(effect);
     }
 
     @Override

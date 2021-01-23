@@ -13,9 +13,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class Judgement extends CustomEnchant implements Listener {
-    public Judgement(int id) {
-        super(id, JsonUtil.getData(file, "Judgement"));
+public class Tipsy extends CustomEnchant implements Listener {
+    public Tipsy(int id) {
+        super(id, JsonUtil.getData(file, "Tipsy"));
     }
 
     @EventHandler
@@ -23,23 +23,24 @@ public class Judgement extends CustomEnchant implements Listener {
 
         if(event.getEntity() instanceof LivingEntity && event.getDamager() instanceof LivingEntity){
 
-            final LivingEntity entity = (LivingEntity) event.getEntity();
-
-            final int level = containsEnchant(entity.getEquipment().getArmorContents(), this);
+            final LivingEntity ent = (LivingEntity) event.getEntity();
+            final int level = containsEnchant(ent.getEquipment().getArmorContents(), this);
             if(level != -1){
 
                 final EffectObject chance = effectData.get("chance");
                 if (calcChance(level, chance.getValue().doubleValue(), chance.isAmpEffect())) {
 
                     final EffectObject duration = effectData.get("duration");
-                    final int l = (int) (duration.getValue().longValue() + (duration.isAmpEffect() ? level*100 : 0))/1000*20;
-                    final EffectObject regen = effectData.get("regen");
-                    final PotionEffect potionEffect =
-                            new PotionEffect(PotionEffectType.REGENERATION, l, regen.isAmpEffect() ? level : regen.getValue().intValue());
-                    entity.addPotionEffect(potionEffect);
+                    final int length = (int) (duration.getValue().longValue() / 1000 * 20 + (duration.isAmpEffect() ? level*10 : 0));
+                    final EffectObject strengthAmp = effectData.get("strengthAmp");
+                    final PotionEffect strengthEffect = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, length, strengthAmp.getValue().intValue() + (strengthAmp.isAmpEffect() ? level : 0));
+                    final EffectObject fatigueAmp = effectData.get("fatigueAmp");
+                    final PotionEffect fatigueEffect = new PotionEffect(PotionEffectType.SLOW_DIGGING, length, fatigueAmp.getValue().intValue() + (fatigueAmp.isAmpEffect() ? level : 0));
 
-                    soundData.get("onReceive").playSound(entity);
-                    msgData.get("onReceive").sendMessage(entity);
+                    ent.addPotionEffect(strengthEffect);
+                    ent.addPotionEffect(fatigueEffect);
+                    soundData.get("onReceive").playSound(ent);
+                    msgData.get("toReceiver").sendMessage(ent);
 
                 }
 

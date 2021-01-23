@@ -36,19 +36,19 @@ public abstract class CustomEnchant extends Enchantment{
         soundData = enchantData.getSounds();
         msgData = enchantData.getMessages();
         name = JsonUtil.getFromMap(data, "enchantData.name");
-        maxLevel = JsonUtil.getFromMap(data, "enchantData.maxLevel");
-
+        maxLevel = enchantData.getMaxLevel();
     }
 
     /**
      * calculate default chance for an enchantment to happen
      * @param level the level of the enchantment
      * @param value the value to compare to
-     * @param isAmp if the chance is to be amplified
+     * @param isAmp if the chance is to be amplifiedf
      * @return if the enchantment should execute or not
      */
     protected boolean calcChance(int level, double value, boolean isAmp){
-        return ThreadLocalRandom.current().nextDouble(100D) - (isAmp ? 10D * level : 0) < value;
+        final double v = ThreadLocalRandom.current().nextDouble(100D);
+        return v - (isAmp ? 2D * level : 0) < value;
     }
 
     /**

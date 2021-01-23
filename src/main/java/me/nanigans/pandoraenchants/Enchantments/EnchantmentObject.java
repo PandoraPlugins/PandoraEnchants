@@ -16,7 +16,7 @@ public class EnchantmentObject {
     private final Map<String, MessageObject> messages;
     private final String name;
     private final int maxLevel;
-    private final List<EnchantmentTarget> restrictArmor;
+    private final List<String> restrictArmor;
 
     public EnchantmentObject(Map<String, Object> enchantment){
 
@@ -25,10 +25,12 @@ public class EnchantmentObject {
         sounds = getSounds((Map<String, Object>) enchantment.get("sounds"));
         messages = getMessages((Map<String, Object>) enchantment.get("messages"));
         name = JsonUtil.getFromMap(enchantment, "enchantData.name");
-        maxLevel = JsonUtil.getFromMap(enchantment, "enchantData.maxLevel");
+        maxLevel = Integer.parseInt(JsonUtil.getFromMap(enchantment, "enchantData.maxLevel").toString());
 
-        restrictArmor = ((List<String>) JsonUtil.getFromMap(enchantment, "allowEnchanted")).stream()
-                .map(EnchantmentTarget::valueOf).collect(Collectors.toList());
+        final Object allowEnchanted = JsonUtil.getFromMap(enchantment, "allowEnchanted");
+        if(allowEnchanted != null)
+        restrictArmor = ((List<String>) allowEnchanted);
+        else restrictArmor = null;
 
 
     }
@@ -36,7 +38,7 @@ public class EnchantmentObject {
     private static Map<String, SoundObject> getSounds(Map<String, Object> sounds){
 
         final Map<String, SoundObject> soundObj = new HashMap<>();
-        if(sounds != null)
+        if(sounds != null && sounds.size() > 0)
         sounds.forEach((i, j) -> soundObj.put(i, new SoundObject(((Map<String, Object>) j))));
 
         return soundObj;
@@ -52,7 +54,7 @@ public class EnchantmentObject {
 
     }
 
-    public List<EnchantmentTarget> getRestrictArmor() {
+    public List<String> getRestrictArmor() {
         return restrictArmor;
     }
 

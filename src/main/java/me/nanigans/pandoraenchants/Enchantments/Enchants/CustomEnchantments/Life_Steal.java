@@ -54,7 +54,7 @@ public class Life_Steal extends CustomEnchant implements Listener {
 
     static void stealHealth(EntityDamageByEntityEvent event, LivingEntity damager, Integer level, EffectObject drainAmt, double damage, SoundObject onDrain, SoundObject onReceive, MessageObject toReceiver, MessageObject toDrainer) {
         damager.setHealth(Math.min(damager.getMaxHealth(),
-                damager.getHealth()+(damage+(drainAmt.isAmpEffect() ? level : 0))));
+                damager.getHealth()+(damage+(drainAmt.isAmpEffect() ? level/2D : 0))));
 
         final String name = event.getEntity().getName();
         final LivingEntity entity = (LivingEntity) event.getEntity();

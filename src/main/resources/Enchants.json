@@ -305,7 +305,7 @@
     },
     "sounds": {
       "soundGive": {
-        "soundName": "LEVEL_UP",
+        "sound": "LEVEL_UP",
         "volume": 1.0,
         "pitch": 1.0,
         "toPlayerOnly": true
@@ -780,6 +780,70 @@
     "messages": {
       "toDrainer": "You've stolen health from {player}",
       "toReceiver": "Your health was stolen from {player}"
+    }
+  },
+  "Tipsy": {
+    "enchantData": {
+      "name": "Tipsy",
+      "maxLevel": 3
+    },
+    "allowEnchanted": ["HELMET"],
+    "effects": {
+      "chance": {
+        "value": 25.0,
+        "ampEffect": true
+      },
+      "duration": {
+        "value": 5000,
+        "ampEffect": true
+      },
+      "strengthAmp": {
+        "value": 1,
+        "ampEffect": true
+      },
+      "fatigueAmp": {
+        "value": 1,
+        "ampEffect": true
+      }
+
+    },
+    "sounds": {
+      "onReceive": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "toPlayerOnly": true
+      }
+    },
+    "messages": {
+      "toReceiver": "You're starting to feel a little tipsy"
+    }
+  },
+  "Tank": {
+    "enchantData": {
+      "name": "Tank",
+      "maxLevel": 4
+    },
+    "effects": {
+      "chance": {
+        "value": 25.0,
+        "ampEffect": true
+      },
+      "damageDecreasePercent": {
+        "value": 2.0,
+        "ampEffect": true
+      }
+    },
+    "sounds": {
+      "onSuppress": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "toPlayerOnly": false
+      }
+    },
+    "messages": {
+      "onSuppressed": "Your armor saved you from damage"
     }
   }
 

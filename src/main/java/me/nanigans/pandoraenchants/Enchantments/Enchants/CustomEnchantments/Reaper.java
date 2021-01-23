@@ -41,12 +41,7 @@ public class Reaper extends CustomEnchant implements Listener {
                     final EffectObject chance = effectData.get("chance");
                     if(ThreadLocalRandom.current().nextDouble(100D) - (chance.isAmpEffect() ? level*10D : 0) < chance.getValue().doubleValue()){
 
-                        final EffectObject duration = effectData.get("duration");
-                        final long length = duration.getValue().longValue() / 1000 * 20;
-                        final EffectObject blindness = effectData.get("blindness");
-                        final PotionEffect effect = new PotionEffect(PotionEffectType.BLINDNESS, (int) (length + (duration.isAmpEffect() ? length*(level/10) : 0)),
-                                blindness.getValue().intValue() * (blindness.isAmpEffect() ? level : 1));
-                        entity.addPotionEffect(effect);
+                        Blind.getDuration(entity, level, effectData.get("duration"), effectData.get("blindness"));
 
                         soundData.get("onReceive").playSound(entity);
                         msgData.get("toReceiver").sendMessage(entity, "player~"+damager.getName());

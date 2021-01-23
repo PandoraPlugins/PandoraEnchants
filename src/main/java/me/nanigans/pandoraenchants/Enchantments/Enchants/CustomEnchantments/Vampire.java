@@ -69,9 +69,8 @@ public class Vampire extends CustomEnchant implements Listener {
         @Override
         public void run() {
 
-            ent.setHealth(Math.min(ent.getMaxHealth(), healAmt.getValue().doubleValue() * (healAmt.isAmpEffect() ? level : 1)));
+            ent.setHealth(Math.min(ent.getMaxHealth(), ent.getHealth() + (healAmt.getValue().doubleValue() * (healAmt.isAmpEffect() ? level : 1))));
             this.cancel();
-
             soundData.get("onReceive").playSound(ent);
             msgData.get("toReceiver").sendMessage(ent);
         }
