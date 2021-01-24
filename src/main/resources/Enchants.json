@@ -927,6 +927,43 @@
         "ampEffect": true
       }
     }
+  },
+  "Pummel": {
+    "enchantData": {
+      "name": "Pummel",
+      "maxLevel": 3
+    },
+    "allowEnchanted": ["AXE"],
+    "effects": {
+      "chance": {
+        "value": 25.0,
+        "ampEffect": true
+      },
+      "radius": {
+        "value": 2.0,
+        "ampEffect": true
+      },
+      "amplifier": {
+        "value": 1,
+        "ampEffect": true
+      },
+      "duration": {
+        "value": 5000,
+        "ampEffect": true
+      }
+    },
+    "sounds": {
+      "onReceive": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "toPlayerOnly": false
+      }
+    },
+    "messages": {
+      "toReceiver": "You've been pummeled by {player}",
+      "toPummeller": "You've pummelled {numPlayers} players"
+    }
   }
 
 }

@@ -2,6 +2,7 @@ package me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments;
 
 import me.nanigans.pandoraenchants.Enchantments.EffectObject;
 import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchant;
+import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentTarget;
 import org.bukkit.entity.Player;
@@ -29,7 +30,11 @@ public class Hellforge extends CustomEnchant implements Listener {
                 final short value = (short) (repairAmt.getValue().shortValue() + (repairAmt.isAmpEffect() ? level*2 : 0));
                 final ItemStack[] armorContents = player.getEquipment().getArmorContents();
                 final ItemStack armorContent = armorContents[(int) (Math.random() * armorContents.length)];
-                armorContent.setDurability((short) (armorContent.getDurability()+value));
+                if(armorContent != null && armorContent.getType() != Material.AIR) {
+                    final short duraSet = (short) (armorContent.getType().getMaxDurability() - (armorContent.getDurability() - value));
+                    armorContent.setDurability((short) (armorContent.getType().getMaxDurability() - duraSet));
+
+                }
 
             }
 
