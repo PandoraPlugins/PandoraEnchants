@@ -342,7 +342,7 @@ public class TransformGUI implements Listener {
      * @param item the item stack to check
      * @return if it is armor or not
      */
-    private static boolean isArmor(ItemStack item) {
+    public static boolean isArmor(ItemStack item) {
         if(item.getType() == Material.AIR) return false;//check if item is armor
         return (CraftItemStack.asNMSCopy(item).getItem() instanceof ItemArmor);
     }

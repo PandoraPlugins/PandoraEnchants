@@ -964,6 +964,32 @@
       "toReceiver": "You've been pummeled by {player}",
       "toPummeller": "You've pummelled {numPlayers} players"
     }
+  },
+  "Demonforged": {
+    "enchantData": {
+      "name": "Demonforged",
+      "maxLevel": 4
+    },
+    "allowEnchanted": ["AXE"],
+    "effects": {
+      "chance": {
+        "value": 100.0,
+        "ampEffect": false
+      },
+      "durabilityAmpPercent": {
+        "value": 10,
+        "ampEffect": true
+      }
+    },
+    "sounds": {
+      "onDamage": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "toPlayerOnly": false
+      }
+    }
+
   }
 
 }

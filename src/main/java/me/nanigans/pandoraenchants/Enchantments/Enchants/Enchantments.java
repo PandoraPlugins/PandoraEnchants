@@ -4,6 +4,7 @@ import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments.*;
 
 public enum Enchantments {
 
+    Demonforged(new Demonforged(105)),
     Pummel(new Pummel(104)),
     Hellforge(new Hellforge(103)),
     Reinforced(new Reinforced(102)),
