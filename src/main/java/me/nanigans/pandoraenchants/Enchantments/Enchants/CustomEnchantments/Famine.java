@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class Famine extends CustomEnchant implements Listener {
     public Famine(int id) {
-        super(id, JsonUtil.getData(file, "Famine"));
+        super(id, "Famine");
     }
 
     @EventHandler

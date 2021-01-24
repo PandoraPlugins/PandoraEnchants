@@ -18,7 +18,7 @@ import java.util.TimerTask;
 
 public class Chubby extends CustomEnchant implements Listener {
     public Chubby(int id) {
-        super(id, JsonUtil.getData(file, "Chubby"));
+        super(id, "Chubby");
     }
 
     @EventHandler

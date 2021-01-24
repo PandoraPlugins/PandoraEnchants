@@ -12,6 +12,9 @@ commands:
   addcustomenchant:
     usage: /addcustomenchant
     description: Opens up the GUI for converting armor and weapons
+  enchantreload:
+    usage: /enchantreload
+    description: Reload all enchantments
 permissions:
   Enchants.GiveGem:
     description: Allows a user to give a player a gem
@@ -19,3 +22,6 @@ permissions:
   Enchants.OpenGUI:
     description: Allows a user to open the enchant gui
     default: op
+  Enchants.Reload:
+    default: op
+    description: Allows the user to reload enchantments

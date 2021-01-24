@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class Life_Steal extends CustomEnchant implements Listener {
     public Life_Steal(int id) {
-        super(id, JsonUtil.getData(file, "Life_Steal"));
+        super(id, "Life_Steal");
     }
 
     @EventHandler
@@ -67,12 +67,12 @@ public class Life_Steal extends CustomEnchant implements Listener {
 
     @Override
     public String getName() {
-        return null;
+        return name;
     }
 
     @Override
     public int getMaxLevel() {
-        return 0;
+        return enchantData.getMaxLevel();
     }
 
     @Override

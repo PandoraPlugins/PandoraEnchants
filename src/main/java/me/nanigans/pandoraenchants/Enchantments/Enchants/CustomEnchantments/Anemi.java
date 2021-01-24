@@ -14,7 +14,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class Anemi extends CustomEnchant implements Listener {
     public Anemi(int id) {
-        super(id, JsonUtil.getData(file, "Anemi"));
+        super(id, "Anemi");
     }
 
     @EventHandler

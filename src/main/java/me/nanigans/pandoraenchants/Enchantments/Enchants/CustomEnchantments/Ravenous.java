@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class Ravenous extends CustomEnchant implements Listener {
     public Ravenous(int id) {
-        super(id, JsonUtil.getData(file, "Ravenous"));
+        super(id, "Ravenous");
     }
 
     @EventHandler//TODO: replace this with combat tag event and only when holding axe

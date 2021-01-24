@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class Drain extends CustomEnchant implements Listener {
     public Drain(int id) {
-        super(id, JsonUtil.getData(file, "Drain"));
+        super(id, "Drain");
     }
 
     @EventHandler
@@ -39,7 +39,6 @@ public class Drain extends CustomEnchant implements Listener {
                         final double damage = event.getDamage();
                         final EffectObject drainAmt = effectData.get("drainAmt");
                         Life_Steal.stealHealth(event, damager, level, drainAmt, damage, soundData.get("onDrain"), soundData.get("onReceive"), msgData.get("toReceiver"), msgData.get("toDrainer"));
-
                     }
 
                 }

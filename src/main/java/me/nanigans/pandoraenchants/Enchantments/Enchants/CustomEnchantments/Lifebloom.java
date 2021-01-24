@@ -24,7 +24,7 @@ public class Lifebloom extends CustomEnchant implements Listener {
     private final FPlayers instance = FPlayers.getInstance();
 
     public Lifebloom(int id) {
-        super(id, JsonUtil.getData(file, "Lifebloom"));
+        super(id, "Lifebloom");
     }
 
     @EventHandler(priority = EventPriority.HIGH)

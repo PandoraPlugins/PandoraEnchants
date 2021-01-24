@@ -20,7 +20,7 @@ public class Implants extends CustomEnchant implements Listener {
     private final static List<UUID> usersToCheck = new ArrayList<>();
 
     public Implants(int id) {
-        super(id, JsonUtil.getData(file, "Implants"));
+        super(id, "Implants");
     }
 
     @EventHandler

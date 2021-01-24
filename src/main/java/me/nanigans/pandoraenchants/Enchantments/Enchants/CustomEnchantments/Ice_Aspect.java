@@ -20,7 +20,7 @@ public class Ice_Aspect extends CustomEnchant implements Listener {
 
 
     public Ice_Aspect(int id) {
-        super(id, JsonUtil.getData(file, "Ice_Aspect"));
+        super(id, "Ice_Aspect");
     }
 
     @EventHandler

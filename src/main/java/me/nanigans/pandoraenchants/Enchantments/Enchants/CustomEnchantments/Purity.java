@@ -22,7 +22,7 @@ import java.util.List;
 public class Purity extends CustomEnchant implements Listener {
 
     public Purity(int id) {
-        super(id, JsonUtil.getData(file, "Purity"));
+        super(id, "Purity");
 
     }
 

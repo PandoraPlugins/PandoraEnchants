@@ -2,7 +2,6 @@ package me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments;
 
 import me.nanigans.pandoraenchants.Enchantments.EffectObject;
 import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchant;
-import me.nanigans.pandoraenchants.Util.JsonUtil;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentTarget;
 import org.bukkit.entity.LivingEntity;
@@ -13,9 +12,11 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class Judgement extends CustomEnchant implements Listener {
-    public Judgement(int id) {
-        super(id, "Judgement");
+import java.util.List;
+
+public class Curse extends CustomEnchant implements Listener {
+    public Curse(int id) {
+        super(id, "Curse");
     }
 
     @EventHandler
@@ -26,20 +27,31 @@ public class Judgement extends CustomEnchant implements Listener {
             final LivingEntity entity = (LivingEntity) event.getEntity();
 
             final int level = containsEnchant(entity.getEquipment().getArmorContents(), this);
-            if(level != -1){
+            if (level != -1) {
 
                 final EffectObject chance = effectData.get("chance");
                 if (calcChance(level, chance.getValue().doubleValue(), chance.isAmpEffect())) {
 
-                    final EffectObject duration = effectData.get("duration");
-                    final int l = (int) (duration.getValue().longValue() + (duration.isAmpEffect() ? level*100 : 0))/1000*20;
-                    final EffectObject regen = effectData.get("regen");
-                    final PotionEffect potionEffect =
-                            new PotionEffect(PotionEffectType.REGENERATION, l, regen.isAmpEffect() ? level : regen.getValue().intValue());
-                    entity.addPotionEffect(potionEffect);
+                    final double health = entity.getHealth()-event.getDamage();
+                    final EffectObject lowHP = effectData.get("lowHP");
+                    if(health <= lowHP.getValue().doubleValue() - (lowHP.isAmpEffect() ? level : 0)){
 
-                    soundData.get("onReceive").playSound(entity);
-                    msgData.get("onReceive").sendMessage(entity);
+                        final EffectObject potionEffects = effectData.get("potionEffects");
+                        final List<String> effects = (List<String>) potionEffects.getOther();
+
+                        final EffectObject duration = effectData.get("duration");
+                        final int length = (int) ((duration.getValue().longValue() + (duration.isAmpEffect() ? level * 100L : 0))/1000*20);
+                        for (String effect : effects) {
+
+                            final PotionEffectType byName = PotionEffectType.getByName(effect);
+                            if(byName != null){
+                                final PotionEffect pEffect = new PotionEffect(byName, length, (potionEffects.isAmpEffect() ? level : 1));
+                                entity.addPotionEffect(pEffect);
+                            }
+                        }
+                        soundData.get("onReceive").playSound(entity);
+                        msgData.get("toReceiver").sendMessage(entity);
+                    }
 
                 }
 

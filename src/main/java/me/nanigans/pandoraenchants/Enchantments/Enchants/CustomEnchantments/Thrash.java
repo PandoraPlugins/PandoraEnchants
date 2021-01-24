@@ -23,7 +23,7 @@ public class Thrash extends CustomEnchant implements Listener {
     private final FPlayers instance = FPlayers.getInstance();
 
     public Thrash(int id) {
-        super(id, JsonUtil.getData(file, "Thrash"));
+        super(id, "Thrash");
     }
 
     @EventHandler
@@ -73,12 +73,12 @@ public class Thrash extends CustomEnchant implements Listener {
 
     @Override
     public String getName() {
-        return null;
+        return name;
     }
 
     @Override
     public int getMaxLevel() {
-        return 0;
+        return enchantData.getMaxLevel();
     }
 
     @Override

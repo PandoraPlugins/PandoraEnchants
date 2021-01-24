@@ -19,7 +19,7 @@ import java.util.List;
 
 public class Shuffle extends CustomEnchant implements Listener {
     public Shuffle(int id) {
-        super(id, JsonUtil.getData(file, "Shuffle"));
+        super(id, "Shuffle");
     }
 
     @EventHandler

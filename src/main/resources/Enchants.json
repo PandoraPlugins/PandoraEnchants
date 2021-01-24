@@ -293,7 +293,7 @@
         "ampEffect": true
       },
       "clearEffects":{
-        "value": ["SLOWNESS", "POISON"]
+        "value": ["SLOW", "POISON"]
       },
       "includePlayer": {
         "value": true
@@ -455,7 +455,7 @@
         "ampEffect": true
       },
       "removeDebuffs": {
-        "value": ["SLOWNESS"]
+        "value": ["SLOW"]
       }
     },
     "sounds": {
@@ -609,6 +609,10 @@
       },
       "amplifier": {
         "value": 3,
+        "ampEffect": false
+      },
+      "lowHealth": {
+        "value": 5,
         "ampEffect": false
       }
     },
@@ -824,6 +828,7 @@
       "name": "Tank",
       "maxLevel": 4
     },
+    "allowEnchanted": ["CHESTPLATE"],
     "effects": {
       "chance": {
         "value": 25.0,
@@ -845,6 +850,67 @@
     "messages": {
       "onSuppressed": "Your armor saved you from damage"
     }
+  },
+  "Curse": {
+    "enchantData": {
+      "name": "Curse",
+      "maxLevel": 5
+    },
+    "allowEnchanted": ["CHESTPLATE"],
+    "effects": {
+      "chance": {
+        "value": 100.0,
+        "ampEffect": false
+      },
+      "potionEffects": {
+        "value": ["SLOW","DAMAGE_RESISTANCE", "INCREASE_DAMAGE"],
+        "ampEffect": true
+      },
+      "duration": {
+        "value": 5000,
+        "ampEffect": true
+      },
+      "lowHP": {
+        "value": 4,
+        "ampEffect": true
+      }
+    },
+    "sounds": {
+      "onReceive": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "toPlayerOnly": true
+      }
+    },
+    "messages": {
+      "toReceiver": "You've been cursed"
+    }
+  },
+  "Platemail": {
+
+  },
+  "Reinforced": {
+    "enchantData": {
+      "name": "Reinforced",
+      "maxLevel": 4
+    },
+    "allowEnchanted": ["LEGGINGS"],
+    "effects": {
+      "percentTakenOff": {
+        "value": 5.0,
+        "ampEffect": true
+      }
+
+    },
+    "sounds": {
+      "onHit": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0
+      }
+    }
+
   }
 
 }

@@ -18,7 +18,7 @@ import java.util.List;
 
 public class Disarmour extends CustomEnchant implements Listener {
     public Disarmour(int id) {
-        super(id, JsonUtil.getData(file, "Disarmour"));
+        super(id, "Disarmour");
     }
 
     @EventHandler
@@ -35,26 +35,29 @@ public class Disarmour extends CustomEnchant implements Listener {
 
                     final EffectObject numberRemoved = effectData.get("numberRemoved");
                     final int numRemove = numberRemoved.getValue().intValue();
-                    final int amount = numberRemoved.isAmpEffect() ? (int) Math.min(4, Math.random() * level) : numRemove;
+                    final int amount = numberRemoved.isAmpEffect() ? (int) Math.min(4, (Math.random() * level)+1) : numRemove;
 
                     final Player removeFrom = (Player) event.getDamager();
                     final ItemStack[] armorContents = removeFrom.getEquipment().getArmorContents();
                     final List<ItemStack> items = new ArrayList<>();
-                    final int size = removeFrom.getInventory().all((Material) null).size();
+                    final int size = emptySlots(removeFrom);
                     final int removeAmt = Math.min(size, amount);
                     for (int i = 0; i < removeAmt; i++) {
                         final int indx = (int) (Math.random() * armorContents.length);
                         final ItemStack armorContent = armorContents[indx];
                         armorContents[indx] = null;
+                        if(armorContent != null && armorContent.getType() != Material.AIR)
                         items.add(armorContent);
                     }
+                    removeFrom.getInventory().setArmorContents(armorContents);
                     for (ItemStack item : items) {
+                        if(item != null)
                         removeFrom.getInventory().addItem(item);
                     }
 
                     soundData.get("onRemove").playSound(removeFrom);
-                    msgData.get("toRemover").sendMessage(remover, "amount~"+removeAmt, "player~"+removeFrom.getName());
-                    msgData.get("toRemoved").sendMessage(removeFrom, "amount~"+removeAmt, "player~"+remover.getName());
+                    msgData.get("toRemover").sendMessage(remover, "amount~"+items.size(), "player~"+removeFrom.getName());
+                    msgData.get("toRemoved").sendMessage(removeFrom, "amount~"+items.size(), "player~"+remover.getName());
 
                 }
 
@@ -62,6 +65,15 @@ public class Disarmour extends CustomEnchant implements Listener {
 
         }
 
+    }
+
+    private int emptySlots(Player player){
+        int c = 0;
+        for (ItemStack itemStack : player.getInventory()) {
+            if(itemStack == null || itemStack.getType() == Material.AIR)
+                c++;
+        }
+        return c;
     }
 
     @Override

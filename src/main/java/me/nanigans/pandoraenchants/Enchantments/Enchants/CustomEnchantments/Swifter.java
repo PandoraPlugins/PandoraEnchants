@@ -15,7 +15,7 @@ import org.bukkit.potion.PotionEffectType;
 
 public class Swifter extends CustomEnchant implements Listener {
     public Swifter(int id) {
-        super(id, JsonUtil.getData(file, "Swifter"));
+        super(id, "Swifter");
     }
 
     @EventHandler
@@ -30,16 +30,19 @@ public class Swifter extends CustomEnchant implements Listener {
 
                 final EffectObject chance = effectData.get("chance");
                 if (calcChance(level, chance.getValue().doubleValue(), chance.isAmpEffect())) {
-                    final EffectObject duration = effectData.get("duration");
-                    final int length = (int) (duration.getValue().longValue() / 1000 * 20);
-                    final EffectObject amplifier = effectData.get("amplifier");
-                    final PotionEffect potionEffect = new PotionEffect(PotionEffectType.SPEED, length + (duration.isAmpEffect() ? level * 100 : 0),
-                            amplifier.getValue().intValue() + (amplifier.isAmpEffect() ? level : 0));
-                    entity.addPotionEffect(potionEffect);
+                    final EffectObject lowHealth = effectData.get("lowHealth");
+                    if(entity.getHealth()-event.getDamage() <= lowHealth.getValue().doubleValue() + (lowHealth.isAmpEffect() ? level : 0)) {
 
-                    soundData.get("onReceive").playSound(entity);
-                    msgData.get("toReceiver").sendMessage(entity);
+                        final EffectObject duration = effectData.get("duration");
+                        final int length = (int) (duration.getValue().longValue() / 1000 * 20);
+                        final EffectObject amplifier = effectData.get("amplifier");
+                        final PotionEffect potionEffect = new PotionEffect(PotionEffectType.SPEED, length + (duration.isAmpEffect() ? level * 100 : 0),
+                                amplifier.getValue().intValue() + (amplifier.isAmpEffect() ? level : 0));
+                        entity.addPotionEffect(potionEffect);
 
+                        soundData.get("onReceive").playSound(entity);
+                        msgData.get("toReceiver").sendMessage(entity);
+                    }
                 }
 
             }

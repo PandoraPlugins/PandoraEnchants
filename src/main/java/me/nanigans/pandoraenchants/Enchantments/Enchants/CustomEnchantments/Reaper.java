@@ -20,7 +20,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Reaper extends CustomEnchant implements Listener {
 
     public Reaper(int id) {
-        super(id, JsonUtil.getData(file, "Reaper"));
+        super(id, "Reaper");
     }
 
     @EventHandler

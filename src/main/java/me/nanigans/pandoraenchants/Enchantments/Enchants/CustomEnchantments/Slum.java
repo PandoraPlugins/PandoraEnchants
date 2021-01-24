@@ -18,7 +18,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Slum extends CustomEnchant implements Listener {
     public Slum(int id) {
-        super(id, JsonUtil.getData(file, "Slum"));
+        super(id, "Slum");
     }
 
     @EventHandler

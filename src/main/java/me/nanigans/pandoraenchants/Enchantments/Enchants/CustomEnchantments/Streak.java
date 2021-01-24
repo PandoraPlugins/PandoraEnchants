@@ -18,7 +18,7 @@ public class Streak extends CustomEnchant implements Listener {
     private final static Map<UUID, ComboTimer> hitNums = new HashMap<>();
 
     public Streak(int id) {
-        super(id, JsonUtil.getData(file, "Streak"));
+        super(id, "Streak");
     }
 
     @EventHandler

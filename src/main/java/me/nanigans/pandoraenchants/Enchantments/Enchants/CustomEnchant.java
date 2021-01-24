@@ -21,16 +21,29 @@ public abstract class CustomEnchant extends Enchantment{
     protected PandoraEnchants plugin;
     public static final String nbtEnchanted = "ENCHANTED";
     protected static final String file = "Enchants.json";
-    protected final EnchantmentObject enchantData;
-    protected final Map<String, EffectObject> effectData;
-    protected final Map<String, SoundObject> soundData;
-    protected final Map<String, MessageObject> msgData;
-    protected final String name;
-    protected final int maxLevel;
+    protected EnchantmentObject enchantData;
+    protected Map<String, EffectObject> effectData;
+    protected Map<String, SoundObject> soundData;
+    protected Map<String, MessageObject> msgData;
+    protected String name;
+    protected int maxLevel;
+    private final String dataStr;
 
-    public CustomEnchant(int id, Map<String, Object> data) {
+    public CustomEnchant(int id, String dataStr) {
         super(id);
+        final Map<String, Object> data = JsonUtil.getData(file, dataStr);
         plugin = PandoraEnchants.getPlugin(PandoraEnchants.class);
+        enchantData = new EnchantmentObject(data);
+        effectData = enchantData.getEffects();
+        soundData = enchantData.getSounds();
+        msgData = enchantData.getMessages();
+        name = JsonUtil.getFromMap(data, "enchantData.name");
+        maxLevel = enchantData.getMaxLevel();
+        this.dataStr = dataStr;
+    }
+
+    public void reloadEnchant(){
+        final Map<String, Object> data = JsonUtil.getData(file, dataStr);
         enchantData = new EnchantmentObject(data);
         effectData = enchantData.getEffects();
         soundData = enchantData.getSounds();
@@ -48,7 +61,8 @@ public abstract class CustomEnchant extends Enchantment{
      */
     protected boolean calcChance(int level, double value, boolean isAmp){
         final double v = ThreadLocalRandom.current().nextDouble(100D);
-        return v - (isAmp ? 2D * level : 0) < value;
+        final double v1 = v - (isAmp ? 2D * level : 0);
+        return v1 < value;
     }
 
     /**

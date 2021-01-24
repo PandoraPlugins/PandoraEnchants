@@ -25,7 +25,7 @@ public class Pig extends CustomEnchant implements Listener {
     private static final Map<UUID, Long> consumedTime = new HashMap<>();
 
     public Pig(int id) {
-        super(id, JsonUtil.getData(file, "Pig"));
+        super(id, "Pig");
     }
 
     @EventHandler

@@ -2,6 +2,7 @@ package me.nanigans.pandoraenchants;
 
 import me.nanigans.pandoraenchants.Commands.AddEnchantment;
 import me.nanigans.pandoraenchants.Commands.GemGive;
+import me.nanigans.pandoraenchants.Commands.ReloadEnchants;
 import me.nanigans.pandoraenchants.Enchantments.Enchants.Enchantments;
 import me.nanigans.pandoraenchants.Events.EventAnalyser;
 import me.nanigans.pandoraenchants.Events.PlayerEvents;
@@ -39,6 +40,7 @@ public final class PandoraEnchants extends JavaPlugin {
         getCommand("gemenchant").setExecutor(new GemGive());
         getCommand("gemenchant").setTabCompleter(new me.nanigans.pandoraenchants.Commands.Tab.GemGive());
         getCommand("addcustomenchant").setExecutor(new AddEnchantment());
+        getCommand("enchantreload").setExecutor(new ReloadEnchants());
     }
 
     @Override
@@ -51,7 +53,7 @@ public final class PandoraEnchants extends JavaPlugin {
 
     }
 
-    private void deregisterEnchantment(Enchantment enchant){
+    public static void deregisterEnchantment(Enchantment enchant){
 
         try {
 
@@ -74,7 +76,7 @@ public final class PandoraEnchants extends JavaPlugin {
 
     }
 
-    private void registerEnchantment(Enchantment enchant) {
+    public static void registerEnchantment(Enchantment enchant) {
         try {
             Field f = Enchantment.class.getDeclaredField("acceptingNew");
             f.setAccessible(true);

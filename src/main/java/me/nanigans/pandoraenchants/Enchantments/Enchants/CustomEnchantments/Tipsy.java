@@ -15,7 +15,7 @@ import org.bukkit.potion.PotionEffectType;
 
 public class Tipsy extends CustomEnchant implements Listener {
     public Tipsy(int id) {
-        super(id, JsonUtil.getData(file, "Tipsy"));
+        super(id, "Tipsy");
     }
 
     @EventHandler

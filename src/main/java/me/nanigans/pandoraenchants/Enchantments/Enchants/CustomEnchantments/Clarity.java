@@ -17,7 +17,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Clarity extends CustomEnchant implements Listener {
 
     public Clarity(int id) {
-        super(id, JsonUtil.getData(file, "Clarity"));
+        super(id, "Clarity");
 
     }
 

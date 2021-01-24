@@ -21,7 +21,7 @@ public class Insomnia extends CustomEnchant implements Listener {
 
 
     public Insomnia(int id) {
-        super(id, JsonUtil.getData(file, "Insomnia"));
+        super(id, "Insomnia");
     }
 
     @EventHandler

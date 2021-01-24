@@ -19,7 +19,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Frozen extends CustomEnchant implements Listener {
 
     public Frozen(int id) {
-        super(id, JsonUtil.getData(file, "Frozen"));
+        super(id, "Frozen");
     }
 
     @EventHandler

@@ -18,7 +18,7 @@ import java.util.TimerTask;
 
 public class Vampire extends CustomEnchant implements Listener {
     public Vampire(int id) {
-        super(id, JsonUtil.getData(file, "Vampire"));
+        super(id, "Vampire");
     }
 
     @EventHandler

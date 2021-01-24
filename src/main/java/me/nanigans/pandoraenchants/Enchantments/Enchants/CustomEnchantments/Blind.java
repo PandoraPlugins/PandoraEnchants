@@ -20,7 +20,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Blind extends CustomEnchant implements Listener {
 
     public Blind(int id) {
-        super(id, JsonUtil.getData(file, "Blind"));
+        super(id, "Blind");
     }
 
     @EventHandler

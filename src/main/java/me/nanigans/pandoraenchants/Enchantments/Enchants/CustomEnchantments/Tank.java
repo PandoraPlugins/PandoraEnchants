@@ -2,7 +2,6 @@ package me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments;
 
 import me.nanigans.pandoraenchants.Enchantments.EffectObject;
 import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchant;
-import me.nanigans.pandoraenchants.Util.JsonUtil;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentTarget;
 import org.bukkit.entity.LivingEntity;
@@ -13,7 +12,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class Tank extends CustomEnchant implements Listener {
     public Tank(int id) {
-        super(id, JsonUtil.getData(file, "Tank"));
+        super(id, "Tank");
     }
 
     @EventHandler
@@ -35,7 +34,6 @@ public class Tank extends CustomEnchant implements Listener {
                     final EffectObject ddPercent = effectData.get("damageDecreasePercent");
                     final double v = (ddPercent.isAmpEffect() ? ddPercent.getValue().doubleValue() * level : ddPercent.getValue().doubleValue());
                     event.setDamage(damage - (damage * (v / 100D)));
-
                     soundData.get("onSuppress").playSound(hit);
                     msgData.get("onSuppressed").sendMessage(hit);
 
