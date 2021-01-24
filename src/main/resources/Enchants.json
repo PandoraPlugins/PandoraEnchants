@@ -910,7 +910,23 @@
         "pitch": 1.0
       }
     }
-
+  },
+  "Hellforge": {
+    "enchantData": {
+      "name": "Hellforge",
+      "maxLevel": 3
+    },
+    "allowEnchanted": ["BOOTS"],
+    "effects": {
+      "chance": {
+        "value": 5.0,
+        "ampEffect": true
+      },
+      "repairAmt": {
+        "value": 2,
+        "ampEffect": true
+      }
+    }
   }
 
 }
