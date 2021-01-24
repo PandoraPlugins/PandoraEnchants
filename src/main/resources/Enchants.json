@@ -990,6 +990,41 @@
       }
     }
 
+  },
+  "Cleave": {
+    "enchantData": {
+      "name": "Cleave",
+      "maxLevel": 7
+    },
+    "allowEnchanted": ["AXE"],
+    "effects": {
+      "chance": {
+        "value": 25.0,
+        "ampEffect": true
+      },
+      "radius": {
+        "value": 2.5,
+        "ampEffect": true
+      },
+      "damage": {
+        "ampEffect": false
+      },
+      "effectFaction": {
+        "value": ["ENEMY", "NEUTRAL"]
+      }
+    },
+    "sounds": {
+      "onHit": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "toPlayerOnly": true
+      }
+    },
+    "messages": {
+      "toDamaged": "You've been cleaved by {player}",
+      "toDamager": "You've hit {numEnts} entities"
+    }
   }
 
 }
