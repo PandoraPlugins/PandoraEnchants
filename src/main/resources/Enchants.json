@@ -1025,6 +1025,61 @@
       "toDamaged": "You've been cleaved by {player}",
       "toDamager": "You've hit {numEnts} entities"
     }
+  },
+  "Shockwave": {
+    "enchantData": {
+      "name": "Shockwave",
+      "maxLevel": 5
+    },
+    "allowEnchanted": ["CHESTPLATE"],
+    "effects": {
+      "chance": {
+        "value": 25.0,
+        "ampEffect": true
+      },
+      "knockBackAmp": {
+        "value": 3.0,
+        "ampEffect": true
+      }
+
+    },
+    "sounds": {
+      "onHit": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "toPlayerOnly": false
+      }
+    },
+    "messages": {
+      "toDamager": "You were shocked back by {player}'s shockwave",
+      "toHit": "You sent {player} flying back with your shockwave"
+    }
+  },
+  "Dodge": {
+    "enchantData": {
+      "name": "Dodge",
+      "maxLevel": 3
+    },
+    "allowEnchanted": ["CHESTPLATE"],
+    "effects": {
+      "chance": {
+        "value": 25.0,
+        "ampEffect": true
+      }
+    },
+    "sounds": {
+      "onDodge": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "toPlayerOnly": false
+      }
+    },
+    "messages": {
+      "toDodger": "You dodged {player}'s attack",
+      "toHitter": "{player} dodged your attack"
+    }
   }
 
 }
