@@ -1080,6 +1080,28 @@
       "toDodger": "You dodged {player}'s attack",
       "toHitter": "{player} dodged your attack"
     }
+  },
+  "Cactus": {
+    "enchantData": {
+      "name": "Cactus",
+      "maxLevel": 1
+    },
+    "allowEnchanted": ["CHESTPLATE"],
+    "chance": {
+      "value": 15.0,
+      "ampEffect": false
+    },
+    "maxDamage": {
+      "value": 4,
+      "ampEffect": true
+    }
+  },
+  "sounds": {
+    "onHit": {
+      "sound": "LEVEL_UP",
+      "volume": 1.0,
+      "pitch": 1.0
+    }
   }
 
 }
