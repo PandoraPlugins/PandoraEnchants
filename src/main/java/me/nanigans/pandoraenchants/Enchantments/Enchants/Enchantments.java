@@ -4,6 +4,10 @@ import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments.*;
 
 public enum Enchantments {
 
+    Swap(new Swap(112)),
+    Savior(new Savior(111)),
+    Evade(new Evade(110)),
+    Cactus(new Cactus(109)),
     Shockwave(new Shockwave(108)),
     Dodge(new Dodge(107)),
     Cleave(new Cleave(106)),

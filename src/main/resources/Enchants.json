@@ -1235,6 +1235,38 @@
         "value": 5.0,
         "ampEffect": true
       }
+    },
+    "sounds": {
+      "onSaved": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "toPlayerOnly": true
+      }
+    }
+  },
+  "Swap": {
+    "enchantData": {
+      "name": "Swap",
+      "maxLevel": 4
+    },
+    "allowEnchanted": ["SWORD"],
+    "effects": {
+      "chance": {
+        "value": 25.0,
+        "ampEffect": true
+      }
+    },
+    "sounds": {
+      "toSwappedPlayers": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "toPlayerOnly": false
+      }
+    },
+    "messages": {
+      "toPlayersSwapped": "You were swapped with {player}"
     }
   }
 

@@ -41,6 +41,7 @@ public class Savior extends CustomEnchant implements Listener {
 
                         entity.addPotionEffect(speed);
                         entity.addPotionEffect(absorp);
+                        soundData.get("onSaved").playSound(entity);
 
                     }
 
