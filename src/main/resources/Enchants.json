@@ -7,7 +7,9 @@
       "name": "Implants",
       "maxLevel": 3
     },
-    "allowEnchanted": ["HELMET"],
+    "allowEnchanted": [
+      "HELMET"
+    ],
     "effects": {
       "healthHeal": {
         "value": 1.0,
@@ -79,7 +81,6 @@
         "value": 3000,
         "ampEffect": true
       }
-
     },
     "sounds": {
       "onBlindReceive": {
@@ -98,9 +99,10 @@
     "enchantData": {
       "name": "Insomnia",
       "maxLevel": 7
-
     },
-    "allowEnchanted": ["SWORD"],
+    "allowEnchanted": [
+      "SWORD"
+    ],
     "effects": {
       "chance": {
         "value": 25.0,
@@ -114,7 +116,6 @@
         "value": 1,
         "ampEffect": true
       }
-
     },
     "sounds": {
       "onInsomniaReceive": {
@@ -134,14 +135,22 @@
       "name": "Slum",
       "maxLevel": 5
     },
-    "allowEnchanted": ["SWORD", "AXE"],
+    "allowEnchanted": [
+      "SWORD",
+      "AXE"
+    ],
     "effects": {
       "chance": {
         "value": 35.0,
         "ampEffect": true
       },
       "clearEffects": {
-        "value": ["SLOW_DIGGING", "CONFUSION", "BLINDNESS", "HUNGER"]
+        "value": [
+          "SLOW_DIGGING",
+          "CONFUSION",
+          "BLINDNESS",
+          "HUNGER"
+        ]
       }
     },
     "sounds": {
@@ -178,7 +187,6 @@
         "value": 3000,
         "ampEffect": true
       }
-
     },
     "sounds": {
       "onReceive": {
@@ -198,7 +206,9 @@
       "name": "Ice Aspect",
       "maxLevel": 3
     },
-    "allowEnchanted": ["AXE"],
+    "allowEnchanted": [
+      "AXE"
+    ],
     "effects": {
       "chance": {
         "value": 25.0,
@@ -231,7 +241,9 @@
       "name": "Pig",
       "maxLevel": 3
     },
-    "allowEnchanted": ["HELMET"],
+    "allowEnchanted": [
+      "HELMET"
+    ],
     "effects": {
       "chance": {
         "value": 25.0,
@@ -259,7 +271,9 @@
       "name": "Clarity",
       "maxLevel": 3
     },
-    "allowEnchanted": ["HELMET"],
+    "allowEnchanted": [
+      "HELMET"
+    ],
     "effects": {
       "chance": {
         "value": 25.0,
@@ -282,7 +296,9 @@
       "name": "Purity",
       "maxLevel": 4
     },
-    "allowEnchanted": ["CHESTPLATE"],
+    "allowEnchanted": [
+      "CHESTPLATE"
+    ],
     "effects": {
       "chance": {
         "value": 20.0,
@@ -292,8 +308,11 @@
         "value": 2.5,
         "ampEffect": true
       },
-      "clearEffects":{
-        "value": ["SLOW", "POISON"]
+      "clearEffects": {
+        "value": [
+          "SLOW",
+          "POISON"
+        ]
       },
       "includePlayer": {
         "value": true
@@ -317,7 +336,9 @@
       "name": "Chubby",
       "maxLevel": 3
     },
-    "allowEnchanted": ["CHESTPLATE"],
+    "allowEnchanted": [
+      "CHESTPLATE"
+    ],
     "effects": {
       "chance": {
         "value": 25.0,
@@ -351,7 +372,9 @@
       "name": "Lifebloom",
       "maxLevel": 5
     },
-    "allowEnchanted": ["LEGGINGS"],
+    "allowEnchanted": [
+      "LEGGINGS"
+    ],
     "effects": {
       "chance": {
         "value": 50.0,
@@ -384,7 +407,9 @@
       "name": "Judgement",
       "maxLevel": 4
     },
-    "allowEnchanted": ["LEGGINGS"],
+    "allowEnchanted": [
+      "LEGGINGS"
+    ],
     "effects": {
       "chance": {
         "value": 25.0,
@@ -416,7 +441,9 @@
       "name": "Vampire",
       "maxLevel": 3
     },
-    "allowEnchanted": ["SWORD"],
+    "allowEnchanted": [
+      "SWORD"
+    ],
     "effects": {
       "chance": {
         "value": 25.0,
@@ -448,14 +475,18 @@
       "name": "Blessed",
       "maxLevel": 4
     },
-    "allowEnchanted": ["AXE"],
+    "allowEnchanted": [
+      "AXE"
+    ],
     "effects": {
       "chance": {
         "value": 25.0,
         "ampEffect": true
       },
       "removeDebuffs": {
-        "value": ["SLOW"]
+        "value": [
+          "SLOW"
+        ]
       }
     },
     "sounds": {
@@ -475,7 +506,9 @@
       "name": "Ravenous",
       "maxLevel": 4
     },
-    "allowEnchanted": ["AXE"],
+    "allowEnchanted": [
+      "AXE"
+    ],
     "effects": {
       "chance": {
         "value": 25.0,
@@ -503,7 +536,9 @@
       "name": "Drain",
       "maxLevel": 3
     },
-    "allowEnchanted": ["AXE"],
+    "allowEnchanted": [
+      "AXE"
+    ],
     "effects": {
       "chance": {
         "value": 25.0,
@@ -537,7 +572,9 @@
       "name": "Shuffle",
       "maxLevel": 3
     },
-    "allowEnchanted": ["CHESTPLATE"],
+    "allowEnchanted": [
+      "CHESTPLATE"
+    ],
     "effects": {
       "chance": {
         "value": 25.0,
@@ -568,7 +605,9 @@
       "name": "Disarmour",
       "maxLevel": 5
     },
-    "allowEnchanted": ["LEGGINGS"],
+    "allowEnchanted": [
+      "LEGGINGS"
+    ],
     "effects": {
       "chance": {
         "value": 25.0,
@@ -597,9 +636,11 @@
       "name": "Swifter",
       "maxLevel": 1
     },
-    "allowEnchanted": ["BOOTS"],
+    "allowEnchanted": [
+      "BOOTS"
+    ],
     "effects": {
-      "chance":{
+      "chance": {
         "value": 100.0,
         "ampEffect": false
       },
@@ -633,7 +674,9 @@
       "name": "Anemi",
       "maxLevel": 1
     },
-    "allowEnchanted": ["BOOTS"],
+    "allowEnchanted": [
+      "BOOTS"
+    ],
     "effects": {
       "chance": {
         "value": 50.0,
@@ -646,7 +689,9 @@
       "name": "Enrage",
       "maxLevel": 3
     },
-    "allowEnchanted": ["SWORD"],
+    "allowEnchanted": [
+      "SWORD"
+    ],
     "effects": {
       "chance": {
         "value": 75.0,
@@ -667,7 +712,9 @@
       "name": "Famine",
       "maxLevel": 4
     },
-    "allowEnchanted": ["SWORD"],
+    "allowEnchanted": [
+      "SWORD"
+    ],
     "effects": {
       "chance": {
         "value": 25.0,
@@ -700,7 +747,9 @@
       "name": "Streak",
       "maxLevel": 3
     },
-    "allowEnchanted": ["SWORD"],
+    "allowEnchanted": [
+      "SWORD"
+    ],
     "effects": {
       "chance": {
         "value": 100.0,
@@ -727,7 +776,9 @@
       "name": "Thrash",
       "maxLevel": 4
     },
-    "allowEnchanted": ["SWORD"],
+    "allowEnchanted": [
+      "SWORD"
+    ],
     "effects": {
       "chance": {
         "value": 35.0,
@@ -756,7 +807,9 @@
       "name": "Life Steal",
       "maxLevel": 3
     },
-    "allowEnchanted": ["SWORD"],
+    "allowEnchanted": [
+      "SWORD"
+    ],
     "effects": {
       "chance": {
         "value": 25.0,
@@ -791,7 +844,9 @@
       "name": "Tipsy",
       "maxLevel": 3
     },
-    "allowEnchanted": ["HELMET"],
+    "allowEnchanted": [
+      "HELMET"
+    ],
     "effects": {
       "chance": {
         "value": 25.0,
@@ -809,7 +864,6 @@
         "value": 1,
         "ampEffect": true
       }
-
     },
     "sounds": {
       "onReceive": {
@@ -828,7 +882,9 @@
       "name": "Tank",
       "maxLevel": 4
     },
-    "allowEnchanted": ["CHESTPLATE"],
+    "allowEnchanted": [
+      "CHESTPLATE"
+    ],
     "effects": {
       "chance": {
         "value": 25.0,
@@ -856,14 +912,20 @@
       "name": "Curse",
       "maxLevel": 5
     },
-    "allowEnchanted": ["CHESTPLATE"],
+    "allowEnchanted": [
+      "CHESTPLATE"
+    ],
     "effects": {
       "chance": {
         "value": 100.0,
         "ampEffect": false
       },
       "potionEffects": {
-        "value": ["SLOW","DAMAGE_RESISTANCE", "INCREASE_DAMAGE"],
+        "value": [
+          "SLOW",
+          "DAMAGE_RESISTANCE",
+          "INCREASE_DAMAGE"
+        ],
         "ampEffect": true
       },
       "duration": {
@@ -888,20 +950,20 @@
     }
   },
   "Platemail": {
-
   },
   "Reinforced": {
     "enchantData": {
       "name": "Reinforced",
       "maxLevel": 4
     },
-    "allowEnchanted": ["LEGGINGS"],
+    "allowEnchanted": [
+      "LEGGINGS"
+    ],
     "effects": {
       "percentTakenOff": {
         "value": 5.0,
         "ampEffect": true
       }
-
     },
     "sounds": {
       "onHit": {
@@ -916,7 +978,9 @@
       "name": "Hellforge",
       "maxLevel": 3
     },
-    "allowEnchanted": ["BOOTS"],
+    "allowEnchanted": [
+      "BOOTS"
+    ],
     "effects": {
       "chance": {
         "value": 5.0,
@@ -933,7 +997,9 @@
       "name": "Pummel",
       "maxLevel": 3
     },
-    "allowEnchanted": ["AXE"],
+    "allowEnchanted": [
+      "AXE"
+    ],
     "effects": {
       "chance": {
         "value": 25.0,
@@ -970,7 +1036,9 @@
       "name": "Demonforged",
       "maxLevel": 4
     },
-    "allowEnchanted": ["AXE"],
+    "allowEnchanted": [
+      "AXE"
+    ],
     "effects": {
       "chance": {
         "value": 100.0,
@@ -989,14 +1057,15 @@
         "toPlayerOnly": false
       }
     }
-
   },
   "Cleave": {
     "enchantData": {
       "name": "Cleave",
       "maxLevel": 7
     },
-    "allowEnchanted": ["AXE"],
+    "allowEnchanted": [
+      "AXE"
+    ],
     "effects": {
       "chance": {
         "value": 25.0,
@@ -1010,7 +1079,10 @@
         "ampEffect": false
       },
       "effectFaction": {
-        "value": ["ENEMY", "NEUTRAL"]
+        "value": [
+          "ENEMY",
+          "NEUTRAL"
+        ]
       }
     },
     "sounds": {
@@ -1031,7 +1103,9 @@
       "name": "Shockwave",
       "maxLevel": 5
     },
-    "allowEnchanted": ["CHESTPLATE"],
+    "allowEnchanted": [
+      "CHESTPLATE"
+    ],
     "effects": {
       "chance": {
         "value": 25.0,
@@ -1041,7 +1115,6 @@
         "value": 3.0,
         "ampEffect": true
       }
-
     },
     "sounds": {
       "onHit": {
@@ -1061,7 +1134,9 @@
       "name": "Dodge",
       "maxLevel": 3
     },
-    "allowEnchanted": ["CHESTPLATE"],
+    "allowEnchanted": [
+      "CHESTPLATE"
+    ],
     "effects": {
       "chance": {
         "value": 25.0,
@@ -1086,7 +1161,9 @@
       "name": "Cactus",
       "maxLevel": 1
     },
-    "allowEnchanted": ["CHESTPLATE"],
+    "allowEnchanted": [
+      "CHESTPLATE"
+    ],
     "chance": {
       "value": 15.0,
       "ampEffect": false
@@ -1094,13 +1171,70 @@
     "maxDamage": {
       "value": 4,
       "ampEffect": true
+    },
+    "sounds": {
+      "onHit": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "toPlayerOnly": false
+      }
     }
   },
-  "sounds": {
-    "onHit": {
-      "sound": "LEVEL_UP",
-      "volume": 1.0,
-      "pitch": 1.0
+  "Evade": {
+    "enchantData": {
+      "name": "Evade",
+      "maxLevel": 1
+    },
+    "chance": {
+      "value": 100.0,
+      "ampEffect": false
+    },
+    "lowHealth": {
+      "value": 5.0,
+      "ampEffect": true
+    },
+    "duration": {
+      "value": 5000,
+      "ampEffect": true
+    },
+    "sounds": {
+      "onInvis": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "toPlayerOnly": true
+      }
+    },
+    "messages": {
+      "toPlayer": "You are invisible for 5 seconds"
+    }
+  },
+  "Savior": {
+    "enchantData": {
+      "name": "Savior",
+      "maxLevel": 3
+    },
+    "allowEnchanted": ["BOOTS"],
+    "effects": {
+      "chance": {
+        "value": 25.0,
+        "ampEffect": true
+      },
+      "duration": {
+        "value": 5000,
+        "ampEffect": true
+      },
+      "speedAmp": {
+        "value": 3
+      },
+      "absorptionAmp": {
+        "value": 5
+      },
+      "lowHealth": {
+        "value": 5.0,
+        "ampEffect": true
+      }
     }
   }
 
