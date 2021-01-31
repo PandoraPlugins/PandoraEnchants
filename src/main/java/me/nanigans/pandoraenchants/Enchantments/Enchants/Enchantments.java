@@ -4,6 +4,8 @@ import me.nanigans.pandoraenchants.Enchantments.Enchants.CustomEnchantments.*;
 
 public enum Enchantments {
 
+    Shatter(new Shatter(114)),
+    Mark(new Mark(113)),
     Swap(new Swap(112)),
     Savior(new Savior(111)),
     Evade(new Evade(110)),
