@@ -1268,6 +1268,40 @@
     "messages": {
       "toPlayersSwapped": "You were swapped with {player}"
     }
+  },
+  "Mark": {
+    "enchantData": {
+      "name": "Mark",
+      "maxLevel": 5
+    },
+    "allowEnchanted": ["SWORD"],
+    "effects": {
+      "chance": {
+        "value": 25.0,
+        "ampEffect": true
+      },
+      "markDuration": {
+        "value": 5000,
+        "ampEffect": true
+      },
+      "damageIncrease": {
+        "value": 0.5,
+        "ampEffect": true
+      }
+    },
+    "sounds": {
+      "onMark": {
+        "sound": "LEVEL_UP",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "toPlayerOnly": false
+      }
+    },
+    "messages": {
+      "toMarked": "You've been marked by {player}",
+      "toMarker": "You've marked {player}",
+      "onUnMark": "You've been unmarked"
+    }
   }
 
 }
